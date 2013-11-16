@@ -19,10 +19,8 @@ Array.prototype.binarySearch = function (v) {
 	var l = 0;
 	var h = this.length - 1;
 
-	while (l
-<= h) {
-		var m = l + ((h - l) >
-	> 1);
+	while (l<= h) {
+		var m = l + ((h - l) >> 1);
 		console.log('l@%s,h@%s,m@%s', l, h, m);
 		if (this[m] === v) {
 			return m;
