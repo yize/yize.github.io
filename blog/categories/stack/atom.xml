@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Stack | ithans]]></title>
   <link href="http://www.ithans.com/blog/categories/stack/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-11-16T18:25:04+08:00</updated>
+  <updated>2013-11-16T19:02:19+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -27,13 +27,8 @@ Array.prototype.binarySearch = function (v) {</p>
 <pre><code>var l = 0;
 var h = this.length - 1;
 
-while (l
-</code></pre>
-
-<p>&lt;= h) {</p>
-
-<pre><code>    var m = l + ((h - l) &gt;
-&gt; 1);
+while (l&lt;= h) {
+    var m = l + ((h - l) &gt;&gt; 1);
     console.log('l@%s,h@%s,m@%s', l, h, m);
     if (this[m] === v) {
         return m;

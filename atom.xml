@@ -4,7 +4,7 @@
   <title><![CDATA[ithans]]></title>
   <link href="http://www.ithans.com/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-11-16T18:25:04+08:00</updated>
+  <updated>2013-11-16T19:02:19+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -64,17 +64,13 @@
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
 </pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">binarySearch</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="nx">l</span>
-</span><span class='line'><span class="o">&lt;=</span> <span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">l</span> <span class="o">+</span> <span class="p">((</span><span class="nx">h</span> <span class="o">-</span> <span class="nx">l</span><span class="p">)</span> <span class="o">&gt;</span>
-</span><span class='line'>  <span class="o">&gt;</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="nx">l</span><span class="o">&lt;=</span> <span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">l</span> <span class="o">+</span> <span class="p">((</span><span class="nx">h</span> <span class="o">-</span> <span class="nx">l</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">);</span>
 </span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;l@%s,h@%s,m@%s&#39;</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">m</span><span class="p">);</span>
 </span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">m</span><span class="p">]</span> <span class="o">===</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>          <span class="k">return</span> <span class="nx">m</span><span class="p">;</span>
