@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Stack | ithans]]></title>
+  <link href="http://www.ithans.com/blog/categories/stack/atom.xml" rel="self"/>
+  <link href="http://www.ithans.com/"/>
+  <updated>2013-11-16T17:49:34+08:00</updated>
+  <id>http://www.ithans.com/</id>
+  <author>
+    <name><![CDATA[邵寒超]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript 折半搜索法（二分法）]]></title>
+    <link href="http://www.ithans.com/blog/2013/07/28/javascript-binary-search/"/>
+    <updated>2013-07-28T00:00:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/07/28/javascript-binary-search</id>
+    <content type="html"><![CDATA[<p>周末，写个简单的算法。</p>
+
+<p>JS二分法：
+```javascript
+Array.prototype.binarySearch = function (v) {</p>
+
+<pre><code>var l = 0;
+var h = this.length - 1;
+
+while (l
+</code></pre>
+
+<p>&lt;= h) {</p>
+
+<pre><code>    var m = l + ((h - l) &gt;
+&gt; 1);
+    console.log('l@%s,h@%s,m@%s', l, h, m);
+    if (this[m] === v) {
+        return m;
+    }
+    if (this[m] &gt; v) {
+        h = m - 1;
+    } else {
+        l = m + 1;
+    }
+}
+
+return -(l + 1);
+</code></pre>
+
+<p>}
+<code>
+使用：
+</code>javascript
+var arr = [1, 2, 3, 5, 78, 2312, 424];</p>
+
+<p>arr.sort(function (x, y) {</p>
+
+<pre><code>return x - y;
+</code></pre>
+
+<p>})
+console.log(arr);
+console.log(arr.binarySearch(424));
+```
+说明：</p>
+
+<p><code>var m = l + ((h - l) &gt;&gt; 1);</code>，为什么要用位运算？</p>
+
+<p>其实用<code>var m = Math.floor((h+l)/2);</code>也是可以的，但是位运算的速度优于除法，并且还要再进行一次Math.floor。用位运算主要是出于性能考虑。<code>h+l</code>还存在溢出的问题，不过这个在web端应该不会遇到。。。Node.js就有可能了。</p>
+
+<p>还有个复杂度的问题，下回再分析。</p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-07-29于杭州</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[node.js Connection lost The server closed the connection.]]></title>
+    <link href="http://www.ithans.com/blog/2013/07/07/mysql-connection-lost/"/>
+    <updated>2013-07-07T00:00:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/07/07/mysql-connection-lost</id>
+    <content type="html"><![CDATA[<h3>mysql模块</h3>
+
+<p>今天访问了下内网的一台服务器，发现挂掉了，SSH上去看了下<code>nohup.out</code>,发现报错了
+```haskell</p>
+
+<pre><code>events.js:71
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: Connection lost: The server closed the connection.
+    at Protocol.end (/var/www/html/utci/node_modules/mysql/lib/protocol/Protocol.js:73:13)
+    at Socket.onend (stream.js:66:10)
+    at Socket.EventEmitter.emit (events.js:126:20)
+    at TCP.onread (net.js:417:51)
+</code></pre>
+
+<p>```</p>
+
+<p>这个错误的大概意思就是，未处理的<code>error</code>事件</p>
+
+<p>原因是：mysql的连接久了以后，超时了。</p>
+
+<p>解决方法是：</p>
+
+<p>增加<code>error</code>事件的监听</p>
+
+<p>database.js:</p>
+
+<p>```javascript</p>
+
+<pre><code>var mysql = require('mysql'),
+    settings = require('../settings');
+
+module.exports.getConnection = function () {
+    if ((module.exports.connection) &amp;&amp; (module.exports.connection._socket)
+        &amp;&amp; (module.exports.connection._socket.readable)
+        &amp;&amp; (module.exports.connection._socket.writable)) {
+        return module.exports.connection;
+    }
+    console.log(((module.exports.connection) ?
+        "UNHEALTHY SQL CONNECTION; RE" : "") + "CONNECTING TO SQL.");
+    var connection = mysql.createConnection({
+        host: settings.host,
+        port: settings.port,
+        database: settings.db_name,
+        user: settings.username,
+        password: settings.password,
+        //中文读取
+        charset: "utf8"
+    });
+    connection.connect(function (err) {
+        if (err) {
+            console.log("SQL CONNECT ERROR: " + err);
+        } else {
+            console.log("SQL CONNECT SUCCESSFUL.");
+        }
+    });
+    connection.on("close", function (err) {
+        console.log("SQL CONNECTION CLOSED.");
+    });
+    connection.on("error", function (err) {
+        console.log("SQL CONNECTION ERROR: " + err);
+    });
+    module.exports.connection = connection;
+    return module.exports.connection;
+};
+
+// Open a connection automatically at app startup.
+module.exports.getConnection();
+// If you've saved this file as database.js, then get and use the
+// connection as in the following example:
+// var database = require(__dirname + "/database");
+// var connection = database.getConnection();
+// connection.query(query, function(err, results) { ....
+</code></pre>
+
+<h2>```</h2>
+
+<p>伊泽<br/>
+2013-07-07于杭州</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[怎么使用grunt-tps]]></title>
+    <link href="http://www.ithans.com/blog/2013/05/28/how-to-use-grunt-tps/"/>
+    <updated>2013-05-28T00:00:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/05/28/how-to-use-grunt-tps</id>
+    <content type="html"><![CDATA[<h3>grunt-tps是什么。</h3>
+
+<p>首先来说下TPS是什么，TPS的全称是Taobao Pictures System，中文意思就是淘宝图片系统，主要用于存放图片，当然也可以存放其他的东西。</p>
+
+<p>而grunt-tps就是tps的grunt插件，基于tpsmate，只需要经过简单的配置，就可以用grunt进行自动化管理。</p>
+
+<h3>为什么要用grunt-tps</h3>
+
+<ol>
+<li><strong>自动化</strong>，特别是当你的需要替换的目录是在一个文件夹下的，可以直接使用<code>xx/**/*</code>这样的方式。</li>
+<li>和grunt结合，grunt是个大趋势，使用grunt进行将平时一些反复劳动交给工具去做，提高工作效率。所有的事情，一行<code>grunt</code>搞定，简单轻松愉快。</li>
+<li>减少出错率，人工上传替换，难免会出现错误。</li>
+</ol>
+
+
+<h3>tpsmate是什么？</h3>
+
+<p>TPS Mate是TPS系统的命令行版本。其中命令行版本基于python，当前功能主要包括上传单张图片、批量上传图片以及样式文件中背景图片的批量上传以及输出。其目的主要为减少手工替换以及为可能出现的前端打包工具提供更为有效的支持。</p>
+
+<h3>怎么安装tpsmate</h3>
+
+<p>首先要安装<code>python</code>，<a href="">http://www.python.org/download/</a></p>
+
+<h4>使用tpsmate需要具备的条件：</h4>
+
+<ol>
+<li>淘宝内部环境，需要可以访问tms.taobao.com</li>
+<li>有上传图片至tps的权限，看下你能否在<a href="http://tps.tms.taobao.com/photo/index.htm">这里</a>上传图片</li>
+</ol>
+
+
+<h3>怎么使用grunt-tps</h3>
+
+<p>如果你以前从来没有用过<a href="http://gruntjs.com/">Grunt</a>，推荐你看看Grunt的<a href="http://gruntjs.com/getting-started">Getting Start</a></p>
+
+<p>如何安装grunt？</p>
+
+<p>```haskell</p>
+
+<pre><code>npm uninstall -g grunt
+npm install -g grunt-cli
+</code></pre>
+
+<p>```</p>
+
+<p>接下来就是要安装grunt-tps
+```haskell</p>
+
+<pre><code>npm install grunt --save-dev
+npm install grunt-tps --save-dev
+</code></pre>
+
+<p>```</p>
+
+<p>你的Gruntfile.js中加入这一段</p>
+
+<p>```javascript</p>
+
+<pre><code>tps: {
+options: {
+    argv: "--inplace",
+},
+all: ['test.css', 'lib/**/*.css', 'test/**/*.scss','index.htm']
+}
+</code></pre>
+
+<p>```</p>
+
+<p>你的Gruntfile.js中，看起来应该这样的</p>
+
+<p>```javascript</p>
+
+<pre><code>'use strict';
+module.exports = function (grunt) {
+    // Project configuration.
+    grunt.initConfig({
+        // Configuration to be run (and then tested).
+        tps: {
+            options: {
+                argv: "--inplace"
+            },
+            all: ['test.css', 'lib/**/*', 'test/**/*.scss','index.htm']
+        }
+    });
+    grunt.loadNpmTasks('grunt-tps');
+    grunt.registerTask('default', ['tps']);
+};
+</code></pre>
+
+<p>```</p>
+
+<ul>
+<li><code>argv</code>是tpsmate的参数，比如<code>--inplace</code>(用tps路径「线上路径」替换本地路径)，参考tpsmate的命令行方式</li>
+</ul>
+
+
+<p>grunt-tps源码地址:<a href="">https://github.com/yize/grunt-tps</a></p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-28于杭州</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[恢复mac下的/usr/local/bin]]></title>
+    <link href="http://www.ithans.com/blog/2013/05/27/usr-local-bin/"/>
+    <updated>2013-05-27T00:00:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/05/27/usr-local-bin</id>
+    <content type="html"><![CDATA[<p>今天一早配置phpstorm的时候，看到文件上有很多warn，比如，require不存在这样。</p>
+
+<p>然后就开始坑爹的瞎搞了，点了<code>external libraries</code>里，添加了<code>/usr/local/bin/node</code></p>
+
+<p>发现还是有warn报错，随之，看是悲剧的一步，虽然我是想删除external libraries中对node的引用，删除的时候，有红色的提示，没管那么多，直接跳过去了。。。</p>
+
+<p>发现不对，在<code>terminal</code>中，各种<code>node</code>,<code>git</code>这样的命令没用了。</p>
+
+<p>用sudo也是没有权限。</p>
+
+<p>后来同事提醒，可能是权限问题。</p>
+
+<p>查了下此时的/usr/local/bin下的文件，现在都是在我的名下，group也在admin下。</p>
+
+<p>试了下重新安装node，发现，node在root名下，group是wheel。</p>
+
+<p>并且是有<code>x</code>权限的。</p>
+
+<p>解决方法如下：
+```haskell</p>
+
+<pre><code>sudo chmod -R +x /usr/local/bin/
+sudo chown -R root /usr/local/bin/
+sudo chgrp -R wheel /usr/local/bin/
+</code></pre>
+
+<p>```
+如此，解决。</p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-27于杭州</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[console.log]]></title>
+    <link href="http://www.ithans.com/blog/2013/05/24/console-log/"/>
+    <updated>2013-05-24T00:00:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/05/24/console-log</id>
+    <content type="html"><![CDATA[<p>作为开发人员，用好调试工具可以提高工作效率，今天就来说说<code>console.log</code></p>
+
+<p><code>console.log</code> 很简单，</p>
+
+<p>```javascript</p>
+
+<pre><code>console.log(1)
+console.log($0) //$0是elements panel 里面你选中的DOM结构。也可以使用console.dir($0)
+console.log(1,2) //多参数 
+</code></pre>
+
+<p>```
+以上这些都是基本的用法，不赘述。</p>
+
+<p>下面就来说说，你可能不知道的console.log</p>
+
+<p>```javascript</p>
+
+<pre><code>var userName = "yize",userPoints = 100;
+console.log("User %s has %d points", userName, userPoints);
+</code></pre>
+
+<p>```
+运行以上命令，控制台会输出User yize has 100 points</p>
+
+<p>$s,$d看起来是不是特别眼熟，貌似是大学的时候学过的C语言，哈哈</p>
+
+<p>chrome dev tools 目前支持以下几种格式：</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Format Specifier</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <code>%s</code>
+            </td>
+            <td>Formats the value as a string.//字符串</td>
+        </tr>
+        <tr>
+            <td>
+                <code>%d</code>
+                or
+                <code>%i</code>
+            </td>
+            <td>Formats the value as an integer.//整形</td>
+        </tr>
+        <tr>
+            <td>
+                <code>%f</code>
+            </td>
+            <td>Formats the value as a floating point value.//浮点数</td>
+        </tr>
+        <tr>
+            <td>
+                <code>%o</code>
+            </td>
+            <td>
+                Formats the value as an expandable DOM element (as in the Elements panel).//DOM元素
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>%O</code>
+            </td>
+            <td>Formats the value as an expandable JavaScript object.//JS对象</td>
+        </tr>
+        <tr>
+            <td>
+                <code>%c</code>
+            </td>
+            <td>
+                Formats the output string according to CSS styles you provide.//CSS 样式
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<p>目测<code>console.log('%O',document.body) === console.dir(document.body)</code></p>
+
+<p>改变log的样式：</p>
+
+<p>```javascript</p>
+
+<pre><code>var userName = "yize",userPoints = 100;
+console.log("%cUser %s has %d points", "color:orange; background:blue; font-size: 16pt", userName, userPoints);
+</code></pre>
+
+<p>```
+<img src="http://ww3.sinaimg.cn/large/60ee1ef8gw1e4z9k9snadj218i03e75p.jpg" alt="图片" />
+chrome dev tools很强大，官方文档:<a href="">https://developers.google.com/chrome-developer-tools/</a></p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-24于杭州</p>
+]]></content>
+  </entry>
+  
+</feed>

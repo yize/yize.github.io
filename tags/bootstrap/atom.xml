@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Bootstrap | ithans]]></title>
+  <link href="http://www.ithans.com/tags/bootstrap/atom.xml" rel="self"/>
+  <link href="http://www.ithans.com/"/>
+  <updated>2013-11-16T17:49:34+08:00</updated>
+  <id>http://www.ithans.com/</id>
+  <author>
+    <name><![CDATA[邵寒超]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[jekyll-bootstrap安装]]></title>
+    <link href="http://www.ithans.com/blog/2013/02/18/jekyll-bootstrap-install/"/>
+    <updated>2013-02-18T00:00:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/02/18/jekyll-bootstrap-install</id>
+    <content type="html"><![CDATA[<p>安装jekyll-bootstrap</p>
+
+<h3>首先需要安装jekyll  <a href="https://github.com/mojombo/jekyll/wiki/install">官网wiki</a>：</h3>
+
+<ol>
+<li>ruby1.9.1-dev中包含gem的安装包</li>
+</ol>
+
+
+<p><code>haskell
+sudo apt-get install ruby1.9.1-dev
+</code></p>
+
+<ol>
+<li>安装jekyll</li>
+</ol>
+
+
+<p><code>haskell
+sudo gem install jekyll
+</code></p>
+
+<h3>接下来需要花3分钟完成jekyll-bootstrap的安装 (将USERNAME替换为你的github的用户名)</h3>
+
+<ol>
+<li><p>建立新的项目</p>
+
+<p> 去你的 <a href="https://github.com">https://github.com</a> 建立一个名为USERNAME.github.com的项目</p></li>
+<li><p>安装Jekyll-Bootstrap
+<code>haskell
+$ git clone https://github.com/plusjade/jekyll-bootstrap.git USERNAME.github.com
+$ cd USERNAME.github.com
+$ git remote set-url origin git@github.com:USERNAME/USERNAME.github.com.git
+$ git push origin master
+</code></p></li>
+<li>等待几分钟，去看下你的 <a href="http://USERNAME.github.com">http://USERNAME.github.com</a></li>
+</ol>
+
+
+<h3>*如果你已经有了一个你的github博客，你可以在本地启你的jekyll服务：</h3>
+
+<p><code>haskell
+$ git clone https://github.com/plusjade/jekyll-bootstrap.git
+$ cd jekyll-bootstrap
+$ jekyll --server
+</code>
+去看下<a href="http://localhost:4000">http://localhost:4000</a>.</p>
+
+<p>中文下，请将文件改为<code>utf-8</code>格式，如果GBK可能会出现jekyll服务无法启动的错误</p>
+
+<p>解决方法：</p>
+
+<p>修改jekyll为默认打开utf-8：</p>
+
+<ol>
+<li>找到convertible.rb</li>
+</ol>
+
+
+<p><code>haskell
+sudo find / -name convertible.rb
+</code>
+我的是在<code>/var/lib/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/convertible.rb</code></p>
+
+<p><code>haskell
+cd /var/lib/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/ &amp;&amp; sudo vim convertible.rb
+</code></p>
+
+<ol>
+<li>将<code>self.content = File.read(File.join(base, name)</code> 改为 <code>self.content = File.read(File.join(base, name), :encoding =&gt; 'utf-8')</code></li>
+</ol>
+
+
+<p>参考资料：</p>
+
+<ul>
+<li><p><a href="https://help.github.com/">https://help.github.com</a></p></li>
+<li><p><a href="https://github.com/mojombo/jekyll/wiki/install">https://github.com/mojombo/jekyll/wiki/install</a></p></li>
+<li><p><a href="http://jekyllbootstrap.com/">http://jekyllbootstrap.com/</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

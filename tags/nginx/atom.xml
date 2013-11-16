@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Nginx | ithans]]></title>
+  <link href="http://www.ithans.com/tags/nginx/atom.xml" rel="self"/>
+  <link href="http://www.ithans.com/"/>
+  <updated>2013-11-16T17:49:34+08:00</updated>
+  <id>http://www.ithans.com/</id>
+  <author>
+    <name><![CDATA[邵寒超]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[尝试使用Tengine(nginx)]]></title>
+    <link href="http://www.ithans.com/blog/2013/02/20/try-tengine/"/>
+    <updated>2013-02-20T00:00:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/02/20/try-tengine</id>
+    <content type="html"><![CDATA[<p>最近这几天信息量比较大，接触了很多的东西，学了很多，先不说学习方法问题，至少个人在成长。</p>
+
+<p>今天和
+<a wb_screen_name="淘宝道璘" href="#">@淘宝道璘</a>
+一起在玩Tengine</p>
+
+<p>想要做的事情是从apache换到Tengine，道璘之前有研究过nginx，他说：在windows上，nginx存在两个问题，一个是中文路径，两外一个是php不稳定。后来还是切回了apache。</p>
+
+<p>直接用起公司开源的Tengine <a href="https://github.com/taobao/tengine">Github</a></p>
+
+<h2>普通安装模式</h2>
+
+<p>因为需要支持combo，也就是<code>http://example.com/??style1.css,style2.css,foo/style3.css</code>的格式，所以安装流程是这样的：</p>
+
+<p><code>haskell
+git clone git://github.com/taobao/tengine.git
+cd tengine
+</code></p>
+
+<p>然后编译之后安装</p>
+
+<p><code>haskell
+./configure --with-http_concat_module
+make
+sudo make install
+</code>
+如果不需要支持combo的话，就不需要带<code>--with-http_concat_module</code>参数。</p>
+
+<p>装完以后当然要开始配置。(<code>配置本地代理，也就是assets.daily.taobao.net等指向本地文件夹</code>)</p>
+
+<p><code>haskell
+sudo vi /usr/local/nginx/conf/nginx.conf
+</code>
+在httpd中添加</p>
+
+<p>```haskell
+server {</p>
+
+<pre><code>listen  80;
+server_name assets.daily.taobao.net a.tbcdn.cn; #改成自己的assets_server
+concat on; #打开concat
+root /home/pofa/work/assets/; #本地assets路径，需要改成自己的assets_path
+autoindex on;
+error_page 404 = @ucool; #淘宝ucool，如果文件不存在，从ucool取
+location @ucool{
+    proxy_set_header Host $http_host;
+    proxy_pass http://10.232.39.168;
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<h2>是不是觉得比较麻烦？启用屌丝模式！</h2>
+
+<p><code>haskell
+git clone git://github.com/yize/tengine.git
+cd tengine
+</code></p>
+
+<p><code>注意：请先备份自己的/usr/local/nginx/conf/nginx.conf哦！！</code></p>
+
+<p>然后sh下</p>
+
+<p><code>haskell
+sh ./tengine-combo.sh #需要concat模块
+or
+sh ./tengine.sh #不需要concat模块
+</code>
+好了之后别忘了在<code>/etc/hosts</code>中增加127.0.0.1 assets.daily.taobao.net a.tbcdn.cn</p>
+
+<p>如果不想用本地代理的话，注释掉hosts中上面这一句就行了</p>
+
+<p>enjoy it!</p>
+
+<p>源码在我的<a href="https://github.com/yize/tengine">GITHUB</a>上</p>
+]]></content>
+  </entry>
+  
+</feed>

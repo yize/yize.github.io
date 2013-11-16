@@ -5,11 +5,20 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>ithans</title>
+  <title>node.js Connection lost The server closed the connection. - ithans</title>
   <meta name="author" content="邵寒超">
 
   
-  <meta name="description" content="今天晚上跟女朋友去UME看了《速度与激情6》，很精彩。（那边的饮料真是坑，12块钱一瓶） 回来的路上，两人谈论起我喜欢的美国大片和她喜欢的感情戏。结果是，我觉得她说的话还是比较有道理的，她是这么说的： 我看的电视剧改变了我很多，一些人生观价值观的东西，人生并不是为了一个目标而或者，并不是说， &hellip;">
+  <meta name="description" content="mysql模块 今天访问了下内网的一台服务器，发现挂掉了，SSH上去看了下nohup.out,发现报错了 1
+2
+3
+4
+5
+6
+7
+8
+events.js:71 throw arguments[1]; // Unhandled &#39;error&#39; event ^
+Error: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +27,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.ithans.com/">
+  <link rel="canonical" href="http://www.ithans.com/blog/2013/07/07/mysql-connection-lost/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -76,181 +85,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/07/28/weekend-thinking/">周末有感</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-28T00:00:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今天晚上跟女朋友去UME看了《速度与激情6》，很精彩。（那边的饮料真是坑，12块钱一瓶）</p>
-
-<p>回来的路上，两人谈论起我喜欢的美国大片和她喜欢的感情戏。结果是，我觉得她说的话还是比较有道理的，她是这么说的：</p>
-
-<blockquote><p>我看的电视剧改变了我很多，一些人生观价值观的东西，人生并不是为了一个目标而或者，并不是说，你赚到一个亿的时候才是你开心的时候，其他的时间都不开心，就算你真的赚到你一个亿了，你还是失去了之前的快乐。无论我们工作、学习，都是为了更加快乐的生活。</p></blockquote>
-
-<p>“人生得意须尽欢，莫使金樽空对月”，再回想之前外包转正面试失败这件事情，其实未必也不是件好事，这次面试，认识了很多新的东西，知道自己有很多不足的地方，得到了一些前辈的指点，收获很大。结果，有时候往往是顺路而来的。</p>
-
-<p>今天凌晨看了《精忠岳飞》的63，64集，岳飞征战一身，最后还是因为皇帝的疑心和嫉妒以及秦桧的谗言，白白葬送了十余年的胜利。《满江红·怒发冲冠》中有一句“莫等闲，白了少年头，空悲切”，很喜欢，也很心痛。</p>
-
-<hr />
-
-<p>伊泽<br/>
-2013-07-28于杭州</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/07/28/javascript-binary-search/">Javascript 折半搜索法（二分法）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-28T00:00:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>周末，写个简单的算法。</p>
-
-<p>JS二分法：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">binarySearch</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">while</span> <span class="p">(</span><span class="nx">l</span>
-</span><span class='line'><span class="o">&lt;=</span> <span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">l</span> <span class="o">+</span> <span class="p">((</span><span class="nx">h</span> <span class="o">-</span> <span class="nx">l</span><span class="p">)</span> <span class="o">&gt;</span>
-</span><span class='line'>  <span class="o">&gt;</span> <span class="mi">1</span><span class="p">);</span>
-</span><span class='line'>      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;l@%s,h@%s,m@%s&#39;</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">m</span><span class="p">);</span>
-</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">m</span><span class="p">]</span> <span class="o">===</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>          <span class="k">return</span> <span class="nx">m</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">m</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>          <span class="nx">h</span> <span class="o">=</span> <span class="nx">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span><span class='line'>          <span class="nx">l</span> <span class="o">=</span> <span class="nx">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="nx">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>使用：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">2312</span><span class="p">,</span> <span class="mi">424</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">arr</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nx">x</span> <span class="o">-</span> <span class="nx">y</span><span class="p">;</span>
-</span><span class='line'><span class="p">})</span>
-</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span>
-</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">binarySearch</span><span class="p">(</span><span class="mi">424</span><span class="p">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>说明：</p>
-
-<p><code>var m = l + ((h - l) &gt;&gt; 1);</code>，为什么要用位运算？</p>
-
-<p>其实用<code>var m = Math.floor((h+l)/2);</code>也是可以的，但是位运算的速度优于除法，并且还要再进行一次Math.floor。用位运算主要是出于性能考虑。<code>h+l</code>还存在溢出的问题，不过这个在web端应该不会遇到。。。Node.js就有可能了。</p>
-
-<p>还有个复杂度的问题，下回再分析。</p>
-
-<hr />
-
-<p>伊泽<br/>
-2013-07-29于杭州</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/07/07/mysql-connection-lost/">node.js Connection Lost the Server Closed the Connection.</a></h1>
+      <h1 class="entry-title">node.js Connection Lost the Server Closed the Connection.</h1>
     
     
       <p class="meta">
@@ -273,7 +113,7 @@
   </header>
 
 
-  <div class="entry-content"><h3>mysql模块</h3>
+<div class="entry-content"><h3>mysql模块</h3>
 
 <p>今天访问了下内网的一台服务器，发现挂掉了，SSH上去看了下<code>nohup.out</code>,发现报错了</p>
 
@@ -402,173 +242,16 @@
 <p>伊泽<br/>
 2013-07-07于杭州</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/28/how-to-use-grunt-tps/">怎么使用grunt-tps</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">邵寒超</span></span>
 
-<time datetime="2013-05-28T00:00:00+08:00" pubdate data-updated="true">May 28<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>grunt-tps是什么。</h3>
-
-<p>首先来说下TPS是什么，TPS的全称是Taobao Pictures System，中文意思就是淘宝图片系统，主要用于存放图片，当然也可以存放其他的东西。</p>
-
-<p>而grunt-tps就是tps的grunt插件，基于tpsmate，只需要经过简单的配置，就可以用grunt进行自动化管理。</p>
-
-<h3>为什么要用grunt-tps</h3>
-
-<ol>
-<li><strong>自动化</strong>，特别是当你的需要替换的目录是在一个文件夹下的，可以直接使用<code>xx/**/*</code>这样的方式。</li>
-<li>和grunt结合，grunt是个大趋势，使用grunt进行将平时一些反复劳动交给工具去做，提高工作效率。所有的事情，一行<code>grunt</code>搞定，简单轻松愉快。</li>
-<li>减少出错率，人工上传替换，难免会出现错误。</li>
-</ol>
-
-
-<h3>tpsmate是什么？</h3>
-
-<p>TPS Mate是TPS系统的命令行版本。其中命令行版本基于python，当前功能主要包括上传单张图片、批量上传图片以及样式文件中背景图片的批量上传以及输出。其目的主要为减少手工替换以及为可能出现的前端打包工具提供更为有效的支持。</p>
-
-<h3>怎么安装tpsmate</h3>
-
-<p>首先要安装<code>python</code>，<a href="">http://www.python.org/download/</a></p>
-
-<h4>使用tpsmate需要具备的条件：</h4>
-
-<ol>
-<li>淘宝内部环境，需要可以访问tms.taobao.com</li>
-<li>有上传图片至tps的权限，看下你能否在<a href="http://tps.tms.taobao.com/photo/index.htm">这里</a>上传图片</li>
-</ol>
-
-
-<h3>怎么使用grunt-tps</h3>
-
-<p>如果你以前从来没有用过<a href="http://gruntjs.com/">Grunt</a>，推荐你看看Grunt的<a href="http://gruntjs.com/getting-started">Getting Start</a></p>
-
-<p>如何安装grunt？</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">npm</span> <span class="n">uninstall</span> <span class="o">-</span><span class="n">g</span> <span class="n">grunt</span>
-</span><span class='line'><span class="nf">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="n">grunt</span><span class="o">-</span><span class="n">cli</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>接下来就是要安装grunt-tps</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">npm</span> <span class="n">install</span> <span class="n">grunt</span> <span class="c1">--save-dev</span>
-</span><span class='line'><span class="nf">npm</span> <span class="n">install</span> <span class="n">grunt</span><span class="o">-</span><span class="n">tps</span> <span class="c1">--save-dev</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>你的Gruntfile.js中加入这一段</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">tps</span><span class="o">:</span> <span class="p">{</span>
-</span><span class='line'><span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">argv</span><span class="o">:</span> <span class="s2">&quot;--inplace&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="p">},</span>
-</span><span class='line'><span class="nx">all</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;test.css&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/**/*.css&#39;</span><span class="p">,</span> <span class="s1">&#39;test/**/*.scss&#39;</span><span class="p">,</span><span class="s1">&#39;index.htm&#39;</span><span class="p">]</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>你的Gruntfile.js中，看起来应该这样的</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="c1">// Project configuration.</span>
-</span><span class='line'>    <span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
-</span><span class='line'>        <span class="c1">// Configuration to be run (and then tested).</span>
-</span><span class='line'>        <span class="nx">tps</span><span class="o">:</span> <span class="p">{</span>
-</span><span class='line'>            <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">argv</span><span class="o">:</span> <span class="s2">&quot;--inplace&quot;</span>
-</span><span class='line'>            <span class="p">},</span>
-</span><span class='line'>            <span class="nx">all</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;test.css&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/**/*&#39;</span><span class="p">,</span> <span class="s1">&#39;test/**/*.scss&#39;</span><span class="p">,</span><span class="s1">&#39;index.htm&#39;</span><span class="p">]</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>    <span class="p">});</span>
-</span><span class='line'>    <span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-tps&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;tps&#39;</span><span class="p">]);</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li><code>argv</code>是tpsmate的参数，比如<code>--inplace</code>(用tps路径「线上路径」替换本地路径)，参考tpsmate的命令行方式</li>
-</ul>
-
-
-<p>grunt-tps源码地址:<a href="">https://github.com/yize/grunt-tps</a></p>
-
-<hr />
-
-<p>伊泽<br/>
-2013-5-28于杭州</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/27/usr-local-bin/">恢复mac下的/usr/local/bin</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -580,63 +263,53 @@
   
 
 
-<time datetime="2013-05-27T00:00:00+08:00" pubdate data-updated="true">May 27<span>th</span>, 2013</time>
-        
-      </p>
+<time datetime="2013-07-07T00:00:00+08:00" pubdate data-updated="true">Jul 7<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/stack/'>Stack</a>
+  
+</span>
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/tags/mysql/'>Mysql</a>, <a class='tag' href='/tags/nodejs/'>NodeJS</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>今天一早配置phpstorm的时候，看到文件上有很多warn，比如，require不存在这样。</p>
-
-<p>然后就开始坑爹的瞎搞了，点了<code>external libraries</code>里，添加了<code>/usr/local/bin/node</code></p>
-
-<p>发现还是有warn报错，随之，看是悲剧的一步，虽然我是想删除external libraries中对node的引用，删除的时候，有红色的提示，没管那么多，直接跳过去了。。。</p>
-
-<p>发现不对，在<code>terminal</code>中，各种<code>node</code>,<code>git</code>这样的命令没用了。</p>
-
-<p>用sudo也是没有权限。</p>
-
-<p>后来同事提醒，可能是权限问题。</p>
-
-<p>查了下此时的/usr/local/bin下的文件，现在都是在我的名下，group也在admin下。</p>
-
-<p>试了下重新安装node，发现，node在root名下，group是wheel。</p>
-
-<p>并且是有<code>x</code>权限的。</p>
-
-<p>解决方法如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">chmod</span> <span class="o">-</span><span class="kt">R</span> <span class="o">+</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span>
-</span><span class='line'><span class="nf">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="kt">R</span> <span class="n">root</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span>
-</span><span class='line'><span class="nf">sudo</span> <span class="n">chgrp</span> <span class="o">-</span><span class="kt">R</span> <span class="n">wheel</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如此，解决。</p>
-
-<hr />
-
-<p>伊泽<br/>
-2013-5-27于杭州</p>
+      <div class="sharing">
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/05/28/how-to-use-grunt-tps/" title="Previous Post: 怎么使用grunt-tps">&laquo; 怎么使用grunt-tps</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/07/28/javascript-binary-search/" title="Next Post: Javascript 折半搜索法（二分法）">Javascript 折半搜索法（二分法） &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/2/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -718,7 +391,7 @@
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/yize">@yize</a> on GitHub
@@ -764,6 +437,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -778,7 +452,10 @@
       var disqus_shortname = 'yize';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.ithans.com/blog/2013/07/07/mysql-connection-lost/';
+        var disqus_url = 'http://www.ithans.com/blog/2013/07/07/mysql-connection-lost/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

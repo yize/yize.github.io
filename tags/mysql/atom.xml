@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Mysql | ithans]]></title>
+  <link href="http://www.ithans.com/tags/mysql/atom.xml" rel="self"/>
+  <link href="http://www.ithans.com/"/>
+  <updated>2013-11-16T17:49:34+08:00</updated>
+  <id>http://www.ithans.com/</id>
+  <author>
+    <name><![CDATA[邵寒超]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[node.js Connection lost The server closed the connection.]]></title>
+    <link href="http://www.ithans.com/blog/2013/07/07/mysql-connection-lost/"/>
+    <updated>2013-07-07T00:00:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/07/07/mysql-connection-lost</id>
+    <content type="html"><![CDATA[<h3>mysql模块</h3>
+
+<p>今天访问了下内网的一台服务器，发现挂掉了，SSH上去看了下<code>nohup.out</code>,发现报错了
+```haskell</p>
+
+<pre><code>events.js:71
+        throw arguments[1]; // Unhandled 'error' event
+                       ^
+Error: Connection lost: The server closed the connection.
+    at Protocol.end (/var/www/html/utci/node_modules/mysql/lib/protocol/Protocol.js:73:13)
+    at Socket.onend (stream.js:66:10)
+    at Socket.EventEmitter.emit (events.js:126:20)
+    at TCP.onread (net.js:417:51)
+</code></pre>
+
+<p>```</p>
+
+<p>这个错误的大概意思就是，未处理的<code>error</code>事件</p>
+
+<p>原因是：mysql的连接久了以后，超时了。</p>
+
+<p>解决方法是：</p>
+
+<p>增加<code>error</code>事件的监听</p>
+
+<p>database.js:</p>
+
+<p>```javascript</p>
+
+<pre><code>var mysql = require('mysql'),
+    settings = require('../settings');
+
+module.exports.getConnection = function () {
+    if ((module.exports.connection) &amp;&amp; (module.exports.connection._socket)
+        &amp;&amp; (module.exports.connection._socket.readable)
+        &amp;&amp; (module.exports.connection._socket.writable)) {
+        return module.exports.connection;
+    }
+    console.log(((module.exports.connection) ?
+        "UNHEALTHY SQL CONNECTION; RE" : "") + "CONNECTING TO SQL.");
+    var connection = mysql.createConnection({
+        host: settings.host,
+        port: settings.port,
+        database: settings.db_name,
+        user: settings.username,
+        password: settings.password,
+        //中文读取
+        charset: "utf8"
+    });
+    connection.connect(function (err) {
+        if (err) {
+            console.log("SQL CONNECT ERROR: " + err);
+        } else {
+            console.log("SQL CONNECT SUCCESSFUL.");
+        }
+    });
+    connection.on("close", function (err) {
+        console.log("SQL CONNECTION CLOSED.");
+    });
+    connection.on("error", function (err) {
+        console.log("SQL CONNECTION ERROR: " + err);
+    });
+    module.exports.connection = connection;
+    return module.exports.connection;
+};
+
+// Open a connection automatically at app startup.
+module.exports.getConnection();
+// If you've saved this file as database.js, then get and use the
+// connection as in the following example:
+// var database = require(__dirname + "/database");
+// var connection = database.getConnection();
+// connection.query(query, function(err, results) { ....
+</code></pre>
+
+<h2>```</h2>
+
+<p>伊泽<br/>
+2013-07-07于杭州</p>
+]]></content>
+  </entry>
+  
+</feed>
