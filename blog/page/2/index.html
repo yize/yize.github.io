@@ -9,7 +9,7 @@
   <meta name="author" content="邵寒超">
 
   
-  <meta name="description" content="今天一早配置phpstorm的时候，看到文件上有很多warn，比如，require不存在这样。 然后就开始坑爹的瞎搞了，点了external libraries里，添加了/usr/local/bin/node 发现还是有warn报错，随之，看是悲剧的一步，虽然我是想删除external &hellip;">
+  <meta name="description" content="grunt-tps是什么。 首先来说下TPS是什么，TPS的全称是Taobao Pictures System，中文意思就是淘宝图片系统，主要用于存放图片，当然也可以存放其他的东西。 而grunt-tps就是tps的grunt插件，基于tpsmate，只需要经过简单的配置， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,157 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/28/how-to-use-grunt-tps/">怎么使用grunt-tps</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-28T00:00:00+08:00" pubdate data-updated="true">May 28<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>grunt-tps是什么。</h3>
+
+<p>首先来说下TPS是什么，TPS的全称是Taobao Pictures System，中文意思就是淘宝图片系统，主要用于存放图片，当然也可以存放其他的东西。</p>
+
+<p>而grunt-tps就是tps的grunt插件，基于tpsmate，只需要经过简单的配置，就可以用grunt进行自动化管理。</p>
+
+<h3>为什么要用grunt-tps</h3>
+
+<ol>
+<li><strong>自动化</strong>，特别是当你的需要替换的目录是在一个文件夹下的，可以直接使用<code>xx/**/*</code>这样的方式。</li>
+<li>和grunt结合，grunt是个大趋势，使用grunt进行将平时一些反复劳动交给工具去做，提高工作效率。所有的事情，一行<code>grunt</code>搞定，简单轻松愉快。</li>
+<li>减少出错率，人工上传替换，难免会出现错误。</li>
+</ol>
+
+
+<h3>tpsmate是什么？</h3>
+
+<p>TPS Mate是TPS系统的命令行版本。其中命令行版本基于python，当前功能主要包括上传单张图片、批量上传图片以及样式文件中背景图片的批量上传以及输出。其目的主要为减少手工替换以及为可能出现的前端打包工具提供更为有效的支持。</p>
+
+<h3>怎么安装tpsmate</h3>
+
+<p>首先要安装<code>python</code>，<a href="">http://www.python.org/download/</a></p>
+
+<h4>使用tpsmate需要具备的条件：</h4>
+
+<ol>
+<li>淘宝内部环境，需要可以访问tms.taobao.com</li>
+<li>有上传图片至tps的权限，看下你能否在<a href="http://tps.tms.taobao.com/photo/index.htm">这里</a>上传图片</li>
+</ol>
+
+
+<h3>怎么使用grunt-tps</h3>
+
+<p>如果你以前从来没有用过<a href="http://gruntjs.com/">Grunt</a>，推荐你看看Grunt的<a href="http://gruntjs.com/getting-started">Getting Start</a></p>
+
+<p>如何安装grunt？</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">npm</span> <span class="n">uninstall</span> <span class="o">-</span><span class="n">g</span> <span class="n">grunt</span>
+</span><span class='line'><span class="nf">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="n">grunt</span><span class="o">-</span><span class="n">cli</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>接下来就是要安装grunt-tps</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">npm</span> <span class="n">install</span> <span class="n">grunt</span> <span class="c1">--save-dev</span>
+</span><span class='line'><span class="nf">npm</span> <span class="n">install</span> <span class="n">grunt</span><span class="o">-</span><span class="n">tps</span> <span class="c1">--save-dev</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你的Gruntfile.js中加入这一段</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">tps</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'><span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">argv</span><span class="o">:</span> <span class="s2">&quot;--inplace&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="p">},</span>
+</span><span class='line'><span class="nx">all</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;test.css&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/**/*.css&#39;</span><span class="p">,</span> <span class="s1">&#39;test/**/*.scss&#39;</span><span class="p">,</span><span class="s1">&#39;index.htm&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你的Gruntfile.js中，看起来应该这样的</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// Project configuration.</span>
+</span><span class='line'>    <span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+</span><span class='line'>        <span class="c1">// Configuration to be run (and then tested).</span>
+</span><span class='line'>        <span class="nx">tps</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nx">argv</span><span class="o">:</span> <span class="s2">&quot;--inplace&quot;</span>
+</span><span class='line'>            <span class="p">},</span>
+</span><span class='line'>            <span class="nx">all</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;test.css&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/**/*&#39;</span><span class="p">,</span> <span class="s1">&#39;test/**/*.scss&#39;</span><span class="p">,</span><span class="s1">&#39;index.htm&#39;</span><span class="p">]</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>    <span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-tps&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;tps&#39;</span><span class="p">]);</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><code>argv</code>是tpsmate的参数，比如<code>--inplace</code>(用tps路径「线上路径」替换本地路径)，参考tpsmate的命令行方式</li>
+</ul>
+
+
+<p>grunt-tps源码地址:<a href="">https://github.com/yize/grunt-tps</a></p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-28于杭州</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -559,100 +710,6 @@ chrome dev tools很强大，官方文档:<a href="">https://developers.google.co
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/17/webkit-text-size-adjust-no-longer-supported/">Webkit桌面版本浏览器将不再支持-webkit-text-size-adjust</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-17T00:00:00+08:00" pubdate data-updated="true">May 17<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p> 昨天升级了chrome dev到 28.0.1500.11 dev-m 版本的时候发现，-webkit-text-size-adjust属性失效了，说来也比较巧，公司台式机上装的是chrome正式版，在用QQ管家升级软件的时候，就想着把台式机上的chrome也升级到dev版本。自己的demo上刚好也用到了10px的字体（一个角标）</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.demo</span><span class="p">{</span>
-</span><span class='line'>  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="k">text</span><span class="o">-</span><span class="k">size</span><span class="o">-</span><span class="n">adjust</span><span class="o">:</span><span class="k">none</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">font-size</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
-</span><span class='line'> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>demo在<a href="http://codepen.io/yize/pen/Hahiv">这里</a></p>
-
-<p>可以看到，在新版本中的chrome等webkit浏览器中，如果你没有主动去设置过字体大小下限的话，demo中的字应该都是一样大的。</p>
-
-<p>chrome字体大小设置是在「设置-网络内容-字体大小下限」中。
-safari默认不会开启下限，选项是在「偏好-高级-辅助功能-从不使用小于大小的字体」</p>
-
-<p>官方移除说明在<a href="http://trac.webkit.org/changeset/145168">这里</a></p>
-
-<p>原因是：</p>
-
-<blockquote><p>This property existed to support a number of Apple-internal clients of WebKit.
-We no longer need this property, and since it&rsquo;s clashing with a mobile version of the
-same property with different meaning, let&rsquo;s remove it altogether from the desktop build.</p></blockquote>
-
-<p>大概意思是：</p>
-
-<blockquote><p>这个属性的存在是为了支持一些使用webkit的苹果内部设备，我们不再需要这个属性了，而且还有一点就是，这个属性和手机版本的webkit浏览器有名字相同但是有不同的意思，所以我们还是将这个属性从桌面版本中移除了。</p></blockquote>
-
-<p>要解决这个的问题，可以这么做</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.demo</span><span class="p">{</span>
-</span><span class='line'>  <span class="k">font-size</span><span class="o">:</span><span class="m">10px</span><span class="p">;</span>
-</span><span class='line'>  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span><span class="n">scale</span><span class="p">(</span><span class="m">0</span><span class="o">.</span><span class="m">83</span><span class="p">);</span>
-</span><span class='line'>  <span class="k">display</span><span class="o">:</span><span class="k">inline</span><span class="o">-</span><span class="k">block</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>demo在<a href="http://codepen.io/yize/pen/rycgv">这里</a></p>
-
-<p>但是这么写当然不是正确的解决方法，目前先凑合着这么用了。</p>
-
-<p>在statckoverflow上提了个<a href="http://stackoverflow.com/questions/16589785/webkit-text-size-adjust-is-no-longer-supported-how-to-set-font-size-to-less-tha">问题</a>，老外的意见都是不赞成修改用户设定的大小下限，因为用户已经告知浏览器，自己能接收的最小的字体大小就是设定的那个大小，再小的话，看起来就会太小。</p>
-
-<p>我的意见也是不希望去违背用户的意思，将字体设置成小于12像素。希望给用户最好的体验。</p>
-
-<hr />
-
-<p>伊泽<br/>
-2013-5-17于杭州</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -668,6 +725,10 @@ same property with different meaning, let&rsquo;s remove it altogether from the 
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/27/iframe-size-not-work-in-ios/">iframe-size-not-work-in-IOS</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/11/27/use-octopress-new-post-function-with-zsh/">zsh下rake new_post[&#8220;title&#8221;] 报错的问题</a>
@@ -703,10 +764,6 @@ same property with different meaning, let&rsquo;s remove it altogether from the 
     
       <li class="post">
         <a href="/blog/2013/05/18/fix-node-r-No-such-file-or-directory-problem/">env node\r No such file or directory</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/17/webkit-text-size-adjust-no-longer-supported/">webkit桌面版本浏览器将不再支持-webkit-text-size-adjust</a>
       </li>
     
   </ul>

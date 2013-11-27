@@ -4,7 +4,7 @@
   <title><![CDATA[ithans]]></title>
   <link href="http://www.ithans.com/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-11-27T09:58:58+08:00</updated>
+  <updated>2013-11-27T10:17:11+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iframe-size-not-work-in-IOS]]></title>
+    <link href="http://www.ithans.com/blog/2013/11/27/iframe-size-not-work-in-ios/"/>
+    <updated>2013-11-27T10:02:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/11/27/iframe-size-not-work-in-ios</id>
+    <content type="html"><![CDATA[<p>最近遇到一个问题，就是iFrame在iPad上展示的时候，宽度并没有固定，会直接超出，通过嵌套div之后，无法滚动。</p>
+
+<p>HTML</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;frame_holder&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;iframe</span> <span class="na">class=</span><span class="s">&quot;my_frame&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    // The content
+</span><span class='line'>  <span class="nt">&lt;/iframe&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>CSS</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">body</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">position</span><span class="o">:</span> <span class="k">relative</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">background</span><span class="o">:</span> <span class="m">#f0f0f0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nc">.frame_holder</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">top</span><span class="o">:</span> <span class="m">50px</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">bottom</span><span class="o">:</span> <span class="m">50px</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">left</span><span class="o">:</span> <span class="m">50px</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">right</span><span class="o">:</span> <span class="m">50px</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">background</span><span class="o">:</span> <span class="m">#ffffff</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nc">.my_frame</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">width</span><span class="o">:</span> <span class="m">100</span><span class="o">%</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">height</span><span class="o">:</span> <span class="m">100</span><span class="o">%</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#e0e0e0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>例子：</p>
+
+<p><a href="http://jsfiddle.net/R3PKB/2/">http://jsfiddle.net/R3PKB/2/</a></p>
+
+<p>可以在你的iPad上去看看这个页面</p>
+
+<p><a href="http://jsfiddle.net/R3PKB/2/embedded/result">http://jsfiddle.net/R3PKB/2/embedded/result</a></p>
+
+<p>解决方案是：</p>
+
+<p>在外层的<code>div</code>上添加<code>overflow:auto</code>和<code>-webkit-overflow-scrolling:touch</code>就可以了。</p>
+
+<p><a href="http://jsfiddle.net/R3PKB/7/">http://jsfiddle.net/R3PKB/7/</a></p>
+
+<p>参考链接：</p>
+
+<ul>
+<li><p><a href="http://stackoverflow.com/questions/16937070/iframe-size-with-css-on-ios">http://stackoverflow.com/questions/16937070/iframe-size-with-css-on-ios</a></p></li>
+<li><p><a href="http://stackoverflow.com/questions/6139564/iframe-size-on-ipad/6721310#6721310">http://stackoverflow.com/questions/6139564/iframe-size-on-ipad/6721310#6721310</a></p></li>
+<li><p><a href="http://stackoverflow.com/questions/9814256/iframe-on-ios-ipad-content-cropping-issue">http://stackoverflow.com/questions/9814256/iframe-on-ios-ipad-content-cropping-issue</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[zsh下rake new_post["title"] 报错的问题]]></title>
@@ -3785,19 +3875,6 @@ ident   {nmstart}{nmchar}*
 <li><p><a href="http://jekyllbootstrap.com/">http://jekyllbootstrap.com/</a></p></li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[回到杭州]]></title>
-    <link href="http://www.ithans.com/blog/2013/02/17/back-to-hangzhou/"/>
-    <updated>2013-02-17T00:00:00+08:00</updated>
-    <id>http://www.ithans.com/blog/2013/02/17/back-to-hangzhou</id>
-    <content type="html"><![CDATA[<p>回到杭州。</p>
-
-<p>好熟悉又陌生的城市，有家的感觉，却没有家的温馨。</p>
-
-<p>新年新气象。为了我们的目标，加油！</p>
 ]]></content>
   </entry>
   

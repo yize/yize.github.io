@@ -9,10 +9,12 @@
   <meta name="author" content="邵寒超">
 
   
-  <meta name="description" content="1
+  <meta name="description" content="最近遇到一个问题，就是iFrame在iPad上展示的时候，宽度并没有固定，会直接超出，通过嵌套div之后，无法滚动。 HTML 1
 2
-rake new_post[&quot;title&quot;]
-zsh: no matches found: new_post[title] 在zsh中使用rake new_post的时候抛出找不到匹配的异常，原因是 zsh官方文档中有这样的说明： If a word contains &hellip;">
+3
+4
+5
+&lt;div class=&quot;frame_holder&quot;&gt; &lt;iframe class=&quot;my_frame& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +83,123 @@ zsh: no matches found: new_post[title] 在zsh中使用rake new_post的时候抛�
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/27/iframe-size-not-work-in-ios/">iframe-size-not-work-in-IOS</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-27T10:02:00+08:00" pubdate data-updated="true">Nov 27<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近遇到一个问题，就是iFrame在iPad上展示的时候，宽度并没有固定，会直接超出，通过嵌套div之后，无法滚动。</p>
+
+<p>HTML</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;frame_holder&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;iframe</span> <span class="na">class=</span><span class="s">&quot;my_frame&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    // The content
+</span><span class='line'>  <span class="nt">&lt;/iframe&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>CSS</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">body</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">position</span><span class="o">:</span> <span class="k">relative</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">background</span><span class="o">:</span> <span class="m">#f0f0f0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nc">.frame_holder</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">top</span><span class="o">:</span> <span class="m">50px</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">bottom</span><span class="o">:</span> <span class="m">50px</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">left</span><span class="o">:</span> <span class="m">50px</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">right</span><span class="o">:</span> <span class="m">50px</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">background</span><span class="o">:</span> <span class="m">#ffffff</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nc">.my_frame</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">width</span><span class="o">:</span> <span class="m">100</span><span class="o">%</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">height</span><span class="o">:</span> <span class="m">100</span><span class="o">%</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#e0e0e0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>例子：</p>
+
+<p><a href="http://jsfiddle.net/R3PKB/2/">http://jsfiddle.net/R3PKB/2/</a></p>
+
+<p>可以在你的iPad上去看看这个页面</p>
+
+<p><a href="http://jsfiddle.net/R3PKB/2/embedded/result">http://jsfiddle.net/R3PKB/2/embedded/result</a></p>
+
+<p>解决方案是：</p>
+
+<p>在外层的<code>div</code>上添加<code>overflow:auto</code>和<code>-webkit-overflow-scrolling:touch</code>就可以了。</p>
+
+<p><a href="http://jsfiddle.net/R3PKB/7/">http://jsfiddle.net/R3PKB/7/</a></p>
+
+<p>参考链接：</p>
+
+<ul>
+<li><p><a href="http://stackoverflow.com/questions/16937070/iframe-size-with-css-on-ios">http://stackoverflow.com/questions/16937070/iframe-size-with-css-on-ios</a></p></li>
+<li><p><a href="http://stackoverflow.com/questions/6139564/iframe-size-on-ipad/6721310#6721310">http://stackoverflow.com/questions/6139564/iframe-size-on-ipad/6721310#6721310</a></p></li>
+<li><p><a href="http://stackoverflow.com/questions/9814256/iframe-on-ios-ipad-content-cropping-issue">http://stackoverflow.com/questions/9814256/iframe-on-ios-ipad-content-cropping-issue</a></p></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -463,157 +582,6 @@ zsh: no matches found: new_post[title] 在zsh中使用rake new_post的时候抛�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/28/how-to-use-grunt-tps/">怎么使用grunt-tps</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-28T00:00:00+08:00" pubdate data-updated="true">May 28<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>grunt-tps是什么。</h3>
-
-<p>首先来说下TPS是什么，TPS的全称是Taobao Pictures System，中文意思就是淘宝图片系统，主要用于存放图片，当然也可以存放其他的东西。</p>
-
-<p>而grunt-tps就是tps的grunt插件，基于tpsmate，只需要经过简单的配置，就可以用grunt进行自动化管理。</p>
-
-<h3>为什么要用grunt-tps</h3>
-
-<ol>
-<li><strong>自动化</strong>，特别是当你的需要替换的目录是在一个文件夹下的，可以直接使用<code>xx/**/*</code>这样的方式。</li>
-<li>和grunt结合，grunt是个大趋势，使用grunt进行将平时一些反复劳动交给工具去做，提高工作效率。所有的事情，一行<code>grunt</code>搞定，简单轻松愉快。</li>
-<li>减少出错率，人工上传替换，难免会出现错误。</li>
-</ol>
-
-
-<h3>tpsmate是什么？</h3>
-
-<p>TPS Mate是TPS系统的命令行版本。其中命令行版本基于python，当前功能主要包括上传单张图片、批量上传图片以及样式文件中背景图片的批量上传以及输出。其目的主要为减少手工替换以及为可能出现的前端打包工具提供更为有效的支持。</p>
-
-<h3>怎么安装tpsmate</h3>
-
-<p>首先要安装<code>python</code>，<a href="">http://www.python.org/download/</a></p>
-
-<h4>使用tpsmate需要具备的条件：</h4>
-
-<ol>
-<li>淘宝内部环境，需要可以访问tms.taobao.com</li>
-<li>有上传图片至tps的权限，看下你能否在<a href="http://tps.tms.taobao.com/photo/index.htm">这里</a>上传图片</li>
-</ol>
-
-
-<h3>怎么使用grunt-tps</h3>
-
-<p>如果你以前从来没有用过<a href="http://gruntjs.com/">Grunt</a>，推荐你看看Grunt的<a href="http://gruntjs.com/getting-started">Getting Start</a></p>
-
-<p>如何安装grunt？</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">npm</span> <span class="n">uninstall</span> <span class="o">-</span><span class="n">g</span> <span class="n">grunt</span>
-</span><span class='line'><span class="nf">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="n">grunt</span><span class="o">-</span><span class="n">cli</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>接下来就是要安装grunt-tps</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">npm</span> <span class="n">install</span> <span class="n">grunt</span> <span class="c1">--save-dev</span>
-</span><span class='line'><span class="nf">npm</span> <span class="n">install</span> <span class="n">grunt</span><span class="o">-</span><span class="n">tps</span> <span class="c1">--save-dev</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>你的Gruntfile.js中加入这一段</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">tps</span><span class="o">:</span> <span class="p">{</span>
-</span><span class='line'><span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">argv</span><span class="o">:</span> <span class="s2">&quot;--inplace&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="p">},</span>
-</span><span class='line'><span class="nx">all</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;test.css&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/**/*.css&#39;</span><span class="p">,</span> <span class="s1">&#39;test/**/*.scss&#39;</span><span class="p">,</span><span class="s1">&#39;index.htm&#39;</span><span class="p">]</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>你的Gruntfile.js中，看起来应该这样的</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="c1">// Project configuration.</span>
-</span><span class='line'>    <span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
-</span><span class='line'>        <span class="c1">// Configuration to be run (and then tested).</span>
-</span><span class='line'>        <span class="nx">tps</span><span class="o">:</span> <span class="p">{</span>
-</span><span class='line'>            <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">argv</span><span class="o">:</span> <span class="s2">&quot;--inplace&quot;</span>
-</span><span class='line'>            <span class="p">},</span>
-</span><span class='line'>            <span class="nx">all</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;test.css&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/**/*&#39;</span><span class="p">,</span> <span class="s1">&#39;test/**/*.scss&#39;</span><span class="p">,</span><span class="s1">&#39;index.htm&#39;</span><span class="p">]</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>    <span class="p">});</span>
-</span><span class='line'>    <span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-tps&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;tps&#39;</span><span class="p">]);</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li><code>argv</code>是tpsmate的参数，比如<code>--inplace</code>(用tps路径「线上路径」替换本地路径)，参考tpsmate的命令行方式</li>
-</ul>
-
-
-<p>grunt-tps源码地址:<a href="">https://github.com/yize/grunt-tps</a></p>
-
-<hr />
-
-<p>伊泽<br/>
-2013-5-28于杭州</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -627,6 +595,10 @@ zsh: no matches found: new_post[title] 在zsh中使用rake new_post的时候抛�
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/27/iframe-size-not-work-in-ios/">iframe-size-not-work-in-IOS</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/11/27/use-octopress-new-post-function-with-zsh/">zsh下rake new_post[&#8220;title&#8221;] 报错的问题</a>
@@ -662,10 +634,6 @@ zsh: no matches found: new_post[title] 在zsh中使用rake new_post的时候抛�
     
       <li class="post">
         <a href="/blog/2013/05/18/fix-node-r-No-such-file-or-directory-problem/">env node\r No such file or directory</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/17/webkit-text-size-adjust-no-longer-supported/">webkit桌面版本浏览器将不再支持-webkit-text-size-adjust</a>
       </li>
     
   </ul>
