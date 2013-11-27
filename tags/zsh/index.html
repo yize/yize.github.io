@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>env node\r No such file or directory - ithans</title>
+  <title>Tag: Zsh - ithans</title>
   <meta name="author" content="邵寒超">
 
   
-  <meta name="description" content="env: node\r: No such file or directory uitest是基于nodejs的，用npm install uitest -g安装完之后，在mac下运行，提示env: node\r: No such file or directory，检查了下bin文件中，第一行是 &hellip;">
+  <meta name="description" content="Tag: Zsh">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.ithans.com/blog/2013/05/18/fix-node-r-No-such-file-or-directory-problem/">
+  <link rel="canonical" href="http://www.ithans.comtags/zsh/">
   <link href="http://ithans.u.qiniudn.com/favicon.ico" rel="icon">
   <link href="http://ithans.u.qiniudn.com/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="http://ithans.u.qiniudn.com/ithansmodernizr-2.0.js"></script>
@@ -77,140 +77,40 @@
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">Env Node\r No Such File or Directory</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-18T00:00:00+08:00" pubdate data-updated="true">May 18<span>th</span>, 2013</time>
-        
-      </p>
+    <h1 class="entry-title">Tag: Zsh</h1>
     
   </header>
-
-
-<div class="entry-content"><p>env: node\r: No such file or directory</p>
-
-<p>uitest是基于nodejs的，用<code>npm install uitest -g</code>安装完之后，在mac下运行，提示<code>env: node\r: No such file or directory</code>，检查了下bin文件中，第一行是</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">#!</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">node</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这看起来是没有任何问题的，当然是肉眼看起来。</p>
-
-<p>问题的分析：</p>
-
-<p>env：node\r</p>
-
-<p>注意下这里的\r，好眼熟，是个换行，原谅我对DOS不是很了解。。。</p>
-
-<p>google了下发现找到了<a href="https://github.com/foglcz/tscw/issues/1">这个</a></p>
-
-<p>里面提到，用dos2unix转换下就可以了。</p>
-
-<p>我的机器上没装dos2unix，用brew装了个</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">brew</span> <span class="n">install</span> <span class="n">dos2unix</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>接着cd到 bin目录下</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">dos2unix</span> <span class="n">uitest</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>就可以了</p>
-
-<hr />
-
-<p>伊泽<br/>
-2013-5-18于杭州</p>
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">邵寒超</span></span>
-
-      
-
-
-
-
-
+  <div id="blog-archives" class="tag">
 
 
 
   
+  <h2>2013</h2>
 
-
-<time datetime="2013-05-18T00:00:00+08:00" pubdate data-updated="true">May 18<span>th</span>, 2013</time>
-      
-
-<span class="categories">
+<article>
   
-    <a class='category' href='/blog/categories/stack/'>Stack</a>
-  
-</span>
 
+<h1><a href="/blog/2013/11/27/use-octopress-new-post-function-with-zsh/">zsh下rake new_post["title"] 报错的问题</a></h1>
+<time datetime="2013-11-27T09:38:00+08:00" pubdate><span class='month'>Nov</span> <span class='day'>27</span> <span class='year'>2013</span></time>
+<footer>
 
-      
+  <span class="categories">posted in <a class='category' href='/blog/categories/stack/'>Stack</a></span>
 
-<span class="tags">
   
-    <a class='tag' href='/tags/nodejs/'>NodeJS</a>
-  
-</span>
+  <span class="tags">tagged with <a class='tag' href='/tags/octopress/'>Octopress</a>, <a class='tag' href='/tags/ruby/'>Ruby</a>, <a class='tag' href='/tags/zsh/'>Zsh</a></span>
 
+</footer>
 
-    </p>
-    
-      <div class="sharing">
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/05/17/webkit-text-size-adjust-no-longer-supported/" title="Previous Post: webkit桌面版本浏览器将不再支持-webkit-text-size-adjust">&laquo; webkit桌面版本浏览器将不再支持-webkit-text-size-adjust</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/05/20/popular-nodejs-modules/" title="Next Post: popular nodejs modules">popular nodejs modules &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  </section>
+
+  
+</article>
 
 </div>
 
@@ -359,10 +259,7 @@
       var disqus_shortname = 'yize';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.ithans.com/blog/2013/05/18/fix-node-r-No-such-file-or-directory-problem/';
-        var disqus_url = 'http://www.ithans.com/blog/2013/05/18/fix-node-r-No-such-file-or-directory-problem/';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

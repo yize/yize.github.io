@@ -9,17 +9,9 @@
   <meta name="author" content="邵寒超">
 
   
-  <meta name="description" content="linux下获取当前文件路径： 1
-2
-current_dir=$(cd &quot;$(dirname &quot;${0}&quot;)&quot;; pwd)
-echo current_dir linux下获取当前执行路径： 1
-2
-3
-4
-5
-6
-7
-if [ $(echo $0 | &hellip;">
+  <meta name="description" content="最近这几天信息量比较大，接触了很多的东西，学了很多，先不说学习方法问题，至少个人在成长。 今天和
+@淘宝道璘
+一起在玩Tengine 想要做的事情是从apache换到Tengine，道璘之前有研究过nginx，他说：在windows上，nginx存在两个问题，一个是中文路径，两外一个是php不稳定 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -88,6 +80,140 @@ if [ $(echo $0 | &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/20/try-tengine/">尝试使用Tengine(nginx)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-20T00:00:00+08:00" pubdate data-updated="true">Feb 20<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近这几天信息量比较大，接触了很多的东西，学了很多，先不说学习方法问题，至少个人在成长。</p>
+
+<p>今天和
+<a wb_screen_name="淘宝道璘" href="#">@淘宝道璘</a>
+一起在玩Tengine</p>
+
+<p>想要做的事情是从apache换到Tengine，道璘之前有研究过nginx，他说：在windows上，nginx存在两个问题，一个是中文路径，两外一个是php不稳定。后来还是切回了apache。</p>
+
+<p>直接用起公司开源的Tengine <a href="https://github.com/taobao/tengine">Github</a></p>
+
+<h2>普通安装模式</h2>
+
+<p>因为需要支持combo，也就是<code>http://example.com/??style1.css,style2.css,foo/style3.css</code>的格式，所以安装流程是这样的：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">git</span> <span class="n">clone</span> <span class="n">git</span><span class="kt">://</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">taobao</span><span class="o">/</span><span class="n">tengine</span><span class="o">.</span><span class="n">git</span>
+</span><span class='line'><span class="nf">cd</span> <span class="n">tengine</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后编译之后安装</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">./</span><span class="n">configure</span> <span class="c1">--with-http_concat_module</span>
+</span><span class='line'><span class="nf">make</span>
+</span><span class='line'><span class="nf">sudo</span> <span class="n">make</span> <span class="n">install</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果不需要支持combo的话，就不需要带<code>--with-http_concat_module</code>参数。</p>
+
+<p>装完以后当然要开始配置。(<code>配置本地代理，也就是assets.daily.taobao.net等指向本地文件夹</code>)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">vi</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">conf</span><span class="o">/</span><span class="n">nginx</span><span class="o">.</span><span class="n">conf</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在httpd中添加</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">server</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">listen</span>  <span class="mi">80</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">server_name</span> <span class="n">assets</span><span class="o">.</span><span class="n">daily</span><span class="o">.</span><span class="n">taobao</span><span class="o">.</span><span class="n">net</span> <span class="n">a</span><span class="o">.</span><span class="n">tbcdn</span><span class="o">.</span><span class="n">cn</span><span class="p">;</span> <span class="o">#</span><span class="err">改成自己的</span><span class="n">assets_server</span>
+</span><span class='line'>    <span class="n">concat</span> <span class="n">on</span><span class="p">;</span> <span class="o">#</span><span class="err">打开</span><span class="n">concat</span>
+</span><span class='line'>    <span class="n">root</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">pofa</span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">assets</span><span class="o">/</span><span class="p">;</span> <span class="o">#</span><span class="err">本地</span><span class="n">assets</span><span class="err">路径，需要改成自己的</span><span class="n">assets_path</span>
+</span><span class='line'>    <span class="n">autoindex</span> <span class="n">on</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">error_page</span> <span class="mi">404</span> <span class="ow">=</span> <span class="o">@</span><span class="n">ucool</span><span class="p">;</span> <span class="o">#</span><span class="err">淘宝</span><span class="n">ucool</span><span class="err">，如果文件不存在，从</span><span class="n">ucool</span><span class="err">取</span>
+</span><span class='line'>    <span class="n">location</span> <span class="o">@</span><span class="n">ucool</span><span class="p">{</span>
+</span><span class='line'>        <span class="n">proxy_set_header</span> <span class="kt">Host</span> <span class="o">$</span><span class="n">http_host</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_pass</span> <span class="n">http</span><span class="kt">://</span><span class="mf">10.232</span><span class="o">.</span><span class="mf">39.168</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>是不是觉得比较麻烦？启用屌丝模式！</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">git</span> <span class="n">clone</span> <span class="n">git</span><span class="kt">://</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">yize</span><span class="o">/</span><span class="n">tengine</span><span class="o">.</span><span class="n">git</span>
+</span><span class='line'><span class="nf">cd</span> <span class="n">tengine</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>注意：请先备份自己的/usr/local/nginx/conf/nginx.conf哦！！</code></p>
+
+<p>然后sh下</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sh</span> <span class="o">./</span><span class="n">tengine</span><span class="o">-</span><span class="n">combo</span><span class="o">.</span><span class="n">sh</span> <span class="o">#</span><span class="err">需要</span><span class="n">concat</span><span class="err">模块</span>
+</span><span class='line'><span class="nf">or</span>
+</span><span class='line'><span class="nf">sh</span> <span class="o">./</span><span class="n">tengine</span><span class="o">.</span><span class="n">sh</span> <span class="o">#</span><span class="err">不需要</span><span class="n">concat</span><span class="err">模块</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>好了之后别忘了在<code>/etc/hosts</code>中增加127.0.0.1 assets.daily.taobao.net a.tbcdn.cn</p>
+
+<p>如果不想用本地代理的话，注释掉hosts中上面这一句就行了</p>
+
+<p>enjoy it!</p>
+
+<p>源码在我的<a href="https://github.com/yize/tengine">GITHUB</a>上</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -400,6 +526,10 @@ if [ $(echo $0 | &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/11/27/use-octopress-new-post-function-with-zsh/">zsh下rake new_post[&#8220;title&#8221;] 报错的问题</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/07/28/weekend-thinking/">周末有感</a>
       </li>
     
@@ -435,15 +565,11 @@ if [ $(echo $0 | &hellip;">
         <a href="/blog/2013/05/17/webkit-text-size-adjust-no-longer-supported/">webkit桌面版本浏览器将不再支持-webkit-text-size-adjust</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/05/12/encode-war-in-F2E/">前端编码问题汇总</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/life'>Life (2)</a></li><li><a href='/blog/categories/stack'>Stack (17)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/life'>Life (2)</a></li><li><a href='/blog/categories/stack'>Stack (18)</a></li></ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
@@ -464,9 +590,12 @@ if [ $(echo $0 | &hellip;">
 <li><a style="font-size: 60%" href="/tags/mysql/">Mysql</a></li>
 <li><a style="font-size: 60%" href="/tags/nginx/">Nginx</a></li>
 <li><a style="font-size: 165%" href="/tags/nodejs/">NodeJS</a></li>
+<li><a style="font-size: 60%" href="/tags/octopress/">Octopress</a></li>
+<li><a style="font-size: 60%" href="/tags/ruby/">Ruby</a></li>
 <li><a style="font-size: 60%" href="/tags/shell/">Shell</a></li>
 <li><a style="font-size: 60%" href="/tags/terminal/">Terminal</a></li>
 <li><a style="font-size: 60%" href="/tags/thinking/">Thinking</a></li>
+<li><a style="font-size: 60%" href="/tags/zsh/">Zsh</a></li>
 
   </ul>
 </section>

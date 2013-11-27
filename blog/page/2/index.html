@@ -9,11 +9,7 @@
   <meta name="author" content="邵寒超">
 
   
-  <meta name="description" content="作为开发人员，用好调试工具可以提高工作效率，今天就来说说console.log console.log 很简单， 1
-2
-3
-console.log(1)
-console.log($0) //$0是elements panel 里面你选中的DOM结构。也可以使用console.dir($0) &hellip;">
+  <meta name="description" content="今天一早配置phpstorm的时候，看到文件上有很多warn，比如，require不存在这样。 然后就开始坑爹的瞎搞了，点了external libraries里，添加了/usr/local/bin/node 发现还是有warn报错，随之，看是悲剧的一步，虽然我是想删除external &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +78,76 @@ console.log($0) //$0是elements panel 里面你选中的DOM结构。也可以使
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/27/usr-local-bin/">恢复mac下的/usr/local/bin</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-27T00:00:00+08:00" pubdate data-updated="true">May 27<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天一早配置phpstorm的时候，看到文件上有很多warn，比如，require不存在这样。</p>
+
+<p>然后就开始坑爹的瞎搞了，点了<code>external libraries</code>里，添加了<code>/usr/local/bin/node</code></p>
+
+<p>发现还是有warn报错，随之，看是悲剧的一步，虽然我是想删除external libraries中对node的引用，删除的时候，有红色的提示，没管那么多，直接跳过去了。。。</p>
+
+<p>发现不对，在<code>terminal</code>中，各种<code>node</code>,<code>git</code>这样的命令没用了。</p>
+
+<p>用sudo也是没有权限。</p>
+
+<p>后来同事提醒，可能是权限问题。</p>
+
+<p>查了下此时的/usr/local/bin下的文件，现在都是在我的名下，group也在admin下。</p>
+
+<p>试了下重新安装node，发现，node在root名下，group是wheel。</p>
+
+<p>并且是有<code>x</code>权限的。</p>
+
+<p>解决方法如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">chmod</span> <span class="o">-</span><span class="kt">R</span> <span class="o">+</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span>
+</span><span class='line'><span class="nf">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="kt">R</span> <span class="n">root</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span>
+</span><span class='line'><span class="nf">sudo</span> <span class="n">chgrp</span> <span class="o">-</span><span class="kt">R</span> <span class="n">wheel</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如此，解决。</p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-27于杭州</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -587,69 +653,6 @@ same property with different meaning, let&rsquo;s remove it altogether from the 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/12/encode-war-in-F2E/">前端编码问题汇总</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-12T00:00:00+08:00" pubdate data-updated="true">May 12<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>前端可能会遇到的编码问题有哪些？</h2>
-
-<ol>
-<li>文件编码，GBK，注意IDE编码，不要默认转换UTF-8.</li>
-<li>文件中内容的编码，可以将内容手动转成UTF-8编码或者unicode</li>
-<li>scss中编码，解决方法，在scss头部加入 <code>@charset "GBK"</code></li>
-<li>请求时的中文编码，淘宝规范在请求后加入 <code>_input_charset=utf-8</code></li>
-<li>&ldquo;&lt;>&#8221;等直接输出的，应该用<code>&amp;lt；</code>,<code>&amp;gt；</code>这样的转义符号</li>
-<li>如果直接读取用户输入的字符，应该用<code>encodeURIComponent</code>,<code>htmlspecialchars</code>等编码</li>
-<li>JS引入的时候，带上<code>charset</code>，指定文件的编码</li>
-<li><p>HTML页面中，<code>meta</code>指定<code>charset</code>,HTTP解析的时候，有三个地方可以埋藏代码信息：</p>
-
-<ol>
-<li>http头的Content-Type</li>
-<li>html页面中的meta标签中制定的charset</li>
-<li>页面正文数据（浏览器可以跟进二进制码来判断编码）</li>
-</ol>
-</li>
-</ol>
-
-
-<blockquote><p>如果三者编码不一致，浏览器会首先读取http头中的content-type，若没有设定编码，再查找页面中meta标签中的charset设定，如果还没有就以浏览器默认编码来显示，如果默认编码没有指定，浏览器会通过解析正文内容来判断编码.所以，页面是gbk编码，即便meta属性中设置 charset=utf-8，只要content-type中设定为gbk（或者GB2312、GB18030），该页面就正常显示，如果这时没有设定 content-type的编码，浏览器就会以meta中的charset属性为准，页面出现乱码。</p></blockquote>
-
-<ol>
-<li>JSONP中的中文问题，解决方法，后端返回<code>unicode</code>编码。</li>
-<li>nodejs中的编码问题，可以使用<code>iconv</code>解决，或者直接用<code>buffer</code></li>
-</ol>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -665,6 +668,10 @@ same property with different meaning, let&rsquo;s remove it altogether from the 
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/27/use-octopress-new-post-function-with-zsh/">zsh下rake new_post[&#8220;title&#8221;] 报错的问题</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/28/weekend-thinking/">周末有感</a>
@@ -702,15 +709,11 @@ same property with different meaning, let&rsquo;s remove it altogether from the 
         <a href="/blog/2013/05/17/webkit-text-size-adjust-no-longer-supported/">webkit桌面版本浏览器将不再支持-webkit-text-size-adjust</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/05/12/encode-war-in-F2E/">前端编码问题汇总</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/life'>Life (2)</a></li><li><a href='/blog/categories/stack'>Stack (17)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/life'>Life (2)</a></li><li><a href='/blog/categories/stack'>Stack (18)</a></li></ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
@@ -731,9 +734,12 @@ same property with different meaning, let&rsquo;s remove it altogether from the 
 <li><a style="font-size: 60%" href="/tags/mysql/">Mysql</a></li>
 <li><a style="font-size: 60%" href="/tags/nginx/">Nginx</a></li>
 <li><a style="font-size: 165%" href="/tags/nodejs/">NodeJS</a></li>
+<li><a style="font-size: 60%" href="/tags/octopress/">Octopress</a></li>
+<li><a style="font-size: 60%" href="/tags/ruby/">Ruby</a></li>
 <li><a style="font-size: 60%" href="/tags/shell/">Shell</a></li>
 <li><a style="font-size: 60%" href="/tags/terminal/">Terminal</a></li>
 <li><a style="font-size: 60%" href="/tags/thinking/">Thinking</a></li>
+<li><a style="font-size: 60%" href="/tags/zsh/">Zsh</a></li>
 
   </ul>
 </section>

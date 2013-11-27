@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Zsh | ithans]]></title>
+  <link href="http://www.ithans.com/tags/zsh/atom.xml" rel="self"/>
+  <link href="http://www.ithans.com/"/>
+  <updated>2013-11-27T09:58:58+08:00</updated>
+  <id>http://www.ithans.com/</id>
+  <author>
+    <name><![CDATA[邵寒超]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[zsh下rake new_post["title"] 报错的问题]]></title>
+    <link href="http://www.ithans.com/blog/2013/11/27/use-octopress-new-post-function-with-zsh/"/>
+    <updated>2013-11-27T09:38:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/11/27/use-octopress-new-post-function-with-zsh</id>
+    <content type="html"><![CDATA[<p><code>haskell
+rake new_post["title"]   
+zsh: no matches found: new_post[title]
+</code></p>
+
+<p>在<code>zsh</code>中使用<code>rake new_post</code>的时候抛出找不到匹配的异常，原因是</p>
+
+<p><a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Generation">zsh官方文档</a>中有这样的说明：</p>
+
+<blockquote><p>If a word contains an unquoted instance of one of the characters ‘*’, ‘(’, ‘|’, ‘&lt;’, ‘[’, or ‘?’, it is regarded as a pattern for filename generation, unless the GLOB option is unset. If the EXTENDED_GLOB option is set, the ‘^’ and ‘#’ characters also denote a pattern; otherwise they are not treated specially by the shell.</p></blockquote>
+
+<p>所以，解决方案就是通过加上noglob去取消通配符匹配</p>
+
+<p><code>sh
+alias rake="noglob rake"
+source ~/.zshrc
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

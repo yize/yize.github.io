@@ -9,7 +9,10 @@
   <meta name="author" content="邵寒超">
 
   
-  <meta name="description" content="今天晚上跟女朋友去UME看了《速度与激情6》，很精彩。（那边的饮料真是坑，12块钱一瓶） 回来的路上，两人谈论起我喜欢的美国大片和她喜欢的感情戏。结果是，我觉得她说的话还是比较有道理的，她是这么说的： 我看的电视剧改变了我很多，一些人生观价值观的东西，人生并不是为了一个目标而或者，并不是说， &hellip;">
+  <meta name="description" content="1
+2
+rake new_post[&quot;title&quot;]
+zsh: no matches found: new_post[title] 在zsh中使用rake new_post的时候抛出找不到匹配的异常，原因是 zsh官方文档中有这样的说明： If a word contains &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +81,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/27/use-octopress-new-post-function-with-zsh/">Zsh下rake New_post[&#8220;title&#8221;] 报错的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-27T09:38:00+08:00" pubdate data-updated="true">Nov 27<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">rake</span> <span class="n">new_post</span><span class="p">[</span><span class="s">&quot;title&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="nf">zsh</span><span class="kt">:</span> <span class="n">no</span> <span class="n">matches</span> <span class="n">found</span><span class="kt">:</span> <span class="n">new_post</span><span class="p">[</span><span class="n">title</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在<code>zsh</code>中使用<code>rake new_post</code>的时候抛出找不到匹配的异常，原因是</p>
+
+<p><a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Generation">zsh官方文档</a>中有这样的说明：</p>
+
+<blockquote><p>If a word contains an unquoted instance of one of the characters ‘*’, ‘(’, ‘|’, ‘&lt;’, ‘[’, or ‘?’, it is regarded as a pattern for filename generation, unless the GLOB option is unset. If the EXTENDED_GLOB option is set, the ‘^’ and ‘#’ characters also denote a pattern; otherwise they are not treated specially by the shell.</p></blockquote>
+
+<p>所以，解决方案就是通过加上noglob去取消通配符匹配</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">alias </span><span class="nv">rake</span><span class="o">=</span><span class="s2">&quot;noglob rake&quot;</span>
+</span><span class='line'><span class="nb">source</span> ~/.zshrc
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -555,76 +614,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/27/usr-local-bin/">恢复mac下的/usr/local/bin</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-27T00:00:00+08:00" pubdate data-updated="true">May 27<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今天一早配置phpstorm的时候，看到文件上有很多warn，比如，require不存在这样。</p>
-
-<p>然后就开始坑爹的瞎搞了，点了<code>external libraries</code>里，添加了<code>/usr/local/bin/node</code></p>
-
-<p>发现还是有warn报错，随之，看是悲剧的一步，虽然我是想删除external libraries中对node的引用，删除的时候，有红色的提示，没管那么多，直接跳过去了。。。</p>
-
-<p>发现不对，在<code>terminal</code>中，各种<code>node</code>,<code>git</code>这样的命令没用了。</p>
-
-<p>用sudo也是没有权限。</p>
-
-<p>后来同事提醒，可能是权限问题。</p>
-
-<p>查了下此时的/usr/local/bin下的文件，现在都是在我的名下，group也在admin下。</p>
-
-<p>试了下重新安装node，发现，node在root名下，group是wheel。</p>
-
-<p>并且是有<code>x</code>权限的。</p>
-
-<p>解决方法如下：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">chmod</span> <span class="o">-</span><span class="kt">R</span> <span class="o">+</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span>
-</span><span class='line'><span class="nf">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="kt">R</span> <span class="n">root</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span>
-</span><span class='line'><span class="nf">sudo</span> <span class="n">chgrp</span> <span class="o">-</span><span class="kt">R</span> <span class="n">wheel</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如此，解决。</p>
-
-<hr />
-
-<p>伊泽<br/>
-2013-5-27于杭州</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -638,6 +627,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/27/use-octopress-new-post-function-with-zsh/">zsh下rake new_post[&#8220;title&#8221;] 报错的问题</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/28/weekend-thinking/">周末有感</a>
@@ -675,15 +668,11 @@
         <a href="/blog/2013/05/17/webkit-text-size-adjust-no-longer-supported/">webkit桌面版本浏览器将不再支持-webkit-text-size-adjust</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/05/12/encode-war-in-F2E/">前端编码问题汇总</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/life'>Life (2)</a></li><li><a href='/blog/categories/stack'>Stack (17)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/life'>Life (2)</a></li><li><a href='/blog/categories/stack'>Stack (18)</a></li></ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
@@ -704,9 +693,12 @@
 <li><a style="font-size: 60%" href="/tags/mysql/">Mysql</a></li>
 <li><a style="font-size: 60%" href="/tags/nginx/">Nginx</a></li>
 <li><a style="font-size: 165%" href="/tags/nodejs/">NodeJS</a></li>
+<li><a style="font-size: 60%" href="/tags/octopress/">Octopress</a></li>
+<li><a style="font-size: 60%" href="/tags/ruby/">Ruby</a></li>
 <li><a style="font-size: 60%" href="/tags/shell/">Shell</a></li>
 <li><a style="font-size: 60%" href="/tags/terminal/">Terminal</a></li>
 <li><a style="font-size: 60%" href="/tags/thinking/">Thinking</a></li>
+<li><a style="font-size: 60%" href="/tags/zsh/">Zsh</a></li>
 
   </ul>
 </section>

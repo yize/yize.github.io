@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Stack | ithans]]></title>
   <link href="http://www.ithans.com/blog/categories/stack/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-11-16T19:11:52+08:00</updated>
+  <updated>2013-11-27T09:58:58+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[zsh下rake new_post["title"] 报错的问题]]></title>
+    <link href="http://www.ithans.com/blog/2013/11/27/use-octopress-new-post-function-with-zsh/"/>
+    <updated>2013-11-27T09:38:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/11/27/use-octopress-new-post-function-with-zsh</id>
+    <content type="html"><![CDATA[<p><code>haskell
+rake new_post["title"]   
+zsh: no matches found: new_post[title]
+</code></p>
+
+<p>在<code>zsh</code>中使用<code>rake new_post</code>的时候抛出找不到匹配的异常，原因是</p>
+
+<p><a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Generation">zsh官方文档</a>中有这样的说明：</p>
+
+<blockquote><p>If a word contains an unquoted instance of one of the characters ‘*’, ‘(’, ‘|’, ‘&lt;’, ‘[’, or ‘?’, it is regarded as a pattern for filename generation, unless the GLOB option is unset. If the EXTENDED_GLOB option is set, the ‘^’ and ‘#’ characters also denote a pattern; otherwise they are not treated specially by the shell.</p></blockquote>
+
+<p>所以，解决方案就是通过加上noglob去取消通配符匹配</p>
+
+<p><code>sh
+alias rake="noglob rake"
+source ~/.zshrc
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Javascript 折半搜索法（二分法）]]></title>
@@ -308,115 +333,6 @@ sudo chgrp -R wheel /usr/local/bin/
 
 <p>伊泽<br/>
 2013-5-27于杭州</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[console.log]]></title>
-    <link href="http://www.ithans.com/blog/2013/05/24/console-log/"/>
-    <updated>2013-05-24T00:00:00+08:00</updated>
-    <id>http://www.ithans.com/blog/2013/05/24/console-log</id>
-    <content type="html"><![CDATA[<p>作为开发人员，用好调试工具可以提高工作效率，今天就来说说<code>console.log</code></p>
-
-<p><code>console.log</code> 很简单，</p>
-
-<p>```javascript</p>
-
-<pre><code>console.log(1)
-console.log($0) //$0是elements panel 里面你选中的DOM结构。也可以使用console.dir($0)
-console.log(1,2) //多参数 
-</code></pre>
-
-<p>```
-以上这些都是基本的用法，不赘述。</p>
-
-<p>下面就来说说，你可能不知道的console.log</p>
-
-<p>```javascript</p>
-
-<pre><code>var userName = "yize",userPoints = 100;
-console.log("User %s has %d points", userName, userPoints);
-</code></pre>
-
-<p>```
-运行以上命令，控制台会输出User yize has 100 points</p>
-
-<p>$s,$d看起来是不是特别眼熟，貌似是大学的时候学过的C语言，哈哈</p>
-
-<p>chrome dev tools 目前支持以下几种格式：</p>
-
-<table>
-    <thead>
-        <tr>
-            <th>Format Specifier</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                <code>%s</code>
-            </td>
-            <td>Formats the value as a string.//字符串</td>
-        </tr>
-        <tr>
-            <td>
-                <code>%d</code>
-                or
-                <code>%i</code>
-            </td>
-            <td>Formats the value as an integer.//整形</td>
-        </tr>
-        <tr>
-            <td>
-                <code>%f</code>
-            </td>
-            <td>Formats the value as a floating point value.//浮点数</td>
-        </tr>
-        <tr>
-            <td>
-                <code>%o</code>
-            </td>
-            <td>
-                Formats the value as an expandable DOM element (as in the Elements panel).//DOM元素
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>%O</code>
-            </td>
-            <td>Formats the value as an expandable JavaScript object.//JS对象</td>
-        </tr>
-        <tr>
-            <td>
-                <code>%c</code>
-            </td>
-            <td>
-                Formats the output string according to CSS styles you provide.//CSS 样式
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-
-<p>目测<code>console.log('%O',document.body) === console.dir(document.body)</code></p>
-
-<p>改变log的样式：</p>
-
-<p>```javascript</p>
-
-<pre><code>var userName = "yize",userPoints = 100;
-console.log("%cUser %s has %d points", "color:orange; background:blue; font-size: 16pt", userName, userPoints);
-</code></pre>
-
-<p>```
-<img src="http://ww3.sinaimg.cn/large/60ee1ef8gw1e4z9k9snadj218i03e75p.jpg" alt="图片" />
-chrome dev tools很强大，官方文档:<a href="">https://developers.google.com/chrome-developer-tools/</a></p>
-
-<hr />
-
-<p>伊泽<br/>
-2013-5-24于杭州</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[ithans]]></title>
   <link href="http://www.ithans.com/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-11-16T19:11:52+08:00</updated>
+  <updated>2013-11-27T09:58:58+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[zsh下rake new_post["title"] 报错的问题]]></title>
+    <link href="http://www.ithans.com/blog/2013/11/27/use-octopress-new-post-function-with-zsh/"/>
+    <updated>2013-11-27T09:38:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/11/27/use-octopress-new-post-function-with-zsh</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">rake</span> <span class="n">new_post</span><span class="p">[</span><span class="s">&quot;title&quot;</span><span class="p">]</span>
+</span><span class='line'><span class="nf">zsh</span><span class="kt">:</span> <span class="n">no</span> <span class="n">matches</span> <span class="n">found</span><span class="kt">:</span> <span class="n">new_post</span><span class="p">[</span><span class="n">title</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在<code>zsh</code>中使用<code>rake new_post</code>的时候抛出找不到匹配的异常，原因是</p>
+
+<p><a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Generation">zsh官方文档</a>中有这样的说明：</p>
+
+<blockquote><p>If a word contains an unquoted instance of one of the characters ‘*’, ‘(’, ‘|’, ‘&lt;’, ‘[’, or ‘?’, it is regarded as a pattern for filename generation, unless the GLOB option is unset. If the EXTENDED_GLOB option is set, the ‘^’ and ‘#’ characters also denote a pattern; otherwise they are not treated specially by the shell.</p></blockquote>
+
+<p>所以，解决方案就是通过加上noglob去取消通配符匹配</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">alias </span><span class="nv">rake</span><span class="o">=</span><span class="s2">&quot;noglob rake&quot;</span>
+</span><span class='line'><span class="nb">source</span> ~/.zshrc
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[周末有感]]></title>
