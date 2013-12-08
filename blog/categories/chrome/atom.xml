@@ -4,7 +4,7 @@
   <title><![CDATA[Category: chrome | ithans]]></title>
   <link href="http://www.ithans.com/blog/categories/chrome/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-12-08T22:45:35+08:00</updated>
+  <updated>2013-12-08T23:07:58+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -18,15 +18,19 @@
     <link href="http://www.ithans.com/blog/2013/12/08/five-safari-chrome-shortcuts/"/>
     <updated>2013-12-08T22:38:00+08:00</updated>
     <id>http://www.ithans.com/blog/2013/12/08/five-safari-chrome-shortcuts</id>
-    <content type="html"><![CDATA[<p><code>Command+L</code>   前往URL地址栏，填写新的网址或进行搜索</p>
+    <content type="html"><![CDATA[<p>键盘流都喜欢用快捷键，浏览器当然也不例外。</p>
 
-<p><code>Command+T</code>   开启新的浏览器标签页</p>
+<p>以下是chomium系列的快捷键，windows下，把<code>command</code>替换成<code>Ctrl</code></p>
 
-<p><code>Command+W</code>     关闭当前标签页</p>
+<p><code>command+L</code>   前往URL地址栏，填写新的网址或进行搜索</p>
 
-<p><code>Command+R</code>   刷新当前标签页</p>
+<p><code>command+T</code>   开启新的浏览器标签页</p>
 
-<p><code>Command+.</code>   停止载入当前标签页</p>
+<p><code>command+W</code>     关闭当前标签页</p>
+
+<p><code>command+R</code>   刷新当前标签页</p>
+
+<p><code>command+.</code>   停止载入当前标签页</p>
 ]]></content>
   </entry>
   
