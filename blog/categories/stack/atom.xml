@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Stack | ithans]]></title>
   <link href="http://www.ithans.com/blog/categories/stack/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-12-04T23:35:41+08:00</updated>
+  <updated>2013-12-08T22:45:35+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iframe-size-not-work-in-IOS]]></title>
+    <link href="http://www.ithans.com/blog/2013/11/27/iframe-size-not-work-in-ios/"/>
+    <updated>2013-11-27T10:02:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/11/27/iframe-size-not-work-in-ios</id>
+    <content type="html"><![CDATA[<p>最近遇到一个问题，就是iFrame在iPad上展示的时候，宽度并没有固定，会直接超出，通过嵌套div之后，无法滚动。</p>
+
+<p>HTML
+```html</p>
+
+<div class="frame_holder">
+  <iframe class="my_frame">
+    // The content
+  </iframe>
+</div>
+
+
+<p>```</p>
+
+<p>CSS
+```css
+body {
+  position: relative;
+  background: #f0f0f0;
+}</p>
+
+<p>.frame_holder {
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  background: #ffffff;
+}</p>
+
+<p>.my_frame {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #e0e0e0;
+}
+```</p>
+
+<p>例子：</p>
+
+<p><a href="http://jsfiddle.net/R3PKB/2/">http://jsfiddle.net/R3PKB/2/</a></p>
+
+<p>可以在你的iPad上去看看这个页面</p>
+
+<p><a href="http://jsfiddle.net/R3PKB/2/embedded/result">http://jsfiddle.net/R3PKB/2/embedded/result</a></p>
+
+<p>解决方案是：</p>
+
+<p>在外层的<code>div</code>上添加<code>overflow:auto</code>和<code>-webkit-overflow-scrolling:touch</code>就可以了。</p>
+
+<p><a href="http://jsfiddle.net/R3PKB/7/">http://jsfiddle.net/R3PKB/7/</a></p>
+
+<p>参考链接：</p>
+
+<ul>
+<li><p><a href="http://stackoverflow.com/questions/16937070/iframe-size-with-css-on-ios">http://stackoverflow.com/questions/16937070/iframe-size-with-css-on-ios</a></p></li>
+<li><p><a href="http://stackoverflow.com/questions/6139564/iframe-size-on-ipad/6721310#6721310">http://stackoverflow.com/questions/6139564/iframe-size-on-ipad/6721310#6721310</a></p></li>
+<li><p><a href="http://stackoverflow.com/questions/9814256/iframe-on-ios-ipad-content-cropping-issue">http://stackoverflow.com/questions/9814256/iframe-on-ios-ipad-content-cropping-issue</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[zsh下rake new_post["title"] 报错的问题]]></title>
@@ -292,47 +359,6 @@ module.exports = function (grunt) {
 
 <p>伊泽<br/>
 2013-5-28于杭州</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[恢复mac下的/usr/local/bin]]></title>
-    <link href="http://www.ithans.com/blog/2013/05/27/usr-local-bin/"/>
-    <updated>2013-05-27T00:00:00+08:00</updated>
-    <id>http://www.ithans.com/blog/2013/05/27/usr-local-bin</id>
-    <content type="html"><![CDATA[<p>今天一早配置phpstorm的时候，看到文件上有很多warn，比如，require不存在这样。</p>
-
-<p>然后就开始坑爹的瞎搞了，点了<code>external libraries</code>里，添加了<code>/usr/local/bin/node</code></p>
-
-<p>发现还是有warn报错，随之，看是悲剧的一步，虽然我是想删除external libraries中对node的引用，删除的时候，有红色的提示，没管那么多，直接跳过去了。。。</p>
-
-<p>发现不对，在<code>terminal</code>中，各种<code>node</code>,<code>git</code>这样的命令没用了。</p>
-
-<p>用sudo也是没有权限。</p>
-
-<p>后来同事提醒，可能是权限问题。</p>
-
-<p>查了下此时的/usr/local/bin下的文件，现在都是在我的名下，group也在admin下。</p>
-
-<p>试了下重新安装node，发现，node在root名下，group是wheel。</p>
-
-<p>并且是有<code>x</code>权限的。</p>
-
-<p>解决方法如下：
-```haskell</p>
-
-<pre><code>sudo chmod -R +x /usr/local/bin/
-sudo chown -R root /usr/local/bin/
-sudo chgrp -R wheel /usr/local/bin/
-</code></pre>
-
-<p>```
-如此，解决。</p>
-
-<hr />
-
-<p>伊泽<br/>
-2013-5-27于杭州</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[ithans]]></title>
   <link href="http://www.ithans.com/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-12-04T23:35:41+08:00</updated>
+  <updated>2013-12-08T22:45:35+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[five-safari-chrome-shortcuts]]></title>
+    <link href="http://www.ithans.com/blog/2013/12/08/five-safari-chrome-shortcuts/"/>
+    <updated>2013-12-08T22:38:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/12/08/five-safari-chrome-shortcuts</id>
+    <content type="html"><![CDATA[<p><code>Command+L</code>   前往URL地址栏，填写新的网址或进行搜索</p>
+
+<p><code>Command+T</code>   开启新的浏览器标签页</p>
+
+<p><code>Command+W</code>     关闭当前标签页</p>
+
+<p><code>Command+R</code>   刷新当前标签页</p>
+
+<p><code>Command+.</code>   停止载入当前标签页</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iframe-size-not-work-in-IOS]]></title>
@@ -3768,113 +3785,6 @@ ident   {nmstart}{nmchar}*
 
 
 <p><code>right Alt + Printscreen + K</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[jekyll-bootstrap安装]]></title>
-    <link href="http://www.ithans.com/blog/2013/02/18/jekyll-bootstrap-install/"/>
-    <updated>2013-02-18T00:00:00+08:00</updated>
-    <id>http://www.ithans.com/blog/2013/02/18/jekyll-bootstrap-install</id>
-    <content type="html"><![CDATA[<p>安装jekyll-bootstrap</p>
-
-<h3>首先需要安装jekyll  <a href="https://github.com/mojombo/jekyll/wiki/install">官网wiki</a>：</h3>
-
-<ol>
-<li>ruby1.9.1-dev中包含gem的安装包</li>
-</ol>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ruby1</span><span class="o">.</span><span class="mf">9.1</span><span class="o">-</span><span class="n">dev</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
-<li>安装jekyll</li>
-</ol>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">jekyll</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>接下来需要花3分钟完成jekyll-bootstrap的安装 (将USERNAME替换为你的github的用户名)</h3>
-
-<ol>
-<li><p>建立新的项目</p>
-
-<p> 去你的 <a href="https://github.com">https://github.com</a> 建立一个名为USERNAME.github.com的项目</p></li>
-<li><p>安装Jekyll-Bootstrap</p></li>
-</ol>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">$</span> <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="kt">://</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">plusjade</span><span class="o">/</span><span class="n">jekyll</span><span class="o">-</span><span class="n">bootstrap</span><span class="o">.</span><span class="n">git</span> <span class="kt">USERNAME</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span>
-</span><span class='line'><span class="o">$</span> <span class="n">cd</span> <span class="kt">USERNAME</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span>
-</span><span class='line'><span class="o">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">set</span><span class="o">-</span><span class="n">url</span> <span class="n">origin</span> <span class="n">git</span><span class="o">@</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="kt">:USERNAME</span><span class="o">/</span><span class="kt">USERNAME</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">git</span>
-</span><span class='line'><span class="o">$</span> <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
-<li>等待几分钟，去看下你的 <a href="http://USERNAME.github.com">http://USERNAME.github.com</a></li>
-</ol>
-
-
-<h3>*如果你已经有了一个你的github博客，你可以在本地启你的jekyll服务：</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">$</span> <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="kt">://</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">plusjade</span><span class="o">/</span><span class="n">jekyll</span><span class="o">-</span><span class="n">bootstrap</span><span class="o">.</span><span class="n">git</span>
-</span><span class='line'><span class="o">$</span> <span class="n">cd</span> <span class="n">jekyll</span><span class="o">-</span><span class="n">bootstrap</span>
-</span><span class='line'><span class="o">$</span> <span class="n">jekyll</span> <span class="c1">--server</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>去看下<a href="http://localhost:4000">http://localhost:4000</a>.</p>
-
-<p>中文下，请将文件改为<code>utf-8</code>格式，如果GBK可能会出现jekyll服务无法启动的错误</p>
-
-<p>解决方法：</p>
-
-<p>修改jekyll为默认打开utf-8：</p>
-
-<ol>
-<li>找到convertible.rb</li>
-</ol>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">find</span> <span class="o">/</span> <span class="o">-</span><span class="n">name</span> <span class="n">convertible</span><span class="o">.</span><span class="n">rb</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>我的是在<code>/var/lib/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/convertible.rb</code></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">cd</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="mf">1.9</span><span class="o">.</span><span class="mi">1</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">jekyll</span><span class="o">-</span><span class="mf">0.12</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">jekyll</span><span class="o">/</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">vim</span> <span class="n">convertible</span><span class="o">.</span><span class="n">rb</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
-<li>将<code>self.content = File.read(File.join(base, name)</code> 改为 <code>self.content = File.read(File.join(base, name), :encoding =&gt; 'utf-8')</code></li>
-</ol>
-
-
-<p>参考资料：</p>
-
-<ul>
-<li><p><a href="https://help.github.com/">https://help.github.com</a></p></li>
-<li><p><a href="https://github.com/mojombo/jekyll/wiki/install">https://github.com/mojombo/jekyll/wiki/install</a></p></li>
-<li><p><a href="http://jekyllbootstrap.com/">http://jekyllbootstrap.com/</a></p></li>
-</ul>
-
 ]]></content>
   </entry>
   

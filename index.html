@@ -9,12 +9,8 @@
   <meta name="author" content="邵寒超">
 
   
-  <meta name="description" content="最近遇到一个问题，就是iFrame在iPad上展示的时候，宽度并没有固定，会直接超出，通过嵌套div之后，无法滚动。 HTML 1
-2
-3
-4
-5
-&lt;div class=&quot;frame_holder&quot;&gt; &lt;iframe class=&quot;my_frame& &hellip;">
+  <meta name="description" content="Command+L 前往URL地址栏，填写新的网址或进行搜索 Command+T 开启新的浏览器标签页 Command+W 关闭当前标签页 Command+R 刷新当前标签页 Command+. 停止载入当前标签页
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +79,50 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/08/five-safari-chrome-shortcuts/">Five-safari-chrome-shortcuts</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-08T22:38:00+08:00" pubdate data-updated="true">Dec 8<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><code>Command+L</code>   前往URL地址栏，填写新的网址或进行搜索</p>
+
+<p><code>Command+T</code>   开启新的浏览器标签页</p>
+
+<p><code>Command+W</code>     关闭当前标签页</p>
+
+<p><code>Command+R</code>   刷新当前标签页</p>
+
+<p><code>Command+.</code>   停止载入当前标签页</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -419,169 +459,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/07/07/mysql-connection-lost/">node.js Connection Lost the Server Closed the Connection.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-07T00:00:00+08:00" pubdate data-updated="true">Jul 7<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>mysql模块</h3>
-
-<p>今天访问了下内网的一台服务器，发现挂掉了，SSH上去看了下<code>nohup.out</code>,发现报错了</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">events</span><span class="o">.</span><span class="n">js</span><span class="kt">:</span><span class="mi">71</span>
-</span><span class='line'>        <span class="n">throw</span> <span class="n">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="kt">Unhandled</span> <span class="n">&#39;error&#39;</span> <span class="n">event</span>
-</span><span class='line'>                       <span class="o">^</span>
-</span><span class='line'><span class="kt">Error:</span> <span class="kt">Connection</span> <span class="n">lost</span><span class="kt">:</span> <span class="kt">The</span> <span class="n">server</span> <span class="n">closed</span> <span class="n">the</span> <span class="n">connection</span><span class="o">.</span>
-</span><span class='line'>    <span class="n">at</span> <span class="kt">Protocol</span><span class="o">.</span><span class="n">end</span> <span class="p">(</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">utci</span><span class="o">/</span><span class="n">node_modules</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">protocol</span><span class="o">/</span><span class="kt">Protocol</span><span class="o">.</span><span class="n">js</span><span class="kt">:</span><span class="mi">73</span><span class="kt">:</span><span class="mi">13</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">at</span> <span class="kt">Socket</span><span class="o">.</span><span class="n">onend</span> <span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">js</span><span class="kt">:</span><span class="mi">66</span><span class="kt">:</span><span class="mi">10</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">at</span> <span class="kt">Socket</span><span class="o">.</span><span class="kt">EventEmitter</span><span class="o">.</span><span class="n">emit</span> <span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">js</span><span class="kt">:</span><span class="mi">126</span><span class="kt">:</span><span class="mi">20</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">at</span> <span class="kt">TCP</span><span class="o">.</span><span class="n">onread</span> <span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">js</span><span class="kt">:</span><span class="mi">417</span><span class="kt">:</span><span class="mi">51</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>这个错误的大概意思就是，未处理的<code>error</code>事件</p>
-
-<p>原因是：mysql的连接久了以后，超时了。</p>
-
-<p>解决方法是：</p>
-
-<p>增加<code>error</code>事件的监听</p>
-
-<p>database.js:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mysql&#39;</span><span class="p">),</span>
-</span><span class='line'>    <span class="nx">settings</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../settings&#39;</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">getConnection</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">_socket</span><span class="p">)</span>
-</span><span class='line'>        <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">_socket</span><span class="p">.</span><span class="nx">readable</span><span class="p">)</span>
-</span><span class='line'>        <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">_socket</span><span class="p">.</span><span class="nx">writable</span><span class="p">))</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(((</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span><span class="p">)</span> <span class="o">?</span>
-</span><span class='line'>        <span class="s2">&quot;UNHEALTHY SQL CONNECTION; RE&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;CONNECTING TO SQL.&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">connection</span> <span class="o">=</span> <span class="nx">mysql</span><span class="p">.</span><span class="nx">createConnection</span><span class="p">({</span>
-</span><span class='line'>        <span class="nx">host</span><span class="o">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">host</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">port</span><span class="o">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">port</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">database</span><span class="o">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">db_name</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">user</span><span class="o">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">password</span><span class="o">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span>
-</span><span class='line'>        <span class="c1">//中文读取</span>
-</span><span class='line'>        <span class="nx">charset</span><span class="o">:</span> <span class="s2">&quot;utf8&quot;</span>
-</span><span class='line'>    <span class="p">});</span>
-</span><span class='line'>    <span class="nx">connection</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;SQL CONNECT ERROR: &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
-</span><span class='line'>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span><span class='line'>            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;SQL CONNECT SUCCESSFUL.&quot;</span><span class="p">);</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>    <span class="p">});</span>
-</span><span class='line'>    <span class="nx">connection</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;SQL CONNECTION CLOSED.&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">});</span>
-</span><span class='line'>    <span class="nx">connection</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;SQL CONNECTION ERROR: &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">});</span>
-</span><span class='line'>    <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span> <span class="o">=</span> <span class="nx">connection</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">return</span> <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span><span class="p">;</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// Open a connection automatically at app startup.</span>
-</span><span class='line'><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">getConnection</span><span class="p">();</span>
-</span><span class='line'><span class="c1">// If you&#39;ve saved this file as database.js, then get and use the</span>
-</span><span class='line'><span class="c1">// connection as in the following example:</span>
-</span><span class='line'><span class="c1">// var database = require(__dirname + &quot;/database&quot;);</span>
-</span><span class='line'><span class="c1">// var connection = database.getConnection();</span>
-</span><span class='line'><span class="c1">// connection.query(query, function(err, results) { ....</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<hr />
-
-<p>伊泽<br/>
-2013-07-07于杭州</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -595,6 +472,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/12/08/five-safari-chrome-shortcuts/">five-safari-chrome-shortcuts</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/11/27/iframe-size-not-work-in-ios/">iframe-size-not-work-in-IOS</a>
@@ -612,28 +493,25 @@
         <a href="/blog/2013/07/28/javascript-binary-search/">Javascript 折半搜索法（二分法）</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/07/07/mysql-connection-lost/">node.js Connection lost The server closed the connection.</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h2>Categories</h2>
-    <ul id="category-list"><li><a href='/blog/categories/life'>Life (2)</a></li><li><a href='/blog/categories/stack'>Stack (18)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/chrome'>chrome (1)</a></li><li><a href='/blog/categories/life'>Life (2)</a></li><li><a href='/blog/categories/stack'>Stack (19)</a></li><li><a href='/blog/categories/useful'>useful (1)</a></li></ul>
 </section>
 <section>
   <h2>Tag Cloud</h2>
   <ul class="tag-cloud">
     <li><a style="font-size: 60%" href="/tags/bootstrap/">Bootstrap</a></li>
 <li><a style="font-size: 165%" href="/tags/browser/">Browser</a></li>
-<li><a style="font-size: 60%" href="/tags/css/">CSS</a></li>
+<li><a style="font-size: 112%" href="/tags/css/">CSS</a></li>
 <li><a style="font-size: 60%" href="/tags/cubieboard/">Cubieboard</a></li>
 <li><a style="font-size: 60%" href="/tags/diary/">Diary</a></li>
 <li><a style="font-size: 60%" href="/tags/github/">Github</a></li>
 <li><a style="font-size: 60%" href="/tags/grunt/">Grunt</a></li>
 <li><a style="font-size: 60%" href="/tags/ide/">IDE</a></li>
 <li><a style="font-size: 60%" href="/tags/iis/">IIS</a></li>
+<li><a style="font-size: 60%" href="/tags/ios/">IOS</a></li>
 <li><a style="font-size: 112%" href="/tags/javascript/">JavaScript</a></li>
 <li><a style="font-size: 60%" href="/tags/jekyll/">Jekyll</a></li>
 <li><a style="font-size: 165%" href="/tags/linux/">Linux</a></li>

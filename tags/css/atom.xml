@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: CSS | ithans]]></title>
   <link href="http://www.ithans.com/tags/css/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-12-04T23:35:41+08:00</updated>
+  <updated>2013-12-08T22:45:35+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iframe-size-not-work-in-IOS]]></title>
+    <link href="http://www.ithans.com/blog/2013/11/27/iframe-size-not-work-in-ios/"/>
+    <updated>2013-11-27T10:02:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/11/27/iframe-size-not-work-in-ios</id>
+    <content type="html"><![CDATA[<p>最近遇到一个问题，就是iFrame在iPad上展示的时候，宽度并没有固定，会直接超出，通过嵌套div之后，无法滚动。</p>
+
+<p>HTML
+```html</p>
+
+<div class="frame_holder">
+  <iframe class="my_frame">
+    // The content
+  </iframe>
+</div>
+
+
+<p>```</p>
+
+<p>CSS
+```css
+body {
+  position: relative;
+  background: #f0f0f0;
+}</p>
+
+<p>.frame_holder {
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  background: #ffffff;
+}</p>
+
+<p>.my_frame {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #e0e0e0;
+}
+```</p>
+
+<p>例子：</p>
+
+<p><a href="http://jsfiddle.net/R3PKB/2/">http://jsfiddle.net/R3PKB/2/</a></p>
+
+<p>可以在你的iPad上去看看这个页面</p>
+
+<p><a href="http://jsfiddle.net/R3PKB/2/embedded/result">http://jsfiddle.net/R3PKB/2/embedded/result</a></p>
+
+<p>解决方案是：</p>
+
+<p>在外层的<code>div</code>上添加<code>overflow:auto</code>和<code>-webkit-overflow-scrolling:touch</code>就可以了。</p>
+
+<p><a href="http://jsfiddle.net/R3PKB/7/">http://jsfiddle.net/R3PKB/7/</a></p>
+
+<p>参考链接：</p>
+
+<ul>
+<li><p><a href="http://stackoverflow.com/questions/16937070/iframe-size-with-css-on-ios">http://stackoverflow.com/questions/16937070/iframe-size-with-css-on-ios</a></p></li>
+<li><p><a href="http://stackoverflow.com/questions/6139564/iframe-size-on-ipad/6721310#6721310">http://stackoverflow.com/questions/6139564/iframe-size-on-ipad/6721310#6721310</a></p></li>
+<li><p><a href="http://stackoverflow.com/questions/9814256/iframe-on-ios-ipad-content-cropping-issue">http://stackoverflow.com/questions/9814256/iframe-on-ios-ipad-content-cropping-issue</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[webkit桌面版本浏览器将不再支持-webkit-text-size-adjust]]></title>
