@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Grunt | ithans]]></title>
+  <link href="http://www.ithans.com/tags/grunt/atom.xml" rel="self"/>
+  <link href="http://www.ithans.com/"/>
+  <updated>2015-09-21T00:33:16+08:00</updated>
+  <id>http://www.ithans.com/</id>
+  <author>
+    <name><![CDATA[邵寒超]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[怎么使用grunt-tps]]></title>
+    <link href="http://www.ithans.com/blog/2013/05/28/how-to-use-grunt-tps/"/>
+    <updated>2013-05-28T00:00:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/05/28/how-to-use-grunt-tps</id>
+    <content type="html"><![CDATA[<h3>grunt-tps是什么。</h3>
+
+<p>首先来说下TPS是什么，TPS的全称是Taobao Pictures System，中文意思就是淘宝图片系统，主要用于存放图片，当然也可以存放其他的东西。</p>
+
+<p>而grunt-tps就是tps的grunt插件，基于tpsmate，只需要经过简单的配置，就可以用grunt进行自动化管理。</p>
+
+<h3>为什么要用grunt-tps</h3>
+
+<ol>
+<li><strong>自动化</strong>，特别是当你的需要替换的目录是在一个文件夹下的，可以直接使用<code>xx/**/*</code>这样的方式。</li>
+<li>和grunt结合，grunt是个大趋势，使用grunt进行将平时一些反复劳动交给工具去做，提高工作效率。所有的事情，一行<code>grunt</code>搞定，简单轻松愉快。</li>
+<li>减少出错率，人工上传替换，难免会出现错误。</li>
+</ol>
+
+
+<h3>tpsmate是什么？</h3>
+
+<p>TPS Mate是TPS系统的命令行版本。其中命令行版本基于python，当前功能主要包括上传单张图片、批量上传图片以及样式文件中背景图片的批量上传以及输出。其目的主要为减少手工替换以及为可能出现的前端打包工具提供更为有效的支持。</p>
+
+<h3>怎么安装tpsmate</h3>
+
+<p>首先要安装<code>python</code>，<a href="">http://www.python.org/download/</a></p>
+
+<h4>使用tpsmate需要具备的条件：</h4>
+
+<ol>
+<li>淘宝内部环境，需要可以访问tms.taobao.com</li>
+<li>有上传图片至tps的权限，看下你能否在<a href="http://tps.tms.taobao.com/photo/index.htm">这里</a>上传图片</li>
+</ol>
+
+
+<h3>怎么使用grunt-tps</h3>
+
+<p>如果你以前从来没有用过<a href="http://gruntjs.com/">Grunt</a>，推荐你看看Grunt的<a href="http://gruntjs.com/getting-started">Getting Start</a></p>
+
+<p>如何安装grunt？</p>
+
+<pre><code class="haskell">    npm uninstall -g grunt
+    npm install -g grunt-cli
+</code></pre>
+
+<p>接下来就是要安装grunt-tps
+<code>haskell
+    npm install grunt --save-dev
+    npm install grunt-tps --save-dev
+</code></p>
+
+<p>你的Gruntfile.js中加入这一段</p>
+
+<pre><code class="javascript">    tps: {
+    options: {
+        argv: "--inplace",
+    },
+    all: ['test.css', 'lib/**/*.css', 'test/**/*.scss','index.htm']
+    }
+</code></pre>
+
+<p>你的Gruntfile.js中，看起来应该这样的</p>
+
+<pre><code class="javascript">    'use strict';
+    module.exports = function (grunt) {
+        // Project configuration.
+        grunt.initConfig({
+            // Configuration to be run (and then tested).
+            tps: {
+                options: {
+                    argv: "--inplace"
+                },
+                all: ['test.css', 'lib/**/*', 'test/**/*.scss','index.htm']
+            }
+        });
+        grunt.loadNpmTasks('grunt-tps');
+        grunt.registerTask('default', ['tps']);
+    };
+</code></pre>
+
+<ul>
+<li><code>argv</code>是tpsmate的参数，比如<code>--inplace</code>(用tps路径「线上路径」替换本地路径)，参考tpsmate的命令行方式</li>
+</ul>
+
+
+<p>grunt-tps源码地址:<a href="">https://github.com/yize/grunt-tps</a></p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-28于杭州</p>
+]]></content>
+  </entry>
+  
+</feed>

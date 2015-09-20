@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: IDE | ithans]]></title>
+  <link href="http://www.ithans.com/tags/ide/atom.xml" rel="self"/>
+  <link href="http://www.ithans.com/"/>
+  <updated>2015-09-21T00:33:16+08:00</updated>
+  <id>http://www.ithans.com/</id>
+  <author>
+    <name><![CDATA[邵寒超]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ubuntu12.04phpstorm 5.0.4增加快捷启动]]></title>
+    <link href="http://www.ithans.com/blog/2013/03/06/create-phpstorm-desktop/"/>
+    <updated>2013-03-06T00:00:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/03/06/create-phpstorm-desktop</id>
+    <content type="html"><![CDATA[<p>在ubuntu上怎么创建phpstorm的快捷方式？(phpstorm.desktop)
+其实很简单</p>
+
+<p>phpstorm菜单 &ndash;> Tools &ndash;>  Create Desktop Entry &hellip;</p>
+
+<p>按下super(win)键，搜索下phpstrom试试，也可以直接把phpstorm固定在任务栏快速启动。</p>
+]]></content>
+  </entry>
+  
+</feed>

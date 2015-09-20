@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: CSS | ithans]]></title>
+  <link href="http://www.ithans.com/tags/css/atom.xml" rel="self"/>
+  <link href="http://www.ithans.com/"/>
+  <updated>2015-09-21T00:33:16+08:00</updated>
+  <id>http://www.ithans.com/</id>
+  <author>
+    <name><![CDATA[邵寒超]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[iframe-size-not-work-in-IOS]]></title>
+    <link href="http://www.ithans.com/blog/2013/11/27/iframe-size-not-work-in-ios/"/>
+    <updated>2013-11-27T10:02:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/11/27/iframe-size-not-work-in-ios</id>
+    <content type="html"><![CDATA[<p>最近遇到一个问题，就是iFrame在iPad上展示的时候，宽度并没有固定，会直接超出，通过嵌套div之后，无法滚动。</p>
+
+<p>HTML</p>
+
+<pre><code class="html">&lt;section class="frame_holder"&gt;
+  &lt;iframe class="my_frame"&gt;
+    // The content
+  &lt;/iframe&gt;
+&lt;/section&gt;
+</code></pre>
+
+<p>CSS</p>
+
+<pre><code class="css">body {
+  position: relative;
+  background: #f0f0f0;
+}
+
+.frame_holder {
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  background: #ffffff;
+}
+
+.my_frame {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #e0e0e0;
+}
+</code></pre>
+
+<p>例子：</p>
+
+<p><a href="http://jsfiddle.net/R3PKB/2/">http://jsfiddle.net/R3PKB/2/</a></p>
+
+<p>可以在你的iPad上去看看这个页面</p>
+
+<p><a href="http://jsfiddle.net/R3PKB/2/embedded/result">http://jsfiddle.net/R3PKB/2/embedded/result</a></p>
+
+<p>解决方案是：</p>
+
+<p>在外层的<code>div</code>上添加<code>overflow:auto</code>和<code>-webkit-overflow-scrolling:touch</code>就可以了。</p>
+
+<p><a href="http://jsfiddle.net/R3PKB/7/">http://jsfiddle.net/R3PKB/7/</a></p>
+
+<p>参考链接：</p>
+
+<ul>
+<li><p><a href="http://stackoverflow.com/questions/16937070/iframe-size-with-css-on-ios">http://stackoverflow.com/questions/16937070/iframe-size-with-css-on-ios</a></p></li>
+<li><p><a href="http://stackoverflow.com/questions/6139564/iframe-size-on-ipad/6721310#6721310">http://stackoverflow.com/questions/6139564/iframe-size-on-ipad/6721310#6721310</a></p></li>
+<li><p><a href="http://stackoverflow.com/questions/9814256/iframe-on-ios-ipad-content-cropping-issue">http://stackoverflow.com/questions/9814256/iframe-on-ios-ipad-content-cropping-issue</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[webkit桌面版本浏览器将不再支持-webkit-text-size-adjust]]></title>
+    <link href="http://www.ithans.com/blog/2013/05/17/webkit-text-size-adjust-no-longer-supported/"/>
+    <updated>2013-05-17T00:00:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/05/17/webkit-text-size-adjust-no-longer-supported</id>
+    <content type="html"><![CDATA[<p> 昨天升级了chrome dev到 28.0.1500.11 dev-m 版本的时候发现，-webkit-text-size-adjust属性失效了，说来也比较巧，公司台式机上装的是chrome正式版，在用QQ管家升级软件的时候，就想着把台式机上的chrome也升级到dev版本。自己的demo上刚好也用到了10px的字体（一个角标）
+<code>css
+.demo{
+    -webkit-text-size-adjust:none;
+    font-size: 10px;
+ }
+</code>
+demo在<a href="http://codepen.io/yize/pen/Hahiv">这里</a></p>
+
+<p>可以看到，在新版本中的chrome等webkit浏览器中，如果你没有主动去设置过字体大小下限的话，demo中的字应该都是一样大的。</p>
+
+<p>chrome字体大小设置是在「设置-网络内容-字体大小下限」中。
+safari默认不会开启下限，选项是在「偏好-高级-辅助功能-从不使用小于大小的字体」</p>
+
+<p>官方移除说明在<a href="http://trac.webkit.org/changeset/145168">这里</a></p>
+
+<p>原因是：</p>
+
+<blockquote><p>This property existed to support a number of Apple-internal clients of WebKit.
+We no longer need this property, and since it&rsquo;s clashing with a mobile version of the
+same property with different meaning, let&rsquo;s remove it altogether from the desktop build.</p></blockquote>
+
+<p>大概意思是：</p>
+
+<blockquote><p>这个属性的存在是为了支持一些使用webkit的苹果内部设备，我们不再需要这个属性了，而且还有一点就是，这个属性和手机版本的webkit浏览器有名字相同但是有不同的意思，所以我们还是将这个属性从桌面版本中移除了。</p></blockquote>
+
+<p>要解决这个的问题，可以这么做</p>
+
+<pre><code class="css">.demo{
+    font-size:10px;
+    -webkit-transform:scale(0.83);
+    display:inline-block;
+}
+</code></pre>
+
+<p>demo在<a href="http://codepen.io/yize/pen/rycgv">这里</a></p>
+
+<p>但是这么写当然不是正确的解决方法，目前先凑合着这么用了。</p>
+
+<p>在statckoverflow上提了个<a href="http://stackoverflow.com/questions/16589785/webkit-text-size-adjust-is-no-longer-supported-how-to-set-font-size-to-less-tha">问题</a>，老外的意见都是不赞成修改用户设定的大小下限，因为用户已经告知浏览器，自己能接收的最小的字体大小就是设定的那个大小，再小的话，看起来就会太小。</p>
+
+<p>我的意见也是不希望去违背用户的意思，将字体设置成小于12像素。希望给用户最好的体验。</p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-17于杭州</p>
+]]></content>
+  </entry>
+  
+</feed>

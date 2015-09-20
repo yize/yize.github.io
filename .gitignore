@@ -24,3 +24,7 @@ test/_templates
 test/_posts
 test/_layouts
 .jekyll-metadata
+.pygments-cache
+.idea
+_deploy.yml
+.deploy

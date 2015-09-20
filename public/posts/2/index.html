@@ -1,0 +1,815 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ithans</title>
+  <meta name="author" content="邵寒超">
+
+  
+  <meta name="description" content="今天一早配置phpstorm的时候，看到文件上有很多warn，比如，require不存在这样。 然后就开始坑爹的瞎搞了，点了external libraries里，添加了/usr/local/bin/node 发现还是有warn报错，随之，看是悲剧的一步，虽然我是想删除external &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://www.ithans.com/posts/2/">
+  <link href="http://ithans.u.qiniudn.com/favicon.ico" rel="icon">
+  <link href="http://ithans.u.qiniudn.com/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="http://ithans.u.qiniudn.com/ithansmodernizr-2.0.js"></script>
+  <script src="http://ithans.u.qiniudn.com/ithansender.js"></script>
+  <script src="http://ithans.u.qiniudn.com/ithansoctopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="ithans" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38571488-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">ithans</a></h1>
+  
+    <h2>Float on the sea</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.ithans.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/about">About</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/tags">Tags</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/27/usr-local-bin/">恢复mac下的/usr/local/bin</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-27T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天一早配置phpstorm的时候，看到文件上有很多warn，比如，require不存在这样。</p>
+
+<p>然后就开始坑爹的瞎搞了，点了<code>external libraries</code>里，添加了<code>/usr/local/bin/node</code></p>
+
+<p>发现还是有warn报错，随之，看是悲剧的一步，虽然我是想删除external libraries中对node的引用，删除的时候，有红色的提示，没管那么多，直接跳过去了。。。</p>
+
+<p>发现不对，在<code>terminal</code>中，各种<code>node</code>,<code>git</code>这样的命令没用了。</p>
+
+<p>用sudo也是没有权限。</p>
+
+<p>后来同事提醒，可能是权限问题。</p>
+
+<p>查了下此时的/usr/local/bin下的文件，现在都是在我的名下，group也在admin下。</p>
+
+<p>试了下重新安装node，发现，node在root名下，group是wheel。</p>
+
+<p>并且是有<code>x</code>权限的。</p>
+
+<p>解决方法如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">chmod</span> <span class="o">-</span><span class="kt">R</span> <span class="o">+</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span>
+</span><span class='line'><span class="nf">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="kt">R</span> <span class="n">root</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span>
+</span><span class='line'><span class="nf">sudo</span> <span class="n">chgrp</span> <span class="o">-</span><span class="kt">R</span> <span class="n">wheel</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如此，解决。</p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-27于杭州</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/24/console-log/">console.log</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-24T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>作为开发人员，用好调试工具可以提高工作效率，今天就来说说<code>console.log</code></p>
+
+<p><code>console.log</code> 很简单，</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">$0</span><span class="p">)</span> <span class="c1">//$0是elements panel 里面你选中的DOM结构。也可以使用console.dir($0)</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1">//多参数 </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以上这些都是基本的用法，不赘述。</p>
+
+<p>下面就来说说，你可能不知道的console.log</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">userName</span> <span class="o">=</span> <span class="s2">&quot;yize&quot;</span><span class="p">,</span><span class="nx">userPoints</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;User %s has %d points&quot;</span><span class="p">,</span> <span class="nx">userName</span><span class="p">,</span> <span class="nx">userPoints</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行以上命令，控制台会输出User yize has 100 points</p>
+
+<p>$s,$d看起来是不是特别眼熟，貌似是大学的时候学过的C语言，哈哈</p>
+
+<p>chrome dev tools 目前支持以下几种格式：</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Format Specifier</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <code>%s</code>
+            </td>
+            <td>Formats the value as a string.//字符串</td>
+        </tr>
+        <tr>
+            <td>
+                <code>%d</code>
+                or
+                <code>%i</code>
+            </td>
+            <td>Formats the value as an integer.//整形</td>
+        </tr>
+        <tr>
+            <td>
+                <code>%f</code>
+            </td>
+            <td>Formats the value as a floating point value.//浮点数</td>
+        </tr>
+        <tr>
+            <td>
+                <code>%o</code>
+            </td>
+            <td>
+                Formats the value as an expandable DOM element (as in the Elements panel).//DOM元素
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>%O</code>
+            </td>
+            <td>Formats the value as an expandable JavaScript object.//JS对象</td>
+        </tr>
+        <tr>
+            <td>
+                <code>%c</code>
+            </td>
+            <td>
+                Formats the output string according to CSS styles you provide.//CSS 样式
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<p>目测<code>console.log('%O',document.body) === console.dir(document.body)</code></p>
+
+<p>改变log的样式：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">userName</span> <span class="o">=</span> <span class="s2">&quot;yize&quot;</span><span class="p">,</span><span class="nx">userPoints</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;%cUser %s has %d points&quot;</span><span class="p">,</span> <span class="s2">&quot;color:orange; background:blue; font-size: 16pt&quot;</span><span class="p">,</span> <span class="nx">userName</span><span class="p">,</span> <span class="nx">userPoints</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://ww3.sinaimg.cn/large/60ee1ef8gw1e4z9k9snadj218i03e75p.jpg" alt="图片" />
+chrome dev tools很强大，官方文档:<a href="">https://developers.google.com/chrome-developer-tools/</a></p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-24于杭州</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/20/popular-nodejs-modules/">Popular Nodejs Modules</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-20T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>just for memory</p>
+
+<ul>
+<li><strong>colors</strong> <a href="">https://github.com/marak/colors.js/</a></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">colors</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./colors&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">.</span><span class="nx">green</span><span class="p">);</span> <span class="c1">// outputs green text</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;i like cake and pies&#39;</span><span class="p">.</span><span class="nx">underline</span><span class="p">.</span><span class="nx">red</span><span class="p">)</span> <span class="c1">// outputs red underlined text</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;inverse the color&#39;</span><span class="p">.</span><span class="nx">inverse</span><span class="p">);</span> <span class="c1">// inverses the color</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;OMG Rainbows!&#39;</span><span class="p">.</span><span class="nx">rainbow</span><span class="p">);</span> <span class="c1">// rainbow (ignores spaces)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><strong>mkdirp</strong> <a href="">https://github.com/substack/node-mkdirp</a></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">mkdirp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mkdirp&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">mkdirp</span><span class="p">(</span><span class="s1">&#39;/tmp/foo/bar/baz&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">else</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;pow!&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><strong> iconv-lite </strong> <a href="">https://github.com/ashtuchkin/iconv-lite</a></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">iconv</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;iconv-lite&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Convert from an encoded buffer to string.</span>
+</span><span class='line'><span class="nx">str</span> <span class="o">=</span> <span class="nx">iconv</span><span class="p">.</span><span class="nx">decode</span><span class="p">(</span><span class="nx">buf</span><span class="p">,</span> <span class="s1">&#39;win1251&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Convert from string to an encoded buffer.</span>
+</span><span class='line'><span class="nx">buf</span> <span class="o">=</span> <span class="nx">iconv</span><span class="p">.</span><span class="nx">encode</span><span class="p">(</span><span class="s2">&quot;Sample input string&quot;</span><span class="p">,</span> <span class="s1">&#39;win1251&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><strong> send </strong> <a href="">https://github.com/visionmedia/send</a></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">send</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;send&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+</span><span class='line'>  <span class="c1">// your custom error-handling logic:</span>
+</span><span class='line'>  <span class="kd">function</span> <span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">=</span> <span class="nx">err</span><span class="p">.</span><span class="nx">status</span> <span class="o">||</span> <span class="mi">500</span><span class="p">;</span>
+</span><span class='line'>    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// your custom directory handling logic:</span>
+</span><span class='line'>  <span class="kd">function</span> <span class="nx">redirect</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">=</span> <span class="mi">301</span><span class="p">;</span>
+</span><span class='line'>    <span class="nx">res</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s1">&#39;Location&#39;</span><span class="p">,</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s1">&#39;Redirecting to &#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// transfer arbitrary files from within</span>
+</span><span class='line'>  <span class="c1">// /www/example.com/public/*</span>
+</span><span class='line'>  <span class="nx">send</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">url</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">).</span><span class="nx">pathname</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">root</span><span class="p">(</span><span class="s1">&#39;/www/example.com/public&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;directory&#39;</span><span class="p">,</span> <span class="nx">redirect</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+</span><span class='line'><span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><strong> connect </strong> <a href="">https://github.com/senchalabs/connect</a></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">connect</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;connect&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">,</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">connect</span><span class="p">()</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">connect</span><span class="p">.</span><span class="nx">favicon</span><span class="p">())</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">connect</span><span class="p">.</span><span class="nx">logger</span><span class="p">(</span><span class="s1">&#39;dev&#39;</span><span class="p">))</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">connect</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="s1">&#39;public&#39;</span><span class="p">))</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">connect</span><span class="p">.</span><span class="nx">directory</span><span class="p">(</span><span class="s1">&#39;public&#39;</span><span class="p">))</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">connect</span><span class="p">.</span><span class="nx">cookieParser</span><span class="p">())</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">connect</span><span class="p">.</span><span class="nx">session</span><span class="p">({</span> <span class="nx">secret</span><span class="o">:</span> <span class="s1">&#39;my secret here&#39;</span> <span class="p">}))</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+</span><span class='line'>    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s1">&#39;Hello from Connect!\n&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-20于杭州</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/18/fix-node-r-No-such-file-or-directory-problem/">Env Node\r No Such File or Directory</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-18T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>env: node\r: No such file or directory</p>
+
+<p>uitest是基于nodejs的，用<code>npm install uitest -g</code>安装完之后，在mac下运行，提示<code>env: node\r: No such file or directory</code>，检查了下bin文件中，第一行是</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">#!</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">node</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这看起来是没有任何问题的，当然是肉眼看起来。</p>
+
+<p>问题的分析：</p>
+
+<p>env：node\r</p>
+
+<p>注意下这里的\r，好眼熟，是个换行，原谅我对DOS不是很了解。。。</p>
+
+<p>google了下发现找到了<a href="https://github.com/foglcz/tscw/issues/1">这个</a></p>
+
+<p>里面提到，用dos2unix转换下就可以了。</p>
+
+<p>我的机器上没装dos2unix，用brew装了个</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">brew</span> <span class="n">install</span> <span class="n">dos2unix</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>接着cd到 bin目录下</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">dos2unix</span> <span class="n">uitest</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>就可以了</p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-18于杭州</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/17/webkit-text-size-adjust-no-longer-supported/">Webkit桌面版本浏览器将不再支持-webkit-text-size-adjust</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-17T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p> 昨天升级了chrome dev到 28.0.1500.11 dev-m 版本的时候发现，-webkit-text-size-adjust属性失效了，说来也比较巧，公司台式机上装的是chrome正式版，在用QQ管家升级软件的时候，就想着把台式机上的chrome也升级到dev版本。自己的demo上刚好也用到了10px的字体（一个角标）</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.demo</span><span class="p">{</span>
+</span><span class='line'>  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="k">text</span><span class="o">-</span><span class="k">size</span><span class="o">-</span><span class="n">adjust</span><span class="o">:</span><span class="k">none</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">font-size</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+</span><span class='line'> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>demo在<a href="http://codepen.io/yize/pen/Hahiv">这里</a></p>
+
+<p>可以看到，在新版本中的chrome等webkit浏览器中，如果你没有主动去设置过字体大小下限的话，demo中的字应该都是一样大的。</p>
+
+<p>chrome字体大小设置是在「设置-网络内容-字体大小下限」中。
+safari默认不会开启下限，选项是在「偏好-高级-辅助功能-从不使用小于大小的字体」</p>
+
+<p>官方移除说明在<a href="http://trac.webkit.org/changeset/145168">这里</a></p>
+
+<p>原因是：</p>
+
+<blockquote><p>This property existed to support a number of Apple-internal clients of WebKit.
+We no longer need this property, and since it&rsquo;s clashing with a mobile version of the
+same property with different meaning, let&rsquo;s remove it altogether from the desktop build.</p></blockquote>
+
+<p>大概意思是：</p>
+
+<blockquote><p>这个属性的存在是为了支持一些使用webkit的苹果内部设备，我们不再需要这个属性了，而且还有一点就是，这个属性和手机版本的webkit浏览器有名字相同但是有不同的意思，所以我们还是将这个属性从桌面版本中移除了。</p></blockquote>
+
+<p>要解决这个的问题，可以这么做</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.demo</span><span class="p">{</span>
+</span><span class='line'>  <span class="k">font-size</span><span class="o">:</span><span class="m">10px</span><span class="p">;</span>
+</span><span class='line'>  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span><span class="n">scale</span><span class="p">(</span><span class="m">0</span><span class="o">.</span><span class="m">83</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">display</span><span class="o">:</span><span class="k">inline</span><span class="o">-</span><span class="k">block</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>demo在<a href="http://codepen.io/yize/pen/rycgv">这里</a></p>
+
+<p>但是这么写当然不是正确的解决方法，目前先凑合着这么用了。</p>
+
+<p>在statckoverflow上提了个<a href="http://stackoverflow.com/questions/16589785/webkit-text-size-adjust-is-no-longer-supported-how-to-set-font-size-to-less-tha">问题</a>，老外的意见都是不赞成修改用户设定的大小下限，因为用户已经告知浏览器，自己能接收的最小的字体大小就是设定的那个大小，再小的话，看起来就会太小。</p>
+
+<p>我的意见也是不希望去违背用户的意思，将字体设置成小于12像素。希望给用户最好的体验。</p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-17于杭州</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="3">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="1">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/27/iframe-size-not-work-in-ios/">iframe-size-not-work-in-IOS</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/28/weekend-thinking/">周末有感</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/28/javascript-binary-search/">Javascript 折半搜索法（二分法）</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/07/mysql-connection-lost/">node.js Connection lost The server closed the connection.</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/28/how-to-use-grunt-tps/">怎么使用grunt-tps</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h2>Categories</h2>
+    <ul id="category-list"><li><a href='/blog/categories/life'>life (2)</a></li><li><a href='/blog/categories/stack'>stack (18)</a></li></ul>
+</section>
+<section>
+  <h2>Tag Cloud</h2>
+  <ul class="tag-cloud">
+    <li><a style="font-size: 60%" href="/tags/bootstrap/">Bootstrap</a></li>
+<li><a style="font-size: 165%" href="/tags/browser/">Browser</a></li>
+<li><a style="font-size: 112%" href="/tags/css/">CSS</a></li>
+<li><a style="font-size: 60%" href="/tags/cubieboard/">Cubieboard</a></li>
+<li><a style="font-size: 60%" href="/tags/diary/">Diary</a></li>
+<li><a style="font-size: 60%" href="/tags/github/">Github</a></li>
+<li><a style="font-size: 60%" href="/tags/grunt/">Grunt</a></li>
+<li><a style="font-size: 60%" href="/tags/ide/">IDE</a></li>
+<li><a style="font-size: 60%" href="/tags/iis/">IIS</a></li>
+<li><a style="font-size: 60%" href="/tags/ios/">IOS</a></li>
+<li><a style="font-size: 112%" href="/tags/javascript/">JavaScript</a></li>
+<li><a style="font-size: 60%" href="/tags/jekyll/">Jekyll</a></li>
+<li><a style="font-size: 165%" href="/tags/linux/">Linux</a></li>
+<li><a style="font-size: 60%" href="/tags/mac/">Mac</a></li>
+<li><a style="font-size: 60%" href="/tags/mysql/">Mysql</a></li>
+<li><a style="font-size: 60%" href="/tags/nginx/">Nginx</a></li>
+<li><a style="font-size: 165%" href="/tags/nodejs/">NodeJS</a></li>
+<li><a style="font-size: 60%" href="/tags/shell/">Shell</a></li>
+<li><a style="font-size: 60%" href="/tags/terminal/">Terminal</a></li>
+<li><a style="font-size: 60%" href="/tags/thinking/">Thinking</a></li>
+
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/yize">@yize</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = 'http://ithans.u.qiniudn.com/ithansjXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'yize',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="http://ithans.u.qiniudn.com/ithansgithub.js" type="text/javascript"> </script>
+</section>
+
+<section>
+	<h2>Weibo</h2>
+<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=0&speed=0&skin=5&isTitle=1&noborder=0&isWeibo=1&isFans=0&uid=1626218232&verifier=b3593ceb&dpc=1"></iframe>
+</section><section>
+    <h2>大牛博客</h2>
+    <ul>
+        <li class="post">
+            <a href="http://www.lianghaijun.com" target="_blank">道璘</a>
+        </li>
+    </ul>
+</section>
+
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/yize.shc@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - 邵寒超 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yize';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

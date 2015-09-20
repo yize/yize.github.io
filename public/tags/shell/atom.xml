@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Shell | ithans]]></title>
+  <link href="http://www.ithans.com/tags/shell/atom.xml" rel="self"/>
+  <link href="http://www.ithans.com/"/>
+  <updated>2015-09-21T00:33:16+08:00</updated>
+  <id>http://www.ithans.com/</id>
+  <author>
+    <name><![CDATA[邵寒超]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[恢复mac下的/usr/local/bin]]></title>
+    <link href="http://www.ithans.com/blog/2013/05/27/usr-local-bin/"/>
+    <updated>2013-05-27T00:00:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/05/27/usr-local-bin</id>
+    <content type="html"><![CDATA[<p>今天一早配置phpstorm的时候，看到文件上有很多warn，比如，require不存在这样。</p>
+
+<p>然后就开始坑爹的瞎搞了，点了<code>external libraries</code>里，添加了<code>/usr/local/bin/node</code></p>
+
+<p>发现还是有warn报错，随之，看是悲剧的一步，虽然我是想删除external libraries中对node的引用，删除的时候，有红色的提示，没管那么多，直接跳过去了。。。</p>
+
+<p>发现不对，在<code>terminal</code>中，各种<code>node</code>,<code>git</code>这样的命令没用了。</p>
+
+<p>用sudo也是没有权限。</p>
+
+<p>后来同事提醒，可能是权限问题。</p>
+
+<p>查了下此时的/usr/local/bin下的文件，现在都是在我的名下，group也在admin下。</p>
+
+<p>试了下重新安装node，发现，node在root名下，group是wheel。</p>
+
+<p>并且是有<code>x</code>权限的。</p>
+
+<p>解决方法如下：
+<code>haskell
+    sudo chmod -R +x /usr/local/bin/
+    sudo chown -R root /usr/local/bin/
+    sudo chgrp -R wheel /usr/local/bin/
+</code>
+如此，解决。</p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-27于杭州</p>
+]]></content>
+  </entry>
+  
+</feed>

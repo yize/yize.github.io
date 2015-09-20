@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: JavaScript | ithans]]></title>
+  <link href="http://www.ithans.com/tags/javascript/atom.xml" rel="self"/>
+  <link href="http://www.ithans.com/"/>
+  <updated>2015-09-21T00:33:16+08:00</updated>
+  <id>http://www.ithans.com/</id>
+  <author>
+    <name><![CDATA[邵寒超]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript 折半搜索法（二分法）]]></title>
+    <link href="http://www.ithans.com/blog/2013/07/28/javascript-binary-search/"/>
+    <updated>2013-07-28T00:00:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/07/28/javascript-binary-search</id>
+    <content type="html"><![CDATA[<p>周末，写个简单的算法。</p>
+
+<p>JS二分法：
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">binarySearch</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="kd">var</span> <span class="nx">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">while</span> <span class="p">(</span><span class="nx">l</span><span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">=</span> <span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">l</span> <span class="o">+</span> <span class="p">((</span><span class="nx">h</span> <span class="o">-</span> <span class="nx">l</span><span class="p">)</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;l@%s,h@%s,m@%s&#39;</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">m</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">m</span><span class="p">]</span> <span class="o">===</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">m</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">m</span><span class="p">]</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">h</span> <span class="o">=</span> <span class="nx">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">l</span> <span class="o">=</span> <span class="nx">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="nx">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">code</span><span class="o">&gt;</span>
+</span><span class='line'><span class="err">使用：</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;javascript</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">2312</span><span class="p">,</span> <span class="mi">424</span><span class="p">];</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">arr</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">x</span> <span class="o">-</span> <span class="nx">y</span><span class="p">;</span>
+</span><span class='line'><span class="p">})</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">binarySearch</span><span class="p">(</span><span class="mi">424</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+说明：</p>
+
+<p><code>var m = l + ((h - l) &gt;&gt; 1);</code>，为什么要用位运算？</p>
+
+<p>其实用<code>var m = Math.floor((h+l)/2);</code>也是可以的，但是位运算的速度优于除法，并且还要再进行一次Math.floor。用位运算主要是出于性能考虑。<code>h+l</code>还存在溢出的问题，不过这个在web端应该不会遇到。。。Node.js就有可能了。</p>
+
+<p>还有个复杂度的问题，下回再分析。</p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-07-29于杭州</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[前端编码问题汇总]]></title>
+    <link href="http://www.ithans.com/blog/2013/05/12/encode-war-in-F2E/"/>
+    <updated>2013-05-12T00:00:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/05/12/encode-war-in-F2E</id>
+    <content type="html"><![CDATA[<h2>前端可能会遇到的编码问题有哪些？</h2>
+
+<ol>
+<li>文件编码，GBK，注意IDE编码，不要默认转换UTF-8.</li>
+<li>文件中内容的编码，可以将内容手动转成UTF-8编码或者unicode</li>
+<li>scss中编码，解决方法，在scss头部加入 <code>@charset "GBK"</code></li>
+<li>请求时的中文编码，淘宝规范在请求后加入 <code>_input_charset=utf-8</code></li>
+<li>&ldquo;&lt;>"等直接输出的，应该用<code>&amp;lt；</code>,<code>&amp;gt；</code>这样的转义符号</li>
+<li>如果直接读取用户输入的字符，应该用<code>encodeURIComponent</code>,<code>htmlspecialchars</code>等编码</li>
+<li>JS引入的时候，带上<code>charset</code>，指定文件的编码</li>
+<li><p>HTML页面中，<code>meta</code>指定<code>charset</code>,HTTP解析的时候，有三个地方可以埋藏代码信息：</p>
+
+<ol>
+<li>http头的Content-Type</li>
+<li>html页面中的meta标签中制定的charset</li>
+<li>页面正文数据（浏览器可以跟进二进制码来判断编码）</li>
+</ol>
+</li>
+</ol>
+
+
+<blockquote><p>如果三者编码不一致，浏览器会首先读取http头中的content-type，若没有设定编码，再查找页面中meta标签中的charset设定，如果还没有就以浏览器默认编码来显示，如果默认编码没有指定，浏览器会通过解析正文内容来判断编码.所以，页面是gbk编码，即便meta属性中设置 charset=utf-8，只要content-type中设定为gbk（或者GB2312、GB18030），该页面就正常显示，如果这时没有设定 content-type的编码，浏览器就会以meta中的charset属性为准，页面出现乱码。</p></blockquote>
+
+<ol>
+<li>JSONP中的中文问题，解决方法，后端返回<code>unicode</code>编码。</li>
+<li>nodejs中的编码问题，可以使用<code>iconv</code>解决，或者直接用<code>buffer</code></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>
