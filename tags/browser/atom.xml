@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Browser | ithans]]></title>
   <link href="http://www.ithans.com/tags/browser/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-12-08T23:07:58+08:00</updated>
+  <updated>2015-09-21T00:33:16+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -22,26 +22,20 @@
 
 <p><code>console.log</code> 很简单，</p>
 
-<p>```javascript</p>
-
-<pre><code>console.log(1)
-console.log($0) //$0是elements panel 里面你选中的DOM结构。也可以使用console.dir($0)
-console.log(1,2) //多参数 
+<pre><code class="javascript">    console.log(1)
+    console.log($0) //$0是elements panel 里面你选中的DOM结构。也可以使用console.dir($0)
+    console.log(1,2) //多参数 
 </code></pre>
 
-<p>```
-以上这些都是基本的用法，不赘述。</p>
+<p>以上这些都是基本的用法，不赘述。</p>
 
 <p>下面就来说说，你可能不知道的console.log</p>
 
-<p>```javascript</p>
-
-<pre><code>var userName = "yize",userPoints = 100;
-console.log("User %s has %d points", userName, userPoints);
+<pre><code class="javascript">    var userName = "yize",userPoints = 100;
+    console.log("User %s has %d points", userName, userPoints);
 </code></pre>
 
-<p>```
-运行以上命令，控制台会输出User yize has 100 points</p>
+<p>运行以上命令，控制台会输出User yize has 100 points</p>
 
 <p>$s,$d看起来是不是特别眼熟，貌似是大学的时候学过的C语言，哈哈</p>
 
@@ -105,14 +99,11 @@ console.log("User %s has %d points", userName, userPoints);
 
 <p>改变log的样式：</p>
 
-<p>```javascript</p>
-
-<pre><code>var userName = "yize",userPoints = 100;
-console.log("%cUser %s has %d points", "color:orange; background:blue; font-size: 16pt", userName, userPoints);
+<pre><code class="javascript">    var userName = "yize",userPoints = 100;
+    console.log("%cUser %s has %d points", "color:orange; background:blue; font-size: 16pt", userName, userPoints);
 </code></pre>
 
-<p>```
-<img src="http://ww3.sinaimg.cn/large/60ee1ef8gw1e4z9k9snadj218i03e75p.jpg" alt="图片" />
+<p><img src="http://ww3.sinaimg.cn/large/60ee1ef8gw1e4z9k9snadj218i03e75p.jpg" alt="图片" />
 chrome dev tools很强大，官方文档:<a href="">https://developers.google.com/chrome-developer-tools/</a></p>
 
 <hr />
@@ -128,15 +119,12 @@ chrome dev tools很强大，官方文档:<a href="">https://developers.google.co
     <updated>2013-05-17T00:00:00+08:00</updated>
     <id>http://www.ithans.com/blog/2013/05/17/webkit-text-size-adjust-no-longer-supported</id>
     <content type="html"><![CDATA[<p> 昨天升级了chrome dev到 28.0.1500.11 dev-m 版本的时候发现，-webkit-text-size-adjust属性失效了，说来也比较巧，公司台式机上装的是chrome正式版，在用QQ管家升级软件的时候，就想着把台式机上的chrome也升级到dev版本。自己的demo上刚好也用到了10px的字体（一个角标）
-```css
-.demo{</p>
-
-<pre><code>-webkit-text-size-adjust:none;
-font-size: 10px;
-</code></pre>
-
-<p> }
-```
+<code>css
+.demo{
+    -webkit-text-size-adjust:none;
+    font-size: 10px;
+ }
+</code>
 demo在<a href="http://codepen.io/yize/pen/Hahiv">这里</a></p>
 
 <p>可以看到，在新版本中的chrome等webkit浏览器中，如果你没有主动去设置过字体大小下限的话，demo中的字应该都是一样大的。</p>
@@ -158,17 +146,14 @@ same property with different meaning, let&rsquo;s remove it altogether from the 
 
 <p>要解决这个的问题，可以这么做</p>
 
-<p>```css
-.demo{</p>
-
-<pre><code>font-size:10px;
--webkit-transform:scale(0.83);
-display:inline-block;
+<pre><code class="css">.demo{
+    font-size:10px;
+    -webkit-transform:scale(0.83);
+    display:inline-block;
+}
 </code></pre>
 
-<p>}
-```
-demo在<a href="http://codepen.io/yize/pen/rycgv">这里</a></p>
+<p>demo在<a href="http://codepen.io/yize/pen/rycgv">这里</a></p>
 
 <p>但是这么写当然不是正确的解决方法，目前先凑合着这么用了。</p>
 
@@ -2408,21 +2393,12 @@ ident   {nmstart}{nmchar}*
 </div>
 
 
-<p>除了获取请求，还有一种是发送请求，它常在提交表单用到。发送请求通过URL传递其参数(e.g.: <a href="http://robozzle.com/puzzle.aspx?id=85">http://robozzle.com/puzzle.aspx?id=85</a>)。发送请求在请求正文头之后发送其参数。</p>
-
+<p>除了获取请求，还有一种是发送请求，它常在提交表单用到。发送请求通过URL传递其参数(e.g.: <a href="http://robozzle.com/puzzle.aspx?id=85">http://robozzle.com/puzzle.aspx?id=85</a>)。发送请求在请求正文头之后发送其参数。
 <br>
-
-
 <br>
-
-
-<p>像“<a href="http://facebook.com/%E2%80%9D%E4%B8%AD%E7%9A%84%E6%96%9C%E6%9D%A0%E6%98%AF%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81%E7%9A%84%E3%80%82%E8%BF%99%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E8%83%BD%E5%AE%89%E5%85%A8%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%9C%E6%9D%A0%E3%80%82%E8%80%8C%E5%83%8F%E2%80%9Chttp:">http://facebook.com/%E2%80%9D%E4%B8%AD%E7%9A%84%E6%96%9C%E6%9D%A0%E6%98%AF%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81%E7%9A%84%E3%80%82%E8%BF%99%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E8%83%BD%E5%AE%89%E5%85%A8%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%9C%E6%9D%A0%E3%80%82%E8%80%8C%E5%83%8F%E2%80%9Chttp:</a> //example.com/folderOrFile”这样的地址，因为浏览器不清楚folderOrFile到底是文件夹还是文件，所以不能自动添加 斜杠。这时，浏览器就不加斜杠直接访问地址，服务器会响应一个重定向，结果造成一次不必要的握手。</p>
-
+像“<a href="http://facebook.com/%E2%80%9D%E4%B8%AD%E7%9A%84%E6%96%9C%E6%9D%A0%E6%98%AF%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81%E7%9A%84%E3%80%82%E8%BF%99%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E8%83%BD%E5%AE%89%E5%85%A8%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%9C%E6%9D%A0%E3%80%82%E8%80%8C%E5%83%8F%E2%80%9Chttp:">http://facebook.com/%E2%80%9D%E4%B8%AD%E7%9A%84%E6%96%9C%E6%9D%A0%E6%98%AF%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81%E7%9A%84%E3%80%82%E8%BF%99%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E8%83%BD%E5%AE%89%E5%85%A8%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%9C%E6%9D%A0%E3%80%82%E8%80%8C%E5%83%8F%E2%80%9Chttp:</a> //example.com/folderOrFile”这样的地址，因为浏览器不清楚folderOrFile到底是文件夹还是文件，所以不能自动添加 斜杠。这时，浏览器就不加斜杠直接访问地址，服务器会响应一个重定向，结果造成一次不必要的握手。
 <br>
-
-
-<br>
-
+<br></p>
 
 <h3>4. facebook服务的永久重定向响应</h3>
 

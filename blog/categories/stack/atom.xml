@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Stack | ithans]]></title>
+  <title><![CDATA[Category: stack | ithans]]></title>
   <link href="http://www.ithans.com/blog/categories/stack/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-12-08T23:07:58+08:00</updated>
+  <updated>2015-09-21T00:33:16+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -20,40 +20,37 @@
     <id>http://www.ithans.com/blog/2013/11/27/iframe-size-not-work-in-ios</id>
     <content type="html"><![CDATA[<p>最近遇到一个问题，就是iFrame在iPad上展示的时候，宽度并没有固定，会直接超出，通过嵌套div之后，无法滚动。</p>
 
-<p>HTML
-```html</p>
+<p>HTML</p>
 
-<div class="frame_holder">
-  <iframe class="my_frame">
+<pre><code class="html">&lt;section class="frame_holder"&gt;
+  &lt;iframe class="my_frame"&gt;
     // The content
-  </iframe>
-</div>
+  &lt;/iframe&gt;
+&lt;/section&gt;
+</code></pre>
 
+<p>CSS</p>
 
-<p>```</p>
-
-<p>CSS
-```css
-body {
+<pre><code class="css">body {
   position: relative;
   background: #f0f0f0;
-}</p>
+}
 
-<p>.frame_holder {
+.frame_holder {
   position: absolute;
   top: 50px;
   bottom: 50px;
   left: 50px;
   right: 50px;
   background: #ffffff;
-}</p>
+}
 
-<p>.my_frame {
+.my_frame {
   width: 100%;
   height: 100%;
   border: 1px solid #e0e0e0;
 }
-```</p>
+</code></pre>
 
 <p>例子：</p>
 
@@ -81,31 +78,6 @@ body {
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[zsh下rake new_post["title"] 报错的问题]]></title>
-    <link href="http://www.ithans.com/blog/2013/11/27/use-octopress-new-post-function-with-zsh/"/>
-    <updated>2013-11-27T09:38:00+08:00</updated>
-    <id>http://www.ithans.com/blog/2013/11/27/use-octopress-new-post-function-with-zsh</id>
-    <content type="html"><![CDATA[<p><code>haskell
-rake new_post["title"]   
-zsh: no matches found: new_post[title]
-</code></p>
-
-<p>在<code>zsh</code>中使用<code>rake new_post</code>的时候抛出找不到匹配的异常，原因是</p>
-
-<p><a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Generation">zsh官方文档</a>中有这样的说明：</p>
-
-<blockquote><p>If a word contains an unquoted instance of one of the characters ‘*’, ‘(’, ‘|’, ‘&lt;’, ‘[’, or ‘?’, it is regarded as a pattern for filename generation, unless the GLOB option is unset. If the EXTENDED_GLOB option is set, the ‘^’ and ‘#’ characters also denote a pattern; otherwise they are not treated specially by the shell.</p></blockquote>
-
-<p>所以，解决方案就是通过加上noglob去取消通配符匹配</p>
-
-<p><code>sh
-alias rake="noglob rake"
-source ~/.zshrc
-</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Javascript 折半搜索法（二分法）]]></title>
     <link href="http://www.ithans.com/blog/2013/07/28/javascript-binary-search/"/>
     <updated>2013-07-28T00:00:00+08:00</updated>
@@ -113,43 +85,71 @@ source ~/.zshrc
     <content type="html"><![CDATA[<p>周末，写个简单的算法。</p>
 
 <p>JS二分法：
-```javascript
-Array.prototype.binarySearch = function (v) {</p>
-
-<pre><code>var l = 0;
-var h = this.length - 1;
-
-while (l&lt;= h) {
-    var m = l + ((h - l) &gt;&gt; 1);
-    console.log('l@%s,h@%s,m@%s', l, h, m);
-    if (this[m] === v) {
-        return m;
-    }
-    if (this[m] &gt; v) {
-        h = m - 1;
-    } else {
-        l = m + 1;
-    }
-}
-
-return -(l + 1);
-</code></pre>
-
-<p>}
-<code>
-使用：
-</code>javascript
-var arr = [1, 2, 3, 5, 78, 2312, 424];</p>
-
-<p>arr.sort(function (x, y) {</p>
-
-<pre><code>return x - y;
-</code></pre>
-
-<p>})
-console.log(arr);
-console.log(arr.binarySearch(424));
-```
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">binarySearch</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="kd">var</span> <span class="nx">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">while</span> <span class="p">(</span><span class="nx">l</span><span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">=</span> <span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="nx">l</span> <span class="o">+</span> <span class="p">((</span><span class="nx">h</span> <span class="o">-</span> <span class="nx">l</span><span class="p">)</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;l@%s,h@%s,m@%s&#39;</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">m</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">m</span><span class="p">]</span> <span class="o">===</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">m</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">m</span><span class="p">]</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">h</span> <span class="o">=</span> <span class="nx">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">l</span> <span class="o">=</span> <span class="nx">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="nx">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">code</span><span class="o">&gt;</span>
+</span><span class='line'><span class="err">使用：</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;javascript</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">2312</span><span class="p">,</span> <span class="mi">424</span><span class="p">];</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">arr</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">x</span> <span class="o">-</span> <span class="nx">y</span><span class="p">;</span>
+</span><span class='line'><span class="p">})</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">binarySearch</span><span class="p">(</span><span class="mi">424</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
 说明：</p>
 
 <p><code>var m = l + ((h - l) &gt;&gt; 1);</code>，为什么要用位运算？</p>
@@ -173,19 +173,16 @@ console.log(arr.binarySearch(424));
     <content type="html"><![CDATA[<h3>mysql模块</h3>
 
 <p>今天访问了下内网的一台服务器，发现挂掉了，SSH上去看了下<code>nohup.out</code>,发现报错了
-```haskell</p>
-
-<pre><code>events.js:71
-        throw arguments[1]; // Unhandled 'error' event
-                       ^
-Error: Connection lost: The server closed the connection.
-    at Protocol.end (/var/www/html/utci/node_modules/mysql/lib/protocol/Protocol.js:73:13)
-    at Socket.onend (stream.js:66:10)
-    at Socket.EventEmitter.emit (events.js:126:20)
-    at TCP.onread (net.js:417:51)
-</code></pre>
-
-<p>```</p>
+<code>haskell
+    events.js:71
+            throw arguments[1]; // Unhandled 'error' event
+                           ^
+    Error: Connection lost: The server closed the connection.
+        at Protocol.end (/var/www/html/utci/node_modules/mysql/lib/protocol/Protocol.js:73:13)
+        at Socket.onend (stream.js:66:10)
+        at Socket.EventEmitter.emit (events.js:126:20)
+        at TCP.onread (net.js:417:51)
+</code></p>
 
 <p>这个错误的大概意思就是，未处理的<code>error</code>事件</p>
 
@@ -197,55 +194,53 @@ Error: Connection lost: The server closed the connection.
 
 <p>database.js:</p>
 
-<p>```javascript</p>
+<pre><code class="javascript">    var mysql = require('mysql'),
+        settings = require('../settings');
 
-<pre><code>var mysql = require('mysql'),
-    settings = require('../settings');
-
-module.exports.getConnection = function () {
-    if ((module.exports.connection) &amp;&amp; (module.exports.connection._socket)
-        &amp;&amp; (module.exports.connection._socket.readable)
-        &amp;&amp; (module.exports.connection._socket.writable)) {
-        return module.exports.connection;
-    }
-    console.log(((module.exports.connection) ?
-        "UNHEALTHY SQL CONNECTION; RE" : "") + "CONNECTING TO SQL.");
-    var connection = mysql.createConnection({
-        host: settings.host,
-        port: settings.port,
-        database: settings.db_name,
-        user: settings.username,
-        password: settings.password,
-        //中文读取
-        charset: "utf8"
-    });
-    connection.connect(function (err) {
-        if (err) {
-            console.log("SQL CONNECT ERROR: " + err);
-        } else {
-            console.log("SQL CONNECT SUCCESSFUL.");
+    module.exports.getConnection = function () {
+        if ((module.exports.connection) &amp;&amp; (module.exports.connection._socket)
+            &amp;&amp; (module.exports.connection._socket.readable)
+            &amp;&amp; (module.exports.connection._socket.writable)) {
+            return module.exports.connection;
         }
-    });
-    connection.on("close", function (err) {
-        console.log("SQL CONNECTION CLOSED.");
-    });
-    connection.on("error", function (err) {
-        console.log("SQL CONNECTION ERROR: " + err);
-    });
-    module.exports.connection = connection;
-    return module.exports.connection;
-};
+        console.log(((module.exports.connection) ?
+            "UNHEALTHY SQL CONNECTION; RE" : "") + "CONNECTING TO SQL.");
+        var connection = mysql.createConnection({
+            host: settings.host,
+            port: settings.port,
+            database: settings.db_name,
+            user: settings.username,
+            password: settings.password,
+            //中文读取
+            charset: "utf8"
+        });
+        connection.connect(function (err) {
+            if (err) {
+                console.log("SQL CONNECT ERROR: " + err);
+            } else {
+                console.log("SQL CONNECT SUCCESSFUL.");
+            }
+        });
+        connection.on("close", function (err) {
+            console.log("SQL CONNECTION CLOSED.");
+        });
+        connection.on("error", function (err) {
+            console.log("SQL CONNECTION ERROR: " + err);
+        });
+        module.exports.connection = connection;
+        return module.exports.connection;
+    };
 
-// Open a connection automatically at app startup.
-module.exports.getConnection();
-// If you've saved this file as database.js, then get and use the
-// connection as in the following example:
-// var database = require(__dirname + "/database");
-// var connection = database.getConnection();
-// connection.query(query, function(err, results) { ....
+    // Open a connection automatically at app startup.
+    module.exports.getConnection();
+    // If you've saved this file as database.js, then get and use the
+    // connection as in the following example:
+    // var database = require(__dirname + "/database");
+    // var connection = database.getConnection();
+    // connection.query(query, function(err, results) { ....
 </code></pre>
 
-<h2>```</h2>
+<hr />
 
 <p>伊泽<br/>
 2013-07-07于杭州</p>
@@ -294,59 +289,44 @@ module.exports.getConnection();
 
 <p>如何安装grunt？</p>
 
-<p>```haskell</p>
-
-<pre><code>npm uninstall -g grunt
-npm install -g grunt-cli
+<pre><code class="haskell">    npm uninstall -g grunt
+    npm install -g grunt-cli
 </code></pre>
-
-<p>```</p>
 
 <p>接下来就是要安装grunt-tps
-```haskell</p>
-
-<pre><code>npm install grunt --save-dev
-npm install grunt-tps --save-dev
-</code></pre>
-
-<p>```</p>
+<code>haskell
+    npm install grunt --save-dev
+    npm install grunt-tps --save-dev
+</code></p>
 
 <p>你的Gruntfile.js中加入这一段</p>
 
-<p>```javascript</p>
-
-<pre><code>tps: {
-options: {
-    argv: "--inplace",
-},
-all: ['test.css', 'lib/**/*.css', 'test/**/*.scss','index.htm']
-}
+<pre><code class="javascript">    tps: {
+    options: {
+        argv: "--inplace",
+    },
+    all: ['test.css', 'lib/**/*.css', 'test/**/*.scss','index.htm']
+    }
 </code></pre>
-
-<p>```</p>
 
 <p>你的Gruntfile.js中，看起来应该这样的</p>
 
-<p>```javascript</p>
-
-<pre><code>'use strict';
-module.exports = function (grunt) {
-    // Project configuration.
-    grunt.initConfig({
-        // Configuration to be run (and then tested).
-        tps: {
-            options: {
-                argv: "--inplace"
-            },
-            all: ['test.css', 'lib/**/*', 'test/**/*.scss','index.htm']
-        }
-    });
-    grunt.loadNpmTasks('grunt-tps');
-    grunt.registerTask('default', ['tps']);
-};
+<pre><code class="javascript">    'use strict';
+    module.exports = function (grunt) {
+        // Project configuration.
+        grunt.initConfig({
+            // Configuration to be run (and then tested).
+            tps: {
+                options: {
+                    argv: "--inplace"
+                },
+                all: ['test.css', 'lib/**/*', 'test/**/*.scss','index.htm']
+            }
+        });
+        grunt.loadNpmTasks('grunt-tps');
+        grunt.registerTask('default', ['tps']);
+    };
 </code></pre>
-
-<p>```</p>
 
 <ul>
 <li><code>argv</code>是tpsmate的参数，比如<code>--inplace</code>(用tps路径「线上路径」替换本地路径)，参考tpsmate的命令行方式</li>
@@ -359,6 +339,44 @@ module.exports = function (grunt) {
 
 <p>伊泽<br/>
 2013-5-28于杭州</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[恢复mac下的/usr/local/bin]]></title>
+    <link href="http://www.ithans.com/blog/2013/05/27/usr-local-bin/"/>
+    <updated>2013-05-27T00:00:00+08:00</updated>
+    <id>http://www.ithans.com/blog/2013/05/27/usr-local-bin</id>
+    <content type="html"><![CDATA[<p>今天一早配置phpstorm的时候，看到文件上有很多warn，比如，require不存在这样。</p>
+
+<p>然后就开始坑爹的瞎搞了，点了<code>external libraries</code>里，添加了<code>/usr/local/bin/node</code></p>
+
+<p>发现还是有warn报错，随之，看是悲剧的一步，虽然我是想删除external libraries中对node的引用，删除的时候，有红色的提示，没管那么多，直接跳过去了。。。</p>
+
+<p>发现不对，在<code>terminal</code>中，各种<code>node</code>,<code>git</code>这样的命令没用了。</p>
+
+<p>用sudo也是没有权限。</p>
+
+<p>后来同事提醒，可能是权限问题。</p>
+
+<p>查了下此时的/usr/local/bin下的文件，现在都是在我的名下，group也在admin下。</p>
+
+<p>试了下重新安装node，发现，node在root名下，group是wheel。</p>
+
+<p>并且是有<code>x</code>权限的。</p>
+
+<p>解决方法如下：
+<code>haskell
+    sudo chmod -R +x /usr/local/bin/
+    sudo chown -R root /usr/local/bin/
+    sudo chgrp -R wheel /usr/local/bin/
+</code>
+如此，解决。</p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-27于杭州</p>
 ]]></content>
   </entry>
   

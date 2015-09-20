@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: IIS | ithans]]></title>
   <link href="http://www.ithans.com/tags/iis/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-12-08T23:07:58+08:00</updated>
+  <updated>2015-09-21T00:33:16+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -182,21 +182,12 @@
 </div>
 
 
-<p>除了获取请求，还有一种是发送请求，它常在提交表单用到。发送请求通过URL传递其参数(e.g.: <a href="http://robozzle.com/puzzle.aspx?id=85">http://robozzle.com/puzzle.aspx?id=85</a>)。发送请求在请求正文头之后发送其参数。</p>
-
+<p>除了获取请求，还有一种是发送请求，它常在提交表单用到。发送请求通过URL传递其参数(e.g.: <a href="http://robozzle.com/puzzle.aspx?id=85">http://robozzle.com/puzzle.aspx?id=85</a>)。发送请求在请求正文头之后发送其参数。
 <br>
-
-
 <br>
-
-
-<p>像“<a href="http://facebook.com/%E2%80%9D%E4%B8%AD%E7%9A%84%E6%96%9C%E6%9D%A0%E6%98%AF%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81%E7%9A%84%E3%80%82%E8%BF%99%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E8%83%BD%E5%AE%89%E5%85%A8%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%9C%E6%9D%A0%E3%80%82%E8%80%8C%E5%83%8F%E2%80%9Chttp:">http://facebook.com/%E2%80%9D%E4%B8%AD%E7%9A%84%E6%96%9C%E6%9D%A0%E6%98%AF%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81%E7%9A%84%E3%80%82%E8%BF%99%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E8%83%BD%E5%AE%89%E5%85%A8%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%9C%E6%9D%A0%E3%80%82%E8%80%8C%E5%83%8F%E2%80%9Chttp:</a> //example.com/folderOrFile”这样的地址，因为浏览器不清楚folderOrFile到底是文件夹还是文件，所以不能自动添加 斜杠。这时，浏览器就不加斜杠直接访问地址，服务器会响应一个重定向，结果造成一次不必要的握手。</p>
-
+像“<a href="http://facebook.com/%E2%80%9D%E4%B8%AD%E7%9A%84%E6%96%9C%E6%9D%A0%E6%98%AF%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81%E7%9A%84%E3%80%82%E8%BF%99%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E8%83%BD%E5%AE%89%E5%85%A8%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%9C%E6%9D%A0%E3%80%82%E8%80%8C%E5%83%8F%E2%80%9Chttp:">http://facebook.com/%E2%80%9D%E4%B8%AD%E7%9A%84%E6%96%9C%E6%9D%A0%E6%98%AF%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81%E7%9A%84%E3%80%82%E8%BF%99%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E8%83%BD%E5%AE%89%E5%85%A8%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%9C%E6%9D%A0%E3%80%82%E8%80%8C%E5%83%8F%E2%80%9Chttp:</a> //example.com/folderOrFile”这样的地址，因为浏览器不清楚folderOrFile到底是文件夹还是文件，所以不能自动添加 斜杠。这时，浏览器就不加斜杠直接访问地址，服务器会响应一个重定向，结果造成一次不必要的握手。
 <br>
-
-
-<br>
-
+<br></p>
 
 <h3>4. facebook服务的永久重定向响应</h3>
 

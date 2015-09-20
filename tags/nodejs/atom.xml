@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: NodeJS | ithans]]></title>
   <link href="http://www.ithans.com/tags/nodejs/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-12-08T23:07:58+08:00</updated>
+  <updated>2015-09-21T00:33:16+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -21,19 +21,16 @@
     <content type="html"><![CDATA[<h3>mysql模块</h3>
 
 <p>今天访问了下内网的一台服务器，发现挂掉了，SSH上去看了下<code>nohup.out</code>,发现报错了
-```haskell</p>
-
-<pre><code>events.js:71
-        throw arguments[1]; // Unhandled 'error' event
-                       ^
-Error: Connection lost: The server closed the connection.
-    at Protocol.end (/var/www/html/utci/node_modules/mysql/lib/protocol/Protocol.js:73:13)
-    at Socket.onend (stream.js:66:10)
-    at Socket.EventEmitter.emit (events.js:126:20)
-    at TCP.onread (net.js:417:51)
-</code></pre>
-
-<p>```</p>
+<code>haskell
+    events.js:71
+            throw arguments[1]; // Unhandled 'error' event
+                           ^
+    Error: Connection lost: The server closed the connection.
+        at Protocol.end (/var/www/html/utci/node_modules/mysql/lib/protocol/Protocol.js:73:13)
+        at Socket.onend (stream.js:66:10)
+        at Socket.EventEmitter.emit (events.js:126:20)
+        at TCP.onread (net.js:417:51)
+</code></p>
 
 <p>这个错误的大概意思就是，未处理的<code>error</code>事件</p>
 
@@ -45,55 +42,53 @@ Error: Connection lost: The server closed the connection.
 
 <p>database.js:</p>
 
-<p>```javascript</p>
+<pre><code class="javascript">    var mysql = require('mysql'),
+        settings = require('../settings');
 
-<pre><code>var mysql = require('mysql'),
-    settings = require('../settings');
-
-module.exports.getConnection = function () {
-    if ((module.exports.connection) &amp;&amp; (module.exports.connection._socket)
-        &amp;&amp; (module.exports.connection._socket.readable)
-        &amp;&amp; (module.exports.connection._socket.writable)) {
-        return module.exports.connection;
-    }
-    console.log(((module.exports.connection) ?
-        "UNHEALTHY SQL CONNECTION; RE" : "") + "CONNECTING TO SQL.");
-    var connection = mysql.createConnection({
-        host: settings.host,
-        port: settings.port,
-        database: settings.db_name,
-        user: settings.username,
-        password: settings.password,
-        //中文读取
-        charset: "utf8"
-    });
-    connection.connect(function (err) {
-        if (err) {
-            console.log("SQL CONNECT ERROR: " + err);
-        } else {
-            console.log("SQL CONNECT SUCCESSFUL.");
+    module.exports.getConnection = function () {
+        if ((module.exports.connection) &amp;&amp; (module.exports.connection._socket)
+            &amp;&amp; (module.exports.connection._socket.readable)
+            &amp;&amp; (module.exports.connection._socket.writable)) {
+            return module.exports.connection;
         }
-    });
-    connection.on("close", function (err) {
-        console.log("SQL CONNECTION CLOSED.");
-    });
-    connection.on("error", function (err) {
-        console.log("SQL CONNECTION ERROR: " + err);
-    });
-    module.exports.connection = connection;
-    return module.exports.connection;
-};
+        console.log(((module.exports.connection) ?
+            "UNHEALTHY SQL CONNECTION; RE" : "") + "CONNECTING TO SQL.");
+        var connection = mysql.createConnection({
+            host: settings.host,
+            port: settings.port,
+            database: settings.db_name,
+            user: settings.username,
+            password: settings.password,
+            //中文读取
+            charset: "utf8"
+        });
+        connection.connect(function (err) {
+            if (err) {
+                console.log("SQL CONNECT ERROR: " + err);
+            } else {
+                console.log("SQL CONNECT SUCCESSFUL.");
+            }
+        });
+        connection.on("close", function (err) {
+            console.log("SQL CONNECTION CLOSED.");
+        });
+        connection.on("error", function (err) {
+            console.log("SQL CONNECTION ERROR: " + err);
+        });
+        module.exports.connection = connection;
+        return module.exports.connection;
+    };
 
-// Open a connection automatically at app startup.
-module.exports.getConnection();
-// If you've saved this file as database.js, then get and use the
-// connection as in the following example:
-// var database = require(__dirname + "/database");
-// var connection = database.getConnection();
-// connection.query(query, function(err, results) { ....
+    // Open a connection automatically at app startup.
+    module.exports.getConnection();
+    // If you've saved this file as database.js, then get and use the
+    // connection as in the following example:
+    // var database = require(__dirname + "/database");
+    // var connection = database.getConnection();
+    // connection.query(query, function(err, results) { ....
 </code></pre>
 
-<h2>```</h2>
+<hr />
 
 <p>伊泽<br/>
 2013-07-07于杭州</p>
@@ -142,59 +137,44 @@ module.exports.getConnection();
 
 <p>如何安装grunt？</p>
 
-<p>```haskell</p>
-
-<pre><code>npm uninstall -g grunt
-npm install -g grunt-cli
+<pre><code class="haskell">    npm uninstall -g grunt
+    npm install -g grunt-cli
 </code></pre>
-
-<p>```</p>
 
 <p>接下来就是要安装grunt-tps
-```haskell</p>
-
-<pre><code>npm install grunt --save-dev
-npm install grunt-tps --save-dev
-</code></pre>
-
-<p>```</p>
+<code>haskell
+    npm install grunt --save-dev
+    npm install grunt-tps --save-dev
+</code></p>
 
 <p>你的Gruntfile.js中加入这一段</p>
 
-<p>```javascript</p>
-
-<pre><code>tps: {
-options: {
-    argv: "--inplace",
-},
-all: ['test.css', 'lib/**/*.css', 'test/**/*.scss','index.htm']
-}
+<pre><code class="javascript">    tps: {
+    options: {
+        argv: "--inplace",
+    },
+    all: ['test.css', 'lib/**/*.css', 'test/**/*.scss','index.htm']
+    }
 </code></pre>
-
-<p>```</p>
 
 <p>你的Gruntfile.js中，看起来应该这样的</p>
 
-<p>```javascript</p>
-
-<pre><code>'use strict';
-module.exports = function (grunt) {
-    // Project configuration.
-    grunt.initConfig({
-        // Configuration to be run (and then tested).
-        tps: {
-            options: {
-                argv: "--inplace"
-            },
-            all: ['test.css', 'lib/**/*', 'test/**/*.scss','index.htm']
-        }
-    });
-    grunt.loadNpmTasks('grunt-tps');
-    grunt.registerTask('default', ['tps']);
-};
+<pre><code class="javascript">    'use strict';
+    module.exports = function (grunt) {
+        // Project configuration.
+        grunt.initConfig({
+            // Configuration to be run (and then tested).
+            tps: {
+                options: {
+                    argv: "--inplace"
+                },
+                all: ['test.css', 'lib/**/*', 'test/**/*.scss','index.htm']
+            }
+        });
+        grunt.loadNpmTasks('grunt-tps');
+        grunt.registerTask('default', ['tps']);
+    };
 </code></pre>
-
-<p>```</p>
 
 <ul>
 <li><code>argv</code>是tpsmate的参数，比如<code>--inplace</code>(用tps路径「线上路径」替换本地路径)，参考tpsmate的命令行方式</li>
@@ -222,99 +202,95 @@ module.exports = function (grunt) {
 </ul>
 
 
-<p><code>javascript
-var colors = require('./colors');
+<pre><code class="javascript">var colors = require('./colors');
 console.log('hello'.green); // outputs green text
 console.log('i like cake and pies'.underline.red) // outputs red underlined text
 console.log('inverse the color'.inverse); // inverses the color
 console.log('OMG Rainbows!'.rainbow); // rainbow (ignores spaces)
-</code></p>
+</code></pre>
 
 <ul>
 <li><strong>mkdirp</strong> <a href="">https://github.com/substack/node-mkdirp</a></li>
 </ul>
 
 
-<p>```javascript
-var mkdirp = require(&lsquo;mkdirp&rsquo;);
-mkdirp(&lsquo;/tmp/foo/bar/baz&rsquo;, function (err) {
-if (err) console.error(err)</p>
-
-<pre><code>else console.log('pow!')
+<pre><code class="javascript">var mkdirp = require('mkdirp');
+mkdirp('/tmp/foo/bar/baz', function (err) {
+if (err) console.error(err)
+    else console.log('pow!')
+});
 </code></pre>
 
-<p>});
-```
-&ndash; <strong> iconv-lite </strong> <a href="">https://github.com/ashtuchkin/iconv-lite</a></p>
+<ul>
+<li><strong> iconv-lite </strong> <a href="">https://github.com/ashtuchkin/iconv-lite</a></li>
+</ul>
 
-<p>```javascript
-var iconv = require(&lsquo;iconv-lite&rsquo;);</p>
 
-<p>// Convert from an encoded buffer to string.
-str = iconv.decode(buf, &lsquo;win1251&rsquo;);</p>
+<pre><code class="javascript">var iconv = require('iconv-lite');
 
-<p>// Convert from string to an encoded buffer.
-buf = iconv.encode(&ldquo;Sample input string&rdquo;, &lsquo;win1251&rsquo;);
-```
-&ndash; <strong> send </strong> <a href="">https://github.com/visionmedia/send</a></p>
+// Convert from an encoded buffer to string.
+str = iconv.decode(buf, 'win1251');
 
-<p>```javascript
-var http = require(&lsquo;http&rsquo;);
-var send = require(&lsquo;send&rsquo;);
-var url = require(&lsquo;url&rsquo;);</p>
+// Convert from string to an encoded buffer.
+buf = iconv.encode("Sample input string", 'win1251');
+</code></pre>
 
-<p>var app = http.createServer(function(req, res){
+<ul>
+<li><strong> send </strong> <a href="">https://github.com/visionmedia/send</a></li>
+</ul>
+
+
+<pre><code class="javascript">var http = require('http');
+var send = require('send');
+var url = require('url');
+
+var app = http.createServer(function(req, res){
   // your custom error-handling logic:
-  function error(err) {</p>
+  function error(err) {
+    res.statusCode = err.status || 500;
+    res.end(err.message);
+  }
 
-<pre><code>res.statusCode = err.status || 500;
-res.end(err.message);
-</code></pre>
+  // your custom directory handling logic:
+  function redirect() {
+    res.statusCode = 301;
+    res.setHeader('Location', req.url + '/');
+    res.end('Redirecting to ' + req.url + '/');
+  }
 
-<p>  }</p>
-
-<p>  // your custom directory handling logic:
-  function redirect() {</p>
-
-<pre><code>res.statusCode = 301;
-res.setHeader('Location', req.url + '/');
-res.end('Redirecting to ' + req.url + '/');
-</code></pre>
-
-<p>  }</p>
-
-<p>  // transfer arbitrary files from within
+  // transfer arbitrary files from within
   // /www/example.com/public/*
   send(req, url.parse(req.url).pathname)
-  .root(&lsquo;/www/example.com/public&rsquo;)
-  .on(&lsquo;error&rsquo;, error)
-  .on(&lsquo;directory&rsquo;, redirect)
+  .root('/www/example.com/public')
+  .on('error', error)
+  .on('directory', redirect)
   .pipe(res);
 }).listen(3000);
-```
-&ndash; <strong> connect </strong> <a href="">https://github.com/senchalabs/connect</a></p>
-
-<p>```javascript
-var connect = require(&lsquo;connect&rsquo;)
-  , http = require(&lsquo;http&rsquo;);</p>
-
-<p>var app = connect()
-  .use(connect.favicon())
-  .use(connect.logger(&lsquo;dev&rsquo;))
-  .use(connect.static(&lsquo;public&rsquo;))
-  .use(connect.directory(&lsquo;public&rsquo;))
-  .use(connect.cookieParser())
-  .use(connect.session({ secret: &lsquo;my secret here&rsquo; }))
-  .use(function(req, res){</p>
-
-<pre><code>res.end('Hello from Connect!\n');
 </code></pre>
 
-<p>  });</p>
+<ul>
+<li><strong> connect </strong> <a href="">https://github.com/senchalabs/connect</a></li>
+</ul>
 
-<p>http.createServer(app).listen(3000);</p>
 
-<h2>```</h2>
+<pre><code class="javascript">var connect = require('connect')
+  , http = require('http');
+
+var app = connect()
+  .use(connect.favicon())
+  .use(connect.logger('dev'))
+  .use(connect.static('public'))
+  .use(connect.directory('public'))
+  .use(connect.cookieParser())
+  .use(connect.session({ secret: 'my secret here' }))
+  .use(function(req, res){
+    res.end('Hello from Connect!\n');
+  });
+
+http.createServer(app).listen(3000);
+</code></pre>
+
+<hr />
 
 <p>伊泽<br/>
 2013-5-20于杭州</p>
@@ -330,12 +306,10 @@ var connect = require(&lsquo;connect&rsquo;)
 
 <p>uitest是基于nodejs的，用<code>npm install uitest -g</code>安装完之后，在mac下运行，提示<code>env: node\r: No such file or directory</code>，检查了下bin文件中，第一行是</p>
 
-<p>```haskell</p>
+<pre><code class="haskell">#! /usr/bin/env node
+</code></pre>
 
-<h1>! /usr/bin/env node</h1>
-
-<p>```
-这看起来是没有任何问题的，当然是肉眼看起来。</p>
+<p>这看起来是没有任何问题的，当然是肉眼看起来。</p>
 
 <p>问题的分析：</p>
 
@@ -349,15 +323,15 @@ var connect = require(&lsquo;connect&rsquo;)
 
 <p>我的机器上没装dos2unix，用brew装了个</p>
 
-<p><code>haskell
-brew install dos2unix
-</code>
-接着cd到 bin目录下</p>
+<pre><code class="haskell">brew install dos2unix
+</code></pre>
 
-<p><code>haskell
-sudo dos2unix uitest
-</code>
-就可以了</p>
+<p>接着cd到 bin目录下</p>
+
+<pre><code class="haskell">sudo dos2unix uitest
+</code></pre>
+
+<p>就可以了</p>
 
 <hr />
 

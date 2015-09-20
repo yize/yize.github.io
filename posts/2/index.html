@@ -5,17 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>popular nodejs modules - ithans</title>
+  <title>ithans</title>
   <meta name="author" content="邵寒超">
 
   
-  <meta name="description" content="just for memory colors https://github.com/marak/colors.js/ 1
-2
-3
-4
-5
-var colors = require(&#39;./colors&#39;);
-console.log(&#39;hello&#39;.green &hellip;">
+  <meta name="description" content="今天一早配置phpstorm的时候，看到文件上有很多warn，比如，require不存在这样。 然后就开始坑爹的瞎搞了，点了external libraries里，添加了/usr/local/bin/node 发现还是有warn报错，随之，看是悲剧的一步，虽然我是想删除external &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -24,7 +18,7 @@ console.log(&#39;hello&#39;.green &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.ithans.com/blog/2013/05/20/popular-nodejs-modules/">
+  <link rel="canonical" href="http://www.ithans.com/posts/2/">
   <link href="http://ithans.u.qiniudn.com/favicon.ico" rel="icon">
   <link href="http://ithans.u.qiniudn.com/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="http://ithans.u.qiniudn.com/ithansmodernizr-2.0.js"></script>
@@ -82,12 +76,222 @@ console.log(&#39;hello&#39;.green &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div>
-<article class="hentry" role="article">
+      <div class="blog-index">
   
+  
+  
+    <article>
+      
   <header>
     
-      <h1 class="entry-title">Popular Nodejs Modules</h1>
+      <h1 class="entry-title"><a href="/blog/2013/05/27/usr-local-bin/">恢复mac下的/usr/local/bin</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-27T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天一早配置phpstorm的时候，看到文件上有很多warn，比如，require不存在这样。</p>
+
+<p>然后就开始坑爹的瞎搞了，点了<code>external libraries</code>里，添加了<code>/usr/local/bin/node</code></p>
+
+<p>发现还是有warn报错，随之，看是悲剧的一步，虽然我是想删除external libraries中对node的引用，删除的时候，有红色的提示，没管那么多，直接跳过去了。。。</p>
+
+<p>发现不对，在<code>terminal</code>中，各种<code>node</code>,<code>git</code>这样的命令没用了。</p>
+
+<p>用sudo也是没有权限。</p>
+
+<p>后来同事提醒，可能是权限问题。</p>
+
+<p>查了下此时的/usr/local/bin下的文件，现在都是在我的名下，group也在admin下。</p>
+
+<p>试了下重新安装node，发现，node在root名下，group是wheel。</p>
+
+<p>并且是有<code>x</code>权限的。</p>
+
+<p>解决方法如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">chmod</span> <span class="o">-</span><span class="kt">R</span> <span class="o">+</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span>
+</span><span class='line'><span class="nf">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="kt">R</span> <span class="n">root</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span>
+</span><span class='line'><span class="nf">sudo</span> <span class="n">chgrp</span> <span class="o">-</span><span class="kt">R</span> <span class="n">wheel</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如此，解决。</p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-27于杭州</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/24/console-log/">console.log</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-24T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>作为开发人员，用好调试工具可以提高工作效率，今天就来说说<code>console.log</code></p>
+
+<p><code>console.log</code> 很简单，</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">$0</span><span class="p">)</span> <span class="c1">//$0是elements panel 里面你选中的DOM结构。也可以使用console.dir($0)</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1">//多参数 </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以上这些都是基本的用法，不赘述。</p>
+
+<p>下面就来说说，你可能不知道的console.log</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">userName</span> <span class="o">=</span> <span class="s2">&quot;yize&quot;</span><span class="p">,</span><span class="nx">userPoints</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;User %s has %d points&quot;</span><span class="p">,</span> <span class="nx">userName</span><span class="p">,</span> <span class="nx">userPoints</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行以上命令，控制台会输出User yize has 100 points</p>
+
+<p>$s,$d看起来是不是特别眼熟，貌似是大学的时候学过的C语言，哈哈</p>
+
+<p>chrome dev tools 目前支持以下几种格式：</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Format Specifier</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <code>%s</code>
+            </td>
+            <td>Formats the value as a string.//字符串</td>
+        </tr>
+        <tr>
+            <td>
+                <code>%d</code>
+                or
+                <code>%i</code>
+            </td>
+            <td>Formats the value as an integer.//整形</td>
+        </tr>
+        <tr>
+            <td>
+                <code>%f</code>
+            </td>
+            <td>Formats the value as a floating point value.//浮点数</td>
+        </tr>
+        <tr>
+            <td>
+                <code>%o</code>
+            </td>
+            <td>
+                Formats the value as an expandable DOM element (as in the Elements panel).//DOM元素
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>%O</code>
+            </td>
+            <td>Formats the value as an expandable JavaScript object.//JS对象</td>
+        </tr>
+        <tr>
+            <td>
+                <code>%c</code>
+            </td>
+            <td>
+                Formats the output string according to CSS styles you provide.//CSS 样式
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<p>目测<code>console.log('%O',document.body) === console.dir(document.body)</code></p>
+
+<p>改变log的样式：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">userName</span> <span class="o">=</span> <span class="s2">&quot;yize&quot;</span><span class="p">,</span><span class="nx">userPoints</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;%cUser %s has %d points&quot;</span><span class="p">,</span> <span class="s2">&quot;color:orange; background:blue; font-size: 16pt&quot;</span><span class="p">,</span> <span class="nx">userName</span><span class="p">,</span> <span class="nx">userPoints</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://ww3.sinaimg.cn/large/60ee1ef8gw1e4z9k9snadj218i03e75p.jpg" alt="图片" />
+chrome dev tools很强大，官方文档:<a href="">https://developers.google.com/chrome-developer-tools/</a></p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-24于杭州</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/20/popular-nodejs-modules/">Popular Nodejs Modules</a></h1>
     
     
       <p class="meta">
@@ -110,7 +314,7 @@ console.log(&#39;hello&#39;.green &hellip;">
   </header>
 
 
-<div class="entry-content"><p>just for memory</p>
+  <div class="entry-content"><p>just for memory</p>
 
 <ul>
 <li><strong>colors</strong> <a href="">https://github.com/marak/colors.js/</a></li>
@@ -273,74 +477,192 @@ console.log(&#39;hello&#39;.green &hellip;">
 <p>伊泽<br/>
 2013-5-20于杭州</p>
 </div>
+  
+  
 
 
-  <footer>
-    <p class="meta">
+    </article>
+  
+  
+    <article>
       
-  
-
-<span class="byline author vcard">Posted by <span class="fn">邵寒超</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-20T00:00:00+08:00" pubdate data-updated="true"></time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/stack/'>stack</a>
-  
-</span>
-
-
-      
-
-<span class="tags">
-  
-    <a class='tag' href='/tags/nodejs/'>NodeJS</a>
-  
-</span>
-
-
-    </p>
+  <header>
     
-      <div class="sharing">
-  
-  
-  
-</div>
-
+      <h1 class="entry-title"><a href="/blog/2013/05/18/fix-node-r-No-such-file-or-directory-problem/">Env Node\r No Such File or Directory</a></h1>
     
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/05/18/fix-node-r-No-such-file-or-directory-problem/" title="Previous Post: env node\r No such file or directory">&laquo; env node\r No such file or directory</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/05/24/console-log/" title="Next Post: console.log">console.log &raquo;</a>
-      
-    </p>
-  </footer>
-</article>
+    
+      <p class="meta">
+        
 
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-18T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>env: node\r: No such file or directory</p>
+
+<p>uitest是基于nodejs的，用<code>npm install uitest -g</code>安装完之后，在mac下运行，提示<code>env: node\r: No such file or directory</code>，检查了下bin文件中，第一行是</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">#!</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">node</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这看起来是没有任何问题的，当然是肉眼看起来。</p>
+
+<p>问题的分析：</p>
+
+<p>env：node\r</p>
+
+<p>注意下这里的\r，好眼熟，是个换行，原谅我对DOS不是很了解。。。</p>
+
+<p>google了下发现找到了<a href="https://github.com/foglcz/tscw/issues/1">这个</a></p>
+
+<p>里面提到，用dos2unix转换下就可以了。</p>
+
+<p>我的机器上没装dos2unix，用brew装了个</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">brew</span> <span class="n">install</span> <span class="n">dos2unix</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>接着cd到 bin目录下</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">dos2unix</span> <span class="n">uitest</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>就可以了</p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-18于杭州</p>
 </div>
-  </section>
+  
+  
 
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/17/webkit-text-size-adjust-no-longer-supported/">Webkit桌面版本浏览器将不再支持-webkit-text-size-adjust</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-17T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p> 昨天升级了chrome dev到 28.0.1500.11 dev-m 版本的时候发现，-webkit-text-size-adjust属性失效了，说来也比较巧，公司台式机上装的是chrome正式版，在用QQ管家升级软件的时候，就想着把台式机上的chrome也升级到dev版本。自己的demo上刚好也用到了10px的字体（一个角标）</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.demo</span><span class="p">{</span>
+</span><span class='line'>  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="k">text</span><span class="o">-</span><span class="k">size</span><span class="o">-</span><span class="n">adjust</span><span class="o">:</span><span class="k">none</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">font-size</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span>
+</span><span class='line'> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>demo在<a href="http://codepen.io/yize/pen/Hahiv">这里</a></p>
+
+<p>可以看到，在新版本中的chrome等webkit浏览器中，如果你没有主动去设置过字体大小下限的话，demo中的字应该都是一样大的。</p>
+
+<p>chrome字体大小设置是在「设置-网络内容-字体大小下限」中。
+safari默认不会开启下限，选项是在「偏好-高级-辅助功能-从不使用小于大小的字体」</p>
+
+<p>官方移除说明在<a href="http://trac.webkit.org/changeset/145168">这里</a></p>
+
+<p>原因是：</p>
+
+<blockquote><p>This property existed to support a number of Apple-internal clients of WebKit.
+We no longer need this property, and since it&rsquo;s clashing with a mobile version of the
+same property with different meaning, let&rsquo;s remove it altogether from the desktop build.</p></blockquote>
+
+<p>大概意思是：</p>
+
+<blockquote><p>这个属性的存在是为了支持一些使用webkit的苹果内部设备，我们不再需要这个属性了，而且还有一点就是，这个属性和手机版本的webkit浏览器有名字相同但是有不同的意思，所以我们还是将这个属性从桌面版本中移除了。</p></blockquote>
+
+<p>要解决这个的问题，可以这么做</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nc">.demo</span><span class="p">{</span>
+</span><span class='line'>  <span class="k">font-size</span><span class="o">:</span><span class="m">10px</span><span class="p">;</span>
+</span><span class='line'>  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span><span class="n">scale</span><span class="p">(</span><span class="m">0</span><span class="o">.</span><span class="m">83</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">display</span><span class="o">:</span><span class="k">inline</span><span class="o">-</span><span class="k">block</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>demo在<a href="http://codepen.io/yize/pen/rycgv">这里</a></p>
+
+<p>但是这么写当然不是正确的解决方法，目前先凑合着这么用了。</p>
+
+<p>在statckoverflow上提了个<a href="http://stackoverflow.com/questions/16589785/webkit-text-size-adjust-is-no-longer-supported-how-to-set-font-size-to-less-tha">问题</a>，老外的意见都是不赞成修改用户设定的大小下限，因为用户已经告知浏览器，自己能接收的最小的字体大小就是设定的那个大小，再小的话，看起来就会太小。</p>
+
+<p>我的意见也是不希望去违背用户的意思，将字体设置成小于12像素。希望给用户最好的体验。</p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-17于杭州</p>
 </div>
+  
+  
 
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="3">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="1">Newer &rarr;</a>
+    
+  </div>
+</div>
 <aside class="sidebar">
   
     <section>
@@ -456,7 +778,6 @@ console.log(&#39;hello&#39;.green &hellip;">
   
 </aside>
 
-
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -471,10 +792,7 @@ console.log(&#39;hello&#39;.green &hellip;">
       var disqus_shortname = 'yize';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.ithans.com/blog/2013/05/20/popular-nodejs-modules/';
-        var disqus_url = 'http://www.ithans.com/blog/2013/05/20/popular-nodejs-modules/';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

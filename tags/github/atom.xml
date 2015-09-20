@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Github | ithans]]></title>
   <link href="http://www.ithans.com/tags/github/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-12-08T23:07:58+08:00</updated>
+  <updated>2015-09-21T00:33:16+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -27,18 +27,16 @@
 </ol>
 
 
-<p><code>haskell
-sudo apt-get install ruby1.9.1-dev
-</code></p>
+<pre><code class="haskell">sudo apt-get install ruby1.9.1-dev
+</code></pre>
 
 <ol>
 <li>安装jekyll</li>
 </ol>
 
 
-<p><code>haskell
-sudo gem install jekyll
-</code></p>
+<pre><code class="haskell">sudo gem install jekyll
+</code></pre>
 
 <h3>接下来需要花3分钟完成jekyll-bootstrap的安装 (将USERNAME替换为你的github的用户名)</h3>
 
@@ -59,12 +57,12 @@ $ git push origin master
 
 <h3>*如果你已经有了一个你的github博客，你可以在本地启你的jekyll服务：</h3>
 
-<p><code>haskell
-$ git clone https://github.com/plusjade/jekyll-bootstrap.git
+<pre><code class="haskell">$ git clone https://github.com/plusjade/jekyll-bootstrap.git
 $ cd jekyll-bootstrap
 $ jekyll --server
-</code>
-去看下<a href="http://localhost:4000">http://localhost:4000</a>.</p>
+</code></pre>
+
+<p>去看下<a href="http://localhost:4000">http://localhost:4000</a>.</p>
 
 <p>中文下，请将文件改为<code>utf-8</code>格式，如果GBK可能会出现jekyll服务无法启动的错误</p>
 
@@ -77,14 +75,13 @@ $ jekyll --server
 </ol>
 
 
-<p><code>haskell
-sudo find / -name convertible.rb
-</code>
-我的是在<code>/var/lib/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/convertible.rb</code></p>
+<pre><code class="haskell">sudo find / -name convertible.rb
+</code></pre>
 
-<p><code>haskell
-cd /var/lib/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/ &amp;&amp; sudo vim convertible.rb
-</code></p>
+<p>我的是在<code>/var/lib/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/convertible.rb</code></p>
+
+<pre><code class="haskell">cd /var/lib/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/ &amp;&amp; sudo vim convertible.rb
+</code></pre>
 
 <ol>
 <li>将<code>self.content = File.read(File.join(base, name)</code> 改为 <code>self.content = File.read(File.join(base, name), :encoding =&gt; 'utf-8')</code></li>

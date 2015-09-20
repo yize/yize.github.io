@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Cubieboard | ithans]]></title>
   <link href="http://www.ithans.com/tags/cubieboard/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-12-08T23:07:58+08:00</updated>
+  <updated>2015-09-21T00:33:16+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -56,9 +56,8 @@
 </ol>
 
 
-<p><code>haskell
-ab -n 20000 -c 20 -k url
-</code></p>
+<pre><code class="haskell">ab -n 20000 -c 20 -k url
+</code></pre>
 
 <p>测试结果：访问https的QPS为<code>755</code>, 访问http的QPS为<code>1269</code></p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Grunt | ithans]]></title>
   <link href="http://www.ithans.com/tags/grunt/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-12-08T23:07:58+08:00</updated>
+  <updated>2015-09-21T00:33:16+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -55,59 +55,44 @@
 
 <p>如何安装grunt？</p>
 
-<p>```haskell</p>
-
-<pre><code>npm uninstall -g grunt
-npm install -g grunt-cli
+<pre><code class="haskell">    npm uninstall -g grunt
+    npm install -g grunt-cli
 </code></pre>
-
-<p>```</p>
 
 <p>接下来就是要安装grunt-tps
-```haskell</p>
-
-<pre><code>npm install grunt --save-dev
-npm install grunt-tps --save-dev
-</code></pre>
-
-<p>```</p>
+<code>haskell
+    npm install grunt --save-dev
+    npm install grunt-tps --save-dev
+</code></p>
 
 <p>你的Gruntfile.js中加入这一段</p>
 
-<p>```javascript</p>
-
-<pre><code>tps: {
-options: {
-    argv: "--inplace",
-},
-all: ['test.css', 'lib/**/*.css', 'test/**/*.scss','index.htm']
-}
+<pre><code class="javascript">    tps: {
+    options: {
+        argv: "--inplace",
+    },
+    all: ['test.css', 'lib/**/*.css', 'test/**/*.scss','index.htm']
+    }
 </code></pre>
-
-<p>```</p>
 
 <p>你的Gruntfile.js中，看起来应该这样的</p>
 
-<p>```javascript</p>
-
-<pre><code>'use strict';
-module.exports = function (grunt) {
-    // Project configuration.
-    grunt.initConfig({
-        // Configuration to be run (and then tested).
-        tps: {
-            options: {
-                argv: "--inplace"
-            },
-            all: ['test.css', 'lib/**/*', 'test/**/*.scss','index.htm']
-        }
-    });
-    grunt.loadNpmTasks('grunt-tps');
-    grunt.registerTask('default', ['tps']);
-};
+<pre><code class="javascript">    'use strict';
+    module.exports = function (grunt) {
+        // Project configuration.
+        grunt.initConfig({
+            // Configuration to be run (and then tested).
+            tps: {
+                options: {
+                    argv: "--inplace"
+                },
+                all: ['test.css', 'lib/**/*', 'test/**/*.scss','index.htm']
+            }
+        });
+        grunt.loadNpmTasks('grunt-tps');
+        grunt.registerTask('default', ['tps']);
+    };
 </code></pre>
-
-<p>```</p>
 
 <ul>
 <li><code>argv</code>是tpsmate的参数，比如<code>--inplace</code>(用tps路径「线上路径」替换本地路径)，参考tpsmate的命令行方式</li>

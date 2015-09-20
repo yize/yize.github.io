@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>尝试使用Tengine(nginx) - ithans</title>
+  <title>ithans</title>
   <meta name="author" content="邵寒超">
 
   
-  <meta name="description" content="使用Tengine(nginx)，打造本地combo服务器，方便前端本地开发，淘宝内部前端环境配置">
+  <meta name="description" content="最近这几天信息量比较大，接触了很多的东西，学了很多，先不说学习方法问题，至少个人在成长。 今天和
+@淘宝道璘
+一起在玩Tengine 想要做的事情是从apache换到Tengine，道璘之前有研究过nginx，他说：在windows上，nginx存在两个问题，一个是中文路径，两外一个是php不稳定 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.ithans.com/blog/2013/02/20/try-tengine/">
+  <link rel="canonical" href="http://www.ithans.com/posts/4/">
   <link href="http://ithans.u.qiniudn.com/favicon.ico" rel="icon">
   <link href="http://ithans.u.qiniudn.com/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="http://ithans.u.qiniudn.com/ithansmodernizr-2.0.js"></script>
@@ -76,12 +78,15 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div>
-<article class="hentry" role="article">
+      <div class="blog-index">
   
+  
+  
+    <article>
+      
   <header>
     
-      <h1 class="entry-title">尝试使用Tengine(nginx)</h1>
+      <h1 class="entry-title"><a href="/blog/2013/02/20/try-tengine/">尝试使用Tengine(nginx)</a></h1>
     
     
       <p class="meta">
@@ -104,7 +109,7 @@
   </header>
 
 
-<div class="entry-content"><p>最近这几天信息量比较大，接触了很多的东西，学了很多，先不说学习方法问题，至少个人在成长。</p>
+  <div class="entry-content"><p>最近这几天信息量比较大，接触了很多的东西，学了很多，先不说学习方法问题，至少个人在成长。</p>
 
 <p>今天和
 <a wb_screen_name="淘宝道璘" href="#">@淘宝道璘</a>
@@ -204,16 +209,22 @@
 
 <p>源码在我的<a href="https://github.com/yize/tengine">GITHUB</a>上</p>
 </div>
-
-
-  <footer>
-    <p class="meta">
-      
+  
   
 
-<span class="byline author vcard">Posted by <span class="fn">邵寒超</span></span>
 
+    </article>
+  
+  
+    <article>
       
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/20/get-path/">Ubuntu下获取当前文件路径以及执行路径</a></h1>
+    
+    
+      <p class="meta">
+        
 
 
 
@@ -226,52 +237,288 @@
 
 
 <time datetime="2013-02-20T00:00:00+08:00" pubdate data-updated="true"></time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/stack/'>stack</a>
-  
-</span>
-
-
-      
-
-<span class="tags">
-  
-    <a class='tag' href='/tags/linux/'>Linux</a>, <a class='tag' href='/tags/nginx/'>Nginx</a>
-  
-</span>
-
-
-    </p>
+        
+      </p>
     
-      <div class="sharing">
-  
-  
-  
-</div>
+  </header>
 
+
+  <div class="entry-content"><p>linux下获取当前文件路径：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">current_dir</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="s2">&quot;$(dirname &quot;</span><span class="k">${</span><span class="nv">0</span><span class="k">}</span><span class="s2">&quot;)&quot;</span>; <span class="nb">pwd</span><span class="k">)</span>
+</span><span class='line'><span class="nb">echo </span>current_dir
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>linux下获取当前执行路径：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$0</span> | grep <span class="s1">&#39;^/&#39;</span><span class="k">)</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class='line'><span class="k">    </span><span class="nv">path</span><span class="o">=</span><span class="k">$(</span>dirname <span class="nv">$0</span><span class="k">)</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'><span class="k">    </span><span class="nv">path</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/<span class="k">$(</span>dirname <span class="nv">$0</span><span class="k">)</span>
+</span><span class='line'><span class="k">fi</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> <span class="nv">$path</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
     
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/02/20/get-path/" title="Previous Post: ubuntu下获取当前文件路径以及执行路径">&laquo; ubuntu下获取当前文件路径以及执行路径</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/02/24/what-really-happens-when-you-navigate-to-a-url/" title="Next Post: 当你输入一个网址的时候，实际上发生了什么[转]">当你输入一个网址的时候，实际上发生了什么[转] &raquo;</a>
-      
-    </p>
-  </footer>
-</article>
+      <h1 class="entry-title"><a href="/blog/2013/02/19/nautilus-open-terminal/">Ubuntu下右键在终端中打开</a></h1>
+    
+    
+      <p class="meta">
+        
 
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-19T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ubuntu下，在GUI中浏览文件的时候，有时候需要用到terminal打开当前目录，之前的做法是一路cd下去。。
+这未免也太浪费时间了。
+有没有快捷的方法呢？百之谷之，得此：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">nautilus</span><span class="o">-</span><span class="n">open</span><span class="o">-</span><span class="n">terminal</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>安装nautilus-open-terminal</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">nautilus</span><span class="o">-</span><span class="n">open</span><span class="o">-</span><span class="n">terminal</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>重启X</li>
+</ol>
+
+
+<p><code>right Alt + Printscreen + K</code></p>
 </div>
-  </section>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/18/jekyll-bootstrap-install/">Jekyll-bootstrap安装</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-18T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>安装jekyll-bootstrap</p>
+
+<h3>首先需要安装jekyll  <a href="https://github.com/mojombo/jekyll/wiki/install">官网wiki</a>：</h3>
+
+<ol>
+<li>ruby1.9.1-dev中包含gem的安装包</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ruby1</span><span class="o">.</span><span class="mf">9.1</span><span class="o">-</span><span class="n">dev</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>安装jekyll</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">jekyll</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>接下来需要花3分钟完成jekyll-bootstrap的安装 (将USERNAME替换为你的github的用户名)</h3>
+
+<ol>
+<li><p>建立新的项目</p>
+
+<p> 去你的 <a href="https://github.com">https://github.com</a> 建立一个名为USERNAME.github.com的项目</p></li>
+<li><p>安装Jekyll-Bootstrap</p></li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">$</span> <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="kt">://</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">plusjade</span><span class="o">/</span><span class="n">jekyll</span><span class="o">-</span><span class="n">bootstrap</span><span class="o">.</span><span class="n">git</span> <span class="kt">USERNAME</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span>
+</span><span class='line'><span class="o">$</span> <span class="n">cd</span> <span class="kt">USERNAME</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span>
+</span><span class='line'><span class="o">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">set</span><span class="o">-</span><span class="n">url</span> <span class="n">origin</span> <span class="n">git</span><span class="o">@</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="kt">:USERNAME</span><span class="o">/</span><span class="kt">USERNAME</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">git</span>
+</span><span class='line'><span class="o">$</span> <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>等待几分钟，去看下你的 <a href="http://USERNAME.github.com">http://USERNAME.github.com</a></li>
+</ol>
+
+
+<h3>*如果你已经有了一个你的github博客，你可以在本地启你的jekyll服务：</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="o">$</span> <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="kt">://</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">plusjade</span><span class="o">/</span><span class="n">jekyll</span><span class="o">-</span><span class="n">bootstrap</span><span class="o">.</span><span class="n">git</span>
+</span><span class='line'><span class="o">$</span> <span class="n">cd</span> <span class="n">jekyll</span><span class="o">-</span><span class="n">bootstrap</span>
+</span><span class='line'><span class="o">$</span> <span class="n">jekyll</span> <span class="c1">--server</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>去看下<a href="http://localhost:4000">http://localhost:4000</a>.</p>
+
+<p>中文下，请将文件改为<code>utf-8</code>格式，如果GBK可能会出现jekyll服务无法启动的错误</p>
+
+<p>解决方法：</p>
+
+<p>修改jekyll为默认打开utf-8：</p>
+
+<ol>
+<li>找到convertible.rb</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">sudo</span> <span class="n">find</span> <span class="o">/</span> <span class="o">-</span><span class="n">name</span> <span class="n">convertible</span><span class="o">.</span><span class="n">rb</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我的是在<code>/var/lib/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/convertible.rb</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">cd</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="mf">1.9</span><span class="o">.</span><span class="mi">1</span><span class="o">/</span><span class="n">gems</span><span class="o">/</span><span class="n">jekyll</span><span class="o">-</span><span class="mf">0.12</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">jekyll</span><span class="o">/</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">vim</span> <span class="n">convertible</span><span class="o">.</span><span class="n">rb</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>将<code>self.content = File.read(File.join(base, name)</code> 改为 <code>self.content = File.read(File.join(base, name), :encoding =&gt; 'utf-8')</code></li>
+</ol>
+
+
+<p>参考资料：</p>
+
+<ul>
+<li><p><a href="https://help.github.com/">https://help.github.com</a></p></li>
+<li><p><a href="https://github.com/mojombo/jekyll/wiki/install">https://github.com/mojombo/jekyll/wiki/install</a></p></li>
+<li><p><a href="http://jekyllbootstrap.com/">http://jekyllbootstrap.com/</a></p></li>
+</ul>
 
 </div>
+  
+  
 
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/17/back-to-hangzhou/">回到杭州</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-17T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>回到杭州。</p>
+
+<p>好熟悉又陌生的城市，有家的感觉，却没有家的温馨。</p>
+
+<p>新年新气象。为了我们的目标，加油！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="3">Newer &rarr;</a>
+    
+  </div>
+</div>
 <aside class="sidebar">
   
     <section>
@@ -387,7 +634,6 @@
   
 </aside>
 
-
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -402,10 +648,7 @@
       var disqus_shortname = 'yize';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://www.ithans.com/blog/2013/02/20/try-tengine/';
-        var disqus_url = 'http://www.ithans.com/blog/2013/02/20/try-tengine/';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

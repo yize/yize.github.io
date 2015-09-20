@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Terminal | ithans]]></title>
   <link href="http://www.ithans.com/tags/terminal/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-12-08T23:07:58+08:00</updated>
+  <updated>2015-09-21T00:33:16+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -22,15 +22,21 @@
 这未免也太浪费时间了。
 有没有快捷的方法呢？百之谷之，得此：</p>
 
-<p><code>haskell
-nautilus-open-terminal
-</code>
-1. 安装nautilus-open-terminal</p>
+<pre><code class="haskell">nautilus-open-terminal
+</code></pre>
 
-<p><code>haskell
-sudo apt-get install nautilus-open-terminal
-</code>
-2. 重启X</p>
+<ol>
+<li>安装nautilus-open-terminal</li>
+</ol>
+
+
+<pre><code class="haskell">sudo apt-get install nautilus-open-terminal
+</code></pre>
+
+<ol>
+<li>重启X</li>
+</ol>
+
 
 <p><code>right Alt + Printscreen + K</code></p>
 ]]></content>

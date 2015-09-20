@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: CSS | ithans]]></title>
   <link href="http://www.ithans.com/tags/css/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-12-08T23:07:58+08:00</updated>
+  <updated>2015-09-21T00:33:16+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -20,40 +20,37 @@
     <id>http://www.ithans.com/blog/2013/11/27/iframe-size-not-work-in-ios</id>
     <content type="html"><![CDATA[<p>最近遇到一个问题，就是iFrame在iPad上展示的时候，宽度并没有固定，会直接超出，通过嵌套div之后，无法滚动。</p>
 
-<p>HTML
-```html</p>
+<p>HTML</p>
 
-<div class="frame_holder">
-  <iframe class="my_frame">
+<pre><code class="html">&lt;section class="frame_holder"&gt;
+  &lt;iframe class="my_frame"&gt;
     // The content
-  </iframe>
-</div>
+  &lt;/iframe&gt;
+&lt;/section&gt;
+</code></pre>
 
+<p>CSS</p>
 
-<p>```</p>
-
-<p>CSS
-```css
-body {
+<pre><code class="css">body {
   position: relative;
   background: #f0f0f0;
-}</p>
+}
 
-<p>.frame_holder {
+.frame_holder {
   position: absolute;
   top: 50px;
   bottom: 50px;
   left: 50px;
   right: 50px;
   background: #ffffff;
-}</p>
+}
 
-<p>.my_frame {
+.my_frame {
   width: 100%;
   height: 100%;
   border: 1px solid #e0e0e0;
 }
-```</p>
+</code></pre>
 
 <p>例子：</p>
 
@@ -86,15 +83,12 @@ body {
     <updated>2013-05-17T00:00:00+08:00</updated>
     <id>http://www.ithans.com/blog/2013/05/17/webkit-text-size-adjust-no-longer-supported</id>
     <content type="html"><![CDATA[<p> 昨天升级了chrome dev到 28.0.1500.11 dev-m 版本的时候发现，-webkit-text-size-adjust属性失效了，说来也比较巧，公司台式机上装的是chrome正式版，在用QQ管家升级软件的时候，就想着把台式机上的chrome也升级到dev版本。自己的demo上刚好也用到了10px的字体（一个角标）
-```css
-.demo{</p>
-
-<pre><code>-webkit-text-size-adjust:none;
-font-size: 10px;
-</code></pre>
-
-<p> }
-```
+<code>css
+.demo{
+    -webkit-text-size-adjust:none;
+    font-size: 10px;
+ }
+</code>
 demo在<a href="http://codepen.io/yize/pen/Hahiv">这里</a></p>
 
 <p>可以看到，在新版本中的chrome等webkit浏览器中，如果你没有主动去设置过字体大小下限的话，demo中的字应该都是一样大的。</p>
@@ -116,17 +110,14 @@ same property with different meaning, let&rsquo;s remove it altogether from the 
 
 <p>要解决这个的问题，可以这么做</p>
 
-<p>```css
-.demo{</p>
-
-<pre><code>font-size:10px;
--webkit-transform:scale(0.83);
-display:inline-block;
+<pre><code class="css">.demo{
+    font-size:10px;
+    -webkit-transform:scale(0.83);
+    display:inline-block;
+}
 </code></pre>
 
-<p>}
-```
-demo在<a href="http://codepen.io/yize/pen/rycgv">这里</a></p>
+<p>demo在<a href="http://codepen.io/yize/pen/rycgv">这里</a></p>
 
 <p>但是这么写当然不是正确的解决方法，目前先凑合着这么用了。</p>
 

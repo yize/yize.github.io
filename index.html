@@ -9,7 +9,12 @@
   <meta name="author" content="邵寒超">
 
   
-  <meta name="description" content="键盘流都喜欢用快捷键，浏览器当然也不例外。 以下是chomium系列的快捷键，windows下，把command替换成Ctrl command+L 前往URL地址栏，填写新的网址或进行搜索 command+T 开启新的浏览器标签页 command+W 关闭当前标签页 command+R &hellip;">
+  <meta name="description" content="最近遇到一个问题，就是iFrame在iPad上展示的时候，宽度并没有固定，会直接超出，通过嵌套div之后，无法滚动。 HTML 1
+2
+3
+4
+5
+&lt;section class=&quot;frame_holder&quot;&gt; &lt;iframe class=&quot; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,54 +89,6 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/12/08/five-safari-chrome-shortcuts/">Five-safari-chrome-shortcuts</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-08T22:38:00+08:00" pubdate data-updated="true">Dec 8<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>键盘流都喜欢用快捷键，浏览器当然也不例外。</p>
-
-<p>以下是chomium系列的快捷键，windows下，把<code>command</code>替换成<code>Ctrl</code></p>
-
-<p><code>command+L</code>   前往URL地址栏，填写新的网址或进行搜索</p>
-
-<p><code>command+T</code>   开启新的浏览器标签页</p>
-
-<p><code>command+W</code>     关闭当前标签页</p>
-
-<p><code>command+R</code>   刷新当前标签页</p>
-
-<p><code>command+.</code>   停止载入当前标签页</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
       <h1 class="entry-title"><a href="/blog/2013/11/27/iframe-size-not-work-in-ios/">iframe-size-not-work-in-IOS</a></h1>
     
     
@@ -148,7 +105,7 @@
   
 
 
-<time datetime="2013-11-27T10:02:00+08:00" pubdate data-updated="true">Nov 27<span>th</span>, 2013</time>
+<time datetime="2013-11-27T10:02:00+08:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -164,11 +121,11 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;frame_holder&quot;</span><span class="nt">&gt;</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">&quot;frame_holder&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;iframe</span> <span class="na">class=</span><span class="s">&quot;my_frame&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>    // The content
 </span><span class='line'>  <span class="nt">&lt;/iframe&gt;</span>
-</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -249,62 +206,6 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/11/27/use-octopress-new-post-function-with-zsh/">Zsh下rake New_post[&#8220;title&#8221;] 报错的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-27T09:38:00+08:00" pubdate data-updated="true">Nov 27<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">rake</span> <span class="n">new_post</span><span class="p">[</span><span class="s">&quot;title&quot;</span><span class="p">]</span>
-</span><span class='line'><span class="nf">zsh</span><span class="kt">:</span> <span class="n">no</span> <span class="n">matches</span> <span class="n">found</span><span class="kt">:</span> <span class="n">new_post</span><span class="p">[</span><span class="n">title</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>在<code>zsh</code>中使用<code>rake new_post</code>的时候抛出找不到匹配的异常，原因是</p>
-
-<p><a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Generation">zsh官方文档</a>中有这样的说明：</p>
-
-<blockquote><p>If a word contains an unquoted instance of one of the characters ‘*’, ‘(’, ‘|’, ‘&lt;’, ‘[’, or ‘?’, it is regarded as a pattern for filename generation, unless the GLOB option is unset. If the EXTENDED_GLOB option is set, the ‘^’ and ‘#’ characters also denote a pattern; otherwise they are not treated specially by the shell.</p></blockquote>
-
-<p>所以，解决方案就是通过加上noglob去取消通配符匹配</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">alias </span><span class="nv">rake</span><span class="o">=</span><span class="s2">&quot;noglob rake&quot;</span>
-</span><span class='line'><span class="nb">source</span> ~/.zshrc
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
       <h1 class="entry-title"><a href="/blog/2013/07/28/weekend-thinking/">周末有感</a></h1>
     
     
@@ -321,7 +222,7 @@
   
 
 
-<time datetime="2013-07-28T00:00:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2013</time>
+<time datetime="2013-07-28T00:00:00+08:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -370,7 +271,7 @@
   
 
 
-<time datetime="2013-07-28T00:00:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2013</time>
+<time datetime="2013-07-28T00:00:00+08:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -462,9 +363,323 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/07/mysql-connection-lost/">node.js Connection Lost the Server Closed the Connection.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-07T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>mysql模块</h3>
+
+<p>今天访问了下内网的一台服务器，发现挂掉了，SSH上去看了下<code>nohup.out</code>,发现报错了</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">events</span><span class="o">.</span><span class="n">js</span><span class="kt">:</span><span class="mi">71</span>
+</span><span class='line'>        <span class="n">throw</span> <span class="n">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="kt">Unhandled</span> <span class="n">&#39;error&#39;</span> <span class="n">event</span>
+</span><span class='line'>                       <span class="o">^</span>
+</span><span class='line'><span class="kt">Error:</span> <span class="kt">Connection</span> <span class="n">lost</span><span class="kt">:</span> <span class="kt">The</span> <span class="n">server</span> <span class="n">closed</span> <span class="n">the</span> <span class="n">connection</span><span class="o">.</span>
+</span><span class='line'>    <span class="n">at</span> <span class="kt">Protocol</span><span class="o">.</span><span class="n">end</span> <span class="p">(</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">utci</span><span class="o">/</span><span class="n">node_modules</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">protocol</span><span class="o">/</span><span class="kt">Protocol</span><span class="o">.</span><span class="n">js</span><span class="kt">:</span><span class="mi">73</span><span class="kt">:</span><span class="mi">13</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">at</span> <span class="kt">Socket</span><span class="o">.</span><span class="n">onend</span> <span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="n">js</span><span class="kt">:</span><span class="mi">66</span><span class="kt">:</span><span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">at</span> <span class="kt">Socket</span><span class="o">.</span><span class="kt">EventEmitter</span><span class="o">.</span><span class="n">emit</span> <span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">js</span><span class="kt">:</span><span class="mi">126</span><span class="kt">:</span><span class="mi">20</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">at</span> <span class="kt">TCP</span><span class="o">.</span><span class="n">onread</span> <span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">js</span><span class="kt">:</span><span class="mi">417</span><span class="kt">:</span><span class="mi">51</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这个错误的大概意思就是，未处理的<code>error</code>事件</p>
+
+<p>原因是：mysql的连接久了以后，超时了。</p>
+
+<p>解决方法是：</p>
+
+<p>增加<code>error</code>事件的监听</p>
+
+<p>database.js:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mysql&#39;</span><span class="p">),</span>
+</span><span class='line'>    <span class="nx">settings</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../settings&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">getConnection</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">_socket</span><span class="p">)</span>
+</span><span class='line'>        <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">_socket</span><span class="p">.</span><span class="nx">readable</span><span class="p">)</span>
+</span><span class='line'>        <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">_socket</span><span class="p">.</span><span class="nx">writable</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(((</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span><span class="p">)</span> <span class="o">?</span>
+</span><span class='line'>        <span class="s2">&quot;UNHEALTHY SQL CONNECTION; RE&quot;</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;CONNECTING TO SQL.&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">connection</span> <span class="o">=</span> <span class="nx">mysql</span><span class="p">.</span><span class="nx">createConnection</span><span class="p">({</span>
+</span><span class='line'>        <span class="nx">host</span><span class="o">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">host</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">port</span><span class="o">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">port</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">database</span><span class="o">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">db_name</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">user</span><span class="o">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span>
+</span><span class='line'>        <span class="nx">password</span><span class="o">:</span> <span class="nx">settings</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span>
+</span><span class='line'>        <span class="c1">//中文读取</span>
+</span><span class='line'>        <span class="nx">charset</span><span class="o">:</span> <span class="s2">&quot;utf8&quot;</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>    <span class="nx">connection</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;SQL CONNECT ERROR: &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;SQL CONNECT SUCCESSFUL.&quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>    <span class="nx">connection</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;SQL CONNECTION CLOSED.&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>    <span class="nx">connection</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;SQL CONNECTION ERROR: &quot;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>    <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span> <span class="o">=</span> <span class="nx">connection</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">connection</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Open a connection automatically at app startup.</span>
+</span><span class='line'><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">getConnection</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// If you&#39;ve saved this file as database.js, then get and use the</span>
+</span><span class='line'><span class="c1">// connection as in the following example:</span>
+</span><span class='line'><span class="c1">// var database = require(__dirname + &quot;/database&quot;);</span>
+</span><span class='line'><span class="c1">// var connection = database.getConnection();</span>
+</span><span class='line'><span class="c1">// connection.query(query, function(err, results) { ....</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<p>伊泽<br/>
+2013-07-07于杭州</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/28/how-to-use-grunt-tps/">怎么使用grunt-tps</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-28T00:00:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>grunt-tps是什么。</h3>
+
+<p>首先来说下TPS是什么，TPS的全称是Taobao Pictures System，中文意思就是淘宝图片系统，主要用于存放图片，当然也可以存放其他的东西。</p>
+
+<p>而grunt-tps就是tps的grunt插件，基于tpsmate，只需要经过简单的配置，就可以用grunt进行自动化管理。</p>
+
+<h3>为什么要用grunt-tps</h3>
+
+<ol>
+<li><strong>自动化</strong>，特别是当你的需要替换的目录是在一个文件夹下的，可以直接使用<code>xx/**/*</code>这样的方式。</li>
+<li>和grunt结合，grunt是个大趋势，使用grunt进行将平时一些反复劳动交给工具去做，提高工作效率。所有的事情，一行<code>grunt</code>搞定，简单轻松愉快。</li>
+<li>减少出错率，人工上传替换，难免会出现错误。</li>
+</ol>
+
+
+<h3>tpsmate是什么？</h3>
+
+<p>TPS Mate是TPS系统的命令行版本。其中命令行版本基于python，当前功能主要包括上传单张图片、批量上传图片以及样式文件中背景图片的批量上传以及输出。其目的主要为减少手工替换以及为可能出现的前端打包工具提供更为有效的支持。</p>
+
+<h3>怎么安装tpsmate</h3>
+
+<p>首先要安装<code>python</code>，<a href="">http://www.python.org/download/</a></p>
+
+<h4>使用tpsmate需要具备的条件：</h4>
+
+<ol>
+<li>淘宝内部环境，需要可以访问tms.taobao.com</li>
+<li>有上传图片至tps的权限，看下你能否在<a href="http://tps.tms.taobao.com/photo/index.htm">这里</a>上传图片</li>
+</ol>
+
+
+<h3>怎么使用grunt-tps</h3>
+
+<p>如果你以前从来没有用过<a href="http://gruntjs.com/">Grunt</a>，推荐你看看Grunt的<a href="http://gruntjs.com/getting-started">Getting Start</a></p>
+
+<p>如何安装grunt？</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">npm</span> <span class="n">uninstall</span> <span class="o">-</span><span class="n">g</span> <span class="n">grunt</span>
+</span><span class='line'><span class="nf">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="n">grunt</span><span class="o">-</span><span class="n">cli</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>接下来就是要安装grunt-tps</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="nf">npm</span> <span class="n">install</span> <span class="n">grunt</span> <span class="c1">--save-dev</span>
+</span><span class='line'><span class="nf">npm</span> <span class="n">install</span> <span class="n">grunt</span><span class="o">-</span><span class="n">tps</span> <span class="c1">--save-dev</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你的Gruntfile.js中加入这一段</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">tps</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'><span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">argv</span><span class="o">:</span> <span class="s2">&quot;--inplace&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="p">},</span>
+</span><span class='line'><span class="nx">all</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;test.css&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/**/*.css&#39;</span><span class="p">,</span> <span class="s1">&#39;test/**/*.scss&#39;</span><span class="p">,</span><span class="s1">&#39;index.htm&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你的Gruntfile.js中，看起来应该这样的</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">grunt</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// Project configuration.</span>
+</span><span class='line'>    <span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
+</span><span class='line'>        <span class="c1">// Configuration to be run (and then tested).</span>
+</span><span class='line'>        <span class="nx">tps</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nx">argv</span><span class="o">:</span> <span class="s2">&quot;--inplace&quot;</span>
+</span><span class='line'>            <span class="p">},</span>
+</span><span class='line'>            <span class="nx">all</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;test.css&#39;</span><span class="p">,</span> <span class="s1">&#39;lib/**/*&#39;</span><span class="p">,</span> <span class="s1">&#39;test/**/*.scss&#39;</span><span class="p">,</span><span class="s1">&#39;index.htm&#39;</span><span class="p">]</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>    <span class="nx">grunt</span><span class="p">.</span><span class="nx">loadNpmTasks</span><span class="p">(</span><span class="s1">&#39;grunt-tps&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">grunt</span><span class="p">.</span><span class="nx">registerTask</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;tps&#39;</span><span class="p">]);</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><code>argv</code>是tpsmate的参数，比如<code>--inplace</code>(用tps路径「线上路径」替换本地路径)，参考tpsmate的命令行方式</li>
+</ul>
+
+
+<p>grunt-tps源码地址:<a href="">https://github.com/yize/grunt-tps</a></p>
+
+<hr />
+
+<p>伊泽<br/>
+2013-5-28于杭州</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
-      <a class="prev" href="/blog/page/2/">&larr; Older</a>
+      <a class="prev" href="2">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -477,15 +692,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/12/08/five-safari-chrome-shortcuts/">five-safari-chrome-shortcuts</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2013/11/27/iframe-size-not-work-in-ios/">iframe-size-not-work-in-IOS</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/11/27/use-octopress-new-post-function-with-zsh/">zsh下rake new_post[&#8220;title&#8221;] 报错的问题</a>
       </li>
     
       <li class="post">
@@ -496,11 +703,19 @@
         <a href="/blog/2013/07/28/javascript-binary-search/">Javascript 折半搜索法（二分法）</a>
       </li>
     
+      <li class="post">
+        <a href="/blog/2013/07/07/mysql-connection-lost/">node.js Connection lost The server closed the connection.</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/28/how-to-use-grunt-tps/">怎么使用grunt-tps</a>
+      </li>
+    
   </ul>
 </section>
 <section>
   <h2>Categories</h2>
-    <ul id="category-list"><li><a href='/blog/categories/chrome'>chrome (1)</a></li><li><a href='/blog/categories/life'>Life (2)</a></li><li><a href='/blog/categories/stack'>Stack (19)</a></li><li><a href='/blog/categories/useful'>useful (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/life'>life (2)</a></li><li><a href='/blog/categories/stack'>stack (18)</a></li></ul>
 </section>
 <section>
   <h2>Tag Cloud</h2>
@@ -522,12 +737,9 @@
 <li><a style="font-size: 60%" href="/tags/mysql/">Mysql</a></li>
 <li><a style="font-size: 60%" href="/tags/nginx/">Nginx</a></li>
 <li><a style="font-size: 165%" href="/tags/nodejs/">NodeJS</a></li>
-<li><a style="font-size: 60%" href="/tags/octopress/">Octopress</a></li>
-<li><a style="font-size: 60%" href="/tags/ruby/">Ruby</a></li>
 <li><a style="font-size: 60%" href="/tags/shell/">Shell</a></li>
 <li><a style="font-size: 60%" href="/tags/terminal/">Terminal</a></li>
 <li><a style="font-size: 60%" href="/tags/thinking/">Thinking</a></li>
-<li><a style="font-size: 60%" href="/tags/zsh/">Zsh</a></li>
 
   </ul>
 </section>
@@ -535,7 +747,7 @@
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/yize">@yize</a> on GitHub
@@ -591,7 +803,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - 邵寒超 -
+  Copyright &copy; 2015 - 邵寒超 -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

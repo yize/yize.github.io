@@ -97,7 +97,7 @@
   
 
 
-<time datetime="2013-02-24T00:00:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2013</time>
+<time datetime="2013-02-24T00:00:00+08:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -268,21 +268,12 @@
 </div>
 
 
-<p>除了获取请求，还有一种是发送请求，它常在提交表单用到。发送请求通过URL传递其参数(e.g.: <a href="http://robozzle.com/puzzle.aspx?id=85">http://robozzle.com/puzzle.aspx?id=85</a>)。发送请求在请求正文头之后发送其参数。</p>
-
+<p>除了获取请求，还有一种是发送请求，它常在提交表单用到。发送请求通过URL传递其参数(e.g.: <a href="http://robozzle.com/puzzle.aspx?id=85">http://robozzle.com/puzzle.aspx?id=85</a>)。发送请求在请求正文头之后发送其参数。
 <br>
-
-
 <br>
-
-
-<p>像“<a href="http://facebook.com/%E2%80%9D%E4%B8%AD%E7%9A%84%E6%96%9C%E6%9D%A0%E6%98%AF%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81%E7%9A%84%E3%80%82%E8%BF%99%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E8%83%BD%E5%AE%89%E5%85%A8%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%9C%E6%9D%A0%E3%80%82%E8%80%8C%E5%83%8F%E2%80%9Chttp:">http://facebook.com/%E2%80%9D%E4%B8%AD%E7%9A%84%E6%96%9C%E6%9D%A0%E6%98%AF%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81%E7%9A%84%E3%80%82%E8%BF%99%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E8%83%BD%E5%AE%89%E5%85%A8%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%9C%E6%9D%A0%E3%80%82%E8%80%8C%E5%83%8F%E2%80%9Chttp:</a> //example.com/folderOrFile”这样的地址，因为浏览器不清楚folderOrFile到底是文件夹还是文件，所以不能自动添加 斜杠。这时，浏览器就不加斜杠直接访问地址，服务器会响应一个重定向，结果造成一次不必要的握手。</p>
-
+像“<a href="http://facebook.com/%E2%80%9D%E4%B8%AD%E7%9A%84%E6%96%9C%E6%9D%A0%E6%98%AF%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81%E7%9A%84%E3%80%82%E8%BF%99%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E8%83%BD%E5%AE%89%E5%85%A8%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%9C%E6%9D%A0%E3%80%82%E8%80%8C%E5%83%8F%E2%80%9Chttp:">http://facebook.com/%E2%80%9D%E4%B8%AD%E7%9A%84%E6%96%9C%E6%9D%A0%E6%98%AF%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81%E7%9A%84%E3%80%82%E8%BF%99%E7%A7%8D%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E8%83%BD%E5%AE%89%E5%85%A8%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%9C%E6%9D%A0%E3%80%82%E8%80%8C%E5%83%8F%E2%80%9Chttp:</a> //example.com/folderOrFile”这样的地址，因为浏览器不清楚folderOrFile到底是文件夹还是文件，所以不能自动添加 斜杠。这时，浏览器就不加斜杠直接访问地址，服务器会响应一个重定向，结果造成一次不必要的握手。
 <br>
-
-
-<br>
-
+<br></p>
 
 <h3>4. facebook服务的永久重定向响应</h3>
 
@@ -361,7 +352,7 @@
     <li>
         <strong>Web 服务器软件
             <br></strong>
-        web服务器软件（像IIS和阿帕奇）接收到HTTP请求，然后确定执行什么请求处理来处理它。请求处理就是一个能够读懂请求并且能生成HTML来进行响应的程序（像ASP.NET,PHP,RUBY&#8230;）。
+        web服务器软件（像IIS和阿帕奇）接收到HTTP请求，然后确定执行什么请求处理来处理它。请求处理就是一个能够读懂请求并且能生成HTML来进行响应的程序（像ASP.NET,PHP,RUBY...）。
         <p>
             举 个最简单的例子，需求处理可以以映射网站地址结构的文件层次存储。像http://example.com/folder1/page1.aspx这个地
             址会映射/httpdocs/folder1/page1.aspx这个文件。web服务器软件可以设置成为地址人工的对应请求处理，这样
@@ -492,7 +483,7 @@
 </ul>
 
 
-<p>这些地址都要经历一个和HTML读取类似的过程。所以浏览器会在DNS中查找这些域名，发送请求，重定向等等&#8230;</p>
+<p>这些地址都要经历一个和HTML读取类似的过程。所以浏览器会在DNS中查找这些域名，发送请求，重定向等等...</p>
 
 
 <p>
@@ -506,7 +497,7 @@
     <p>
         试着猜猜看“
         <strong>fbcdn.net</strong>
-        ”在地址中代表什么？聪明的答案是&#8221;Facebook内容分发网络&#8221;。Facebook利用内容分发网络（CDN）分发像图片，CSS表和JavaScript文件这些静态文件。所以，这些文件会在全球很多CDN的数据中心中留下备份。
+        ”在地址中代表什么？聪明的答案是"Facebook内容分发网络"。Facebook利用内容分发网络（CDN）分发像图片，CSS表和JavaScript文件这些静态文件。所以，这些文件会在全球很多CDN的数据中心中留下备份。
     </p>
 
     <p>
@@ -541,7 +532,7 @@
 
 
 <p>
-    提起这个模式，就必须要讲讲&#8221;AJAX&#8221;&#8211;
+    提起这个模式，就必须要讲讲"AJAX"--
     “异步JavaScript 和 XML”，虽然服务器为什么用XML格式来进行响应也没有个一清二白的原因。再举个例子吧，对于异步请求，Facebook会返回一些JavaScript的代码片段。
 </p>
 
@@ -595,12 +586,12 @@
   
 
 
-<time datetime="2013-02-24T00:00:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2013</time>
+<time datetime="2013-02-24T00:00:00+08:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/stack/'>Stack</a>
+    <a class='category' href='/blog/categories/stack/'>stack</a>
   
 </span>
 
@@ -649,15 +640,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/12/08/five-safari-chrome-shortcuts/">five-safari-chrome-shortcuts</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2013/11/27/iframe-size-not-work-in-ios/">iframe-size-not-work-in-IOS</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/11/27/use-octopress-new-post-function-with-zsh/">zsh下rake new_post["title"] 报错的问题</a>
       </li>
     
       <li class="post">
@@ -668,11 +651,19 @@
         <a href="/blog/2013/07/28/javascript-binary-search/">Javascript 折半搜索法（二分法）</a>
       </li>
     
+      <li class="post">
+        <a href="/blog/2013/07/07/mysql-connection-lost/">node.js Connection lost The server closed the connection.</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/28/how-to-use-grunt-tps/">怎么使用grunt-tps</a>
+      </li>
+    
   </ul>
 </section>
 <section>
   <h2>Categories</h2>
-    <ul id="category-list"><li><a href='/blog/categories/chrome'>chrome (1)</a></li><li><a href='/blog/categories/life'>Life (2)</a></li><li><a href='/blog/categories/stack'>Stack (19)</a></li><li><a href='/blog/categories/useful'>useful (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/life'>life (2)</a></li><li><a href='/blog/categories/stack'>stack (18)</a></li></ul>
 </section>
 <section>
   <h2>Tag Cloud</h2>
@@ -694,12 +685,9 @@
 <li><a style="font-size: 60%" href="/tags/mysql/">Mysql</a></li>
 <li><a style="font-size: 60%" href="/tags/nginx/">Nginx</a></li>
 <li><a style="font-size: 165%" href="/tags/nodejs/">NodeJS</a></li>
-<li><a style="font-size: 60%" href="/tags/octopress/">Octopress</a></li>
-<li><a style="font-size: 60%" href="/tags/ruby/">Ruby</a></li>
 <li><a style="font-size: 60%" href="/tags/shell/">Shell</a></li>
 <li><a style="font-size: 60%" href="/tags/terminal/">Terminal</a></li>
 <li><a style="font-size: 60%" href="/tags/thinking/">Thinking</a></li>
-<li><a style="font-size: 60%" href="/tags/zsh/">Zsh</a></li>
 
   </ul>
 </section>
@@ -764,7 +752,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - 邵寒超 -
+  Copyright &copy; 2015 - 邵寒超 -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Mac | ithans]]></title>
   <link href="http://www.ithans.com/tags/mac/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-12-08T23:07:58+08:00</updated>
+  <updated>2015-09-21T00:33:16+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -37,14 +37,11 @@
 <p>并且是有<code>x</code>权限的。</p>
 
 <p>解决方法如下：
-```haskell</p>
-
-<pre><code>sudo chmod -R +x /usr/local/bin/
-sudo chown -R root /usr/local/bin/
-sudo chgrp -R wheel /usr/local/bin/
-</code></pre>
-
-<p>```
+<code>haskell
+    sudo chmod -R +x /usr/local/bin/
+    sudo chown -R root /usr/local/bin/
+    sudo chgrp -R wheel /usr/local/bin/
+</code>
 如此，解决。</p>
 
 <hr />

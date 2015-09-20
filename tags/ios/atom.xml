@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: IOS | ithans]]></title>
   <link href="http://www.ithans.com/tags/ios/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2013-12-08T23:07:58+08:00</updated>
+  <updated>2015-09-21T00:33:16+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -20,40 +20,37 @@
     <id>http://www.ithans.com/blog/2013/11/27/iframe-size-not-work-in-ios</id>
     <content type="html"><![CDATA[<p>最近遇到一个问题，就是iFrame在iPad上展示的时候，宽度并没有固定，会直接超出，通过嵌套div之后，无法滚动。</p>
 
-<p>HTML
-```html</p>
+<p>HTML</p>
 
-<div class="frame_holder">
-  <iframe class="my_frame">
+<pre><code class="html">&lt;section class="frame_holder"&gt;
+  &lt;iframe class="my_frame"&gt;
     // The content
-  </iframe>
-</div>
+  &lt;/iframe&gt;
+&lt;/section&gt;
+</code></pre>
 
+<p>CSS</p>
 
-<p>```</p>
-
-<p>CSS
-```css
-body {
+<pre><code class="css">body {
   position: relative;
   background: #f0f0f0;
-}</p>
+}
 
-<p>.frame_holder {
+.frame_holder {
   position: absolute;
   top: 50px;
   bottom: 50px;
   left: 50px;
   right: 50px;
   background: #ffffff;
-}</p>
+}
 
-<p>.my_frame {
+.my_frame {
   width: 100%;
   height: 100%;
   border: 1px solid #e0e0e0;
 }
-```</p>
+</code></pre>
 
 <p>例子：</p>
 
