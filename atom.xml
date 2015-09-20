@@ -4,7 +4,7 @@
   <title><![CDATA[ithans]]></title>
   <link href="http://www.ithans.com/atom.xml" rel="self"/>
   <link href="http://www.ithans.com/"/>
-  <updated>2015-09-21T00:33:16+08:00</updated>
+  <updated>2015-09-21T00:43:09+08:00</updated>
   <id>http://www.ithans.com/</id>
   <author>
     <name><![CDATA[邵寒超]]></name>
@@ -12,6 +12,181 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Study React]]></title>
+    <link href="http://www.ithans.com/blog/2015/09/21/study-react/"/>
+    <updated>2015-09-21T00:41:36+08:00</updated>
+    <id>http://www.ithans.com/blog/2015/09/21/study-react</id>
+    <content type="html"><![CDATA[<h1>React 学习笔记</h1>
+
+<blockquote><p>A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES</p></blockquote>
+
+<p>引言是 <a href="http://facebook.github.io/react/">React 官网</a> 上是的自述。React 主要是用于构建用户界面。</p>
+
+<h2>为什么使用 React?</h2>
+
+<p>React 是一个 Facebook 和 Instagram 用来创建用户界面的 JavaScript 库。主要采用以下两个思想：</p>
+
+<ul>
+<li><p>简单</p>
+
+<p>  仅仅只要表达出你的应用程序在任一个时间点应该长的样子，然后当底层的数据变了，React 会自动处理所有用户界面的更新。</p></li>
+<li><p>声明式</p>
+
+<p>   数据变化后，React 概念上与点击“刷新”按钮类似，但仅会更新变化的部分。</p></li>
+</ul>
+
+
+<h2>几个特点</h2>
+
+<ul>
+<li><p>仅仅是 UI</p>
+
+<p>  许多人使用 React 作为 MVC 架构的 V 层。尽管 React 并没有假设过你的其他技术栈，但你仍可以作为一个小特征轻易地在已有项目中使用。</p></li>
+<li><p>虚拟 DOM</p>
+
+<p>  React为了更高超的性能而使用虚拟DOM作为其不同的实现。 它同时也可以由服务端Node.js渲染 － 而不需要过重的浏览器DOM支持。</p></li>
+<li><p>数据流</p>
+
+<p>  React实现了单向响应的数据流，从而减少了重复代码，这也是它为什么比传统数据绑定更简单。</p></li>
+</ul>
+
+
+<h2>几个概念</h2>
+
+<ul>
+<li><p>React elements</p>
+
+<p> <code>React 元素（React elements）</code> 是一些用于表示 HTML 元素的 JavaScript 对象，他们并不存在于浏览器中，浏览器原生对象在 React 中，也有对应的 React 元素对应，比如 <code>h1</code> 、 <code>div</code> 、<code>section</code>。</p></li>
+<li><p>Components</p>
+
+<p>  <code>组件（Components）</code>也就是我们常说的组件，他们一般是构成我们页面的最大的一部分，主要包括「结构」和「功能」。举个例子，比如 <code>NavBar</code> 、 <code>LikeButton</code> 、<code>ImageUploader</code> 都是一个个带有结构和功能的组件。</p>
+
+<p>  组件就像是函数。接受<code>props</code>和<code>state</code>作为参数，渲染出<code>HTML</code>。</p></li>
+<li><p>JSX</p>
+
+<p>  <code>JSX</code> 是一个看起来想 XML 的 JavaScript 语法扩展。举个例子：<code>&lt;h1&gt;Hello&lt;/h1&gt;</code> 是 <code>React Element</code> 使用 <code>JSX</code> 的语法的写法。同样的，如果你不用 <code>JSX</code> ，使用这样的写法：<code>React.DOM.h1(null, 'Hello')</code> 也可以达到相同的效果。相比之下 <code>JSX</code> 的易读性更好。 JSX 需要编译之后才能在浏览器中运行。<code>JSX</code>并不是强制使用的，这个语法只是让搭建 React 应用变得更加地简单。</p></li>
+<li><p>The Virtual DOM</p>
+
+<p>  <code>虚拟 DOM（The Virtual DOM）</code>  是存在于内存之中的一种数据结构，并不是真正的 DOM 节点。只有当他插入到文档中以后，才会变成真正的 DOM 。React 会监听虚拟 DOM 的变化，会自动的计算 DOM 和 虚拟 DOM 的区别。所有 DOM 的变动，都会先在 虚拟 DOM 上发生，然后再将实际变动的部分，反应在真实的 DOM 上，这种算法叫 DOM diff ，它极大的提高了网页性能表现。</p></li>
+</ul>
+
+
+<p>需要先稍微理解下以上的几个概念，方便</p>
+
+<h2>渲染</h2>
+
+<p>我们首先来看下怎么把 虚拟 DOM （React 元素和组件都是虚拟 DOM）渲染到页面上。我们知道，虚拟 DOM 只存在于内存中，我们需要告诉 React ，以让它执行虚拟 DOM 的渲染。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">React</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">&lt;</span><span class="err">/h1&gt;, document.getElementById(&#39;app&#39;));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面的代码会将一个 H1 ，插入到 body 上。</p>
+
+<p><code>render</code> 函数接收两个参数，第一个参数为 <code>React element</code>，第二个参数为 <code>DOM element</code>。</p>
+
+<h2>组件</h2>
+
+<p>组件是 React 的重要组成部分，是自定义的 React 元素。一个组件就是一个功能。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">render</span><span class="o">:</span> <span class="nx">fucntion</span><span class="p">(){</span>
+</span><span class='line'>      <span class="k">return</span> <span class="p">(</span><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">!&lt;</span><span class="err">/h1&gt;)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">})</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">React</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">HelloWorld</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>createClass</code> 方法的参数是个对象，这个对象需要包含 <code>render</code>函数。</p>
+
+<p>在上段代码中，通过 <code>createClass</code> 我们创建了 <code>HelloWorld</code> 元素，然后我们通过 <code>React.render</code> 方法将 <code>HelloWorld</code> 元素渲染到了 <code>#app</code> 里面。</p>
+
+<p>这个例子和上一个差不多，区别是你可以为 <code>HelloWorld</code> 元素添加更多的自定义方法和逻辑了。</p>
+
+<blockquote><p>注意 自定义的 React 元素，第一个字母需要大写。</p></blockquote>
+
+<h2>Props</h2>
+
+<p><code>Props</code> 我们可以理解为组件的参数。通过 <code>HTML</code> 的属性传入。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">HelloWorld</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">render</span><span class="o">:</span> <span class="nx">fucntion</span><span class="p">(){</span>
+</span><span class='line'>      <span class="k">return</span> <span class="p">(</span><span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">!</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">author</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">})</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">React</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">HelloWorld</span> <span class="nx">author</span><span class="o">=</span><span class="s1">&#39;somebody&#39;</span><span class="o">/&gt;</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在 <code>React.render</code> 方法中，我们传入了 <code>author</code> 这个参数。这个参数在 <code>HelloWorld</code> 组件的 <code>render</code> 通过 <code>this.props.author</code> 取得。</p>
+
+<p>所有通过 <code>ReactElement</code> 传入的参数，都可以在组件的 <code>render</code> 方法中获取到。值得注意的是，<code>ReactElement</code> 是通过 <code>JavaScript</code> 创建的，<code>class</code> <code>for</code> 等均为 <code>JavaScript</code> 的保留字，在 <code>JSX</code> 中不能直接写 <code>class</code> 和 <code>for</code>，而需要写成 <code>className</code> 和 <code>htmlFor</code>：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">React</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">label</span> <span class="nx">htmlFor</span><span class="o">=</span><span class="s2">&quot;inputEl&quot;</span><span class="o">&gt;&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;input-el&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;inputEl&quot;</span><span class="o">/&gt;&lt;</span><span class="err">/label&gt;)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>this.props.children</h3>
+
+<p>this.props 对象的属性和组件的属性一一对应，但是有一个是例外的， 就是 <code>this.props.children</code> 。它表示的是组件的所有子节点。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">List</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createClass</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">(</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">child</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/li&gt;</span>
+</span><span class='line'>        <span class="p">})</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="o">&lt;</span><span class="err">/ol&gt;</span>
+</span><span class='line'>    <span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">React</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">list</span><span class="o">&gt;&lt;</span><span class="nx">span</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="o">&lt;</span><span class="err">/span&gt;&lt;span&gt;World&lt;/span&gt;&lt;/list&gt;)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>注意：你没有办法通过 <code>this.props.children</code> 取得当前组件的子元素，因为 <code>this.props.children</code> 返回的是组件传递给你的 <code>Passed onto you</code> 子节点。</p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iframe-size-not-work-in-IOS]]></title>
@@ -3837,19 +4012,6 @@ ident   {nmstart}{nmchar}*
 <li><p><a href="http://jekyllbootstrap.com/">http://jekyllbootstrap.com/</a></p></li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[回到杭州]]></title>
-    <link href="http://www.ithans.com/blog/2013/02/17/back-to-hangzhou/"/>
-    <updated>2013-02-17T00:00:00+08:00</updated>
-    <id>http://www.ithans.com/blog/2013/02/17/back-to-hangzhou</id>
-    <content type="html"><![CDATA[<p>回到杭州。</p>
-
-<p>好熟悉又陌生的城市，有家的感觉，却没有家的温馨。</p>
-
-<p>新年新气象。为了我们的目标，加油！</p>
 ]]></content>
   </entry>
   
